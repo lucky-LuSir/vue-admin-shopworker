@@ -19,32 +19,11 @@
     height: 100%;
 }
 
-@media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
-    .title_h1 {
-        float: left;
-        z-index: 9999;
-        font-size: 40px;
-        background-image: -webkit-linear-gradient(left,
-                #ffdbc4,
-                #e6d205 25%,
-                #147b96 50%,
-                #e6d205 75%,
-                #ffdbc4);
-        -webkit-text-fill-color: transparent;
-        -webkit-background-clip: text;
-        -webkit-background-size: 200% 100%;
-        -webkit-animation: masked-animation 4s infinite linear;
-    }
+.el-dialog__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-@-webkit-keyframes masked-animation {
-    0% {
-        background-position: 0 0;
-    }
-
-    100% {
-        background-position: -100% 0;
-    }
-}
 
 

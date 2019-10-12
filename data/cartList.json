@@ -1,0 +1,25 @@
+{
+    "data": {
+        "result": [{
+                "checked": "1",
+                "productId": "201710005",
+                "productImage": "https://www.theshutterstore.com/images/2017/products/tier-on-tier-solid-raised/solidtierontier_categorypromolrg",
+                "productName": "Tier on Tier",
+                "productNum": "1",
+                "salePrice": "139",
+                "_id": "59e89343b5c3f31ae6f30ddb"
+            },
+            {
+                "checked": "1",
+                "productId": "201710005",
+                "productImage": "https://www.theshutterstore.com/images/2017/products/full-height-solid-raised/fullsolid_categorypromolrg",
+                "productName": "Full Solid Raised ",
+                "productNum": "1",
+                "salePrice": "155",
+                "_id": "59e89343b5c3f31ae6f30ddb"
+            }
+        ]
+    },
+    "code": 200,
+    "message": "操作成功!"
+}

@@ -223,6 +223,13 @@
       "unicode_decimal": 58902
     },
     {
+      "icon_id": "3484319",
+      "name": "右箭头",
+      "font_class": "youjiantou",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
       "icon_id": "3513823",
       "name": "项目空间",
       "font_class": "project_space",

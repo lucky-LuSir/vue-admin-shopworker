@@ -1,6 +1,6 @@
 <template>
     <div class="index">
-        <div class="zero">
+        <div class="zero cm-Layout">
             <el-carousel indicator-position="outside">
                 <el-carousel-item v-for="(item, index) in imgArr0" :key="index">
                     <a :href="item.linkHref">
@@ -9,7 +9,7 @@
                 </el-carousel-item>
             </el-carousel>
         </div>
-        <div class="first cm-Layout">
+        <!-- <div class="first cm-Layout">
             <el-carousel :interval="4000" type="card">
                 <el-carousel-item v-for="(item, index) in imgArr1" :key="index">
                     <a :href="item.linkHref">
@@ -17,8 +17,8 @@
                     </a>
                 </el-carousel-item>
             </el-carousel>
-        </div>
-        <div class="second cm-Layout">
+        </div> -->
+        <!-- <div class="second cm-Layout">
             <el-carousel class="vertical" height="200px" direction="vertical" :autoplay="false">
                 <el-carousel-item v-for="(item, index) in imgArr2" :key="index">
                     <a :href="item.linkHref">
@@ -47,8 +47,8 @@
                     </a>
                 </el-carousel-item>
             </el-carousel>
-        </div>
-        <div class="four cm-Layout">
+        </div> -->
+        <!-- <div class="four cm-Layout">
             <el-tabs tab-position="left">
                 <el-tab-pane label="tab1">
                     <a href="#" target="_blank">
@@ -71,6 +71,35 @@
                     </a>
                 </el-tab-pane>
             </el-tabs>
+        </div> -->
+        <div class="two cm-Layout">
+            <div class="carousel__slide slick-slide slick-active" style="width: 203px;">
+                <div class="promo-style" @click="toCart()">
+                    <div class="style-image">
+                        <a href="javascript:;" alt="">
+                            <img src="https://www.theshutterstore.com/images/2017/products/tier-on-tier-solid-raised/solidtierontier_categorypromolrg" alt=""></a>
+                    </div>
+                    <div class="content" data-mh="style-content" style="height: 165px;">
+                        <h4 class="heading"><a href="javascript:;" class="icon--arrow" tabindex="0">Tier on Tier <i class="el-icon-diy-youjiantou"></i></a></h4>
+                        <p>
+                            These louvered shutters cover just the lower half of your window, letting light in while maintaining privacy at the bottom half of your window.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel__slide slick-slide slick-active" style="width: 203px;">
+                <div class="promo-style">
+                    <div class="style-image">
+                        <a href="javascript:;" alt="">
+                            <img src="https://www.theshutterstore.com/images/2017/products/full-height-solid-raised/fullsolid_categorypromolrg" alt=""></a>
+                    </div>
+                    <div class="content" data-mh="style-content" style="height: 165px;">
+                        <h4 class="heading"><a href="javascript:;" class="icon--arrow" tabindex="0">Full Solid Raised <i class="el-icon-diy-youjiantou"></i></a></h4>
+                        <p>
+                            These solid shutters provide complete window coverage and have a lovely, traditional feel to them.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="three cm-Layout">
             <div class="lunbo">
@@ -132,11 +161,60 @@
                     linkHref: 'javascript:;'
                 }]
             }
+        },
+        methods: {
+            toCart() {
+                this.$router.push('/cart');
+            }
         }
     }
 </script>
 
 <style scoped lang="less">
+    .carousel__slide {
+        float: left;
+        margin-right: 20px;
+
+        .promo-style {
+            border: 1px solid rgba(0, 0, 0, .16);
+            box-shadow: 4px 4px 0 0 rgba(50, 50, 50, .07);
+        }
+
+        .promo-style .style-image {
+            width: 100%;
+        }
+
+        h4 {
+            color: #282323;
+            font-size: 16px;
+            font-family: Lato, Arial, sans-serif;
+            font-weight: 700;
+            margin-bottom: 7px;
+            line-height: normal;
+
+            a {
+                color: inherit;
+            }
+        }
+
+        p {
+            font-size: 13px;
+            height: 126px;
+            line-height: 18px;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .promo-style .content {
+            padding: 15px;
+            min-height: 150px;
+        }
+    }
+
+
     .el-carousel__item a {
         color: #475669;
         font-size: 14px;
@@ -157,6 +235,7 @@
     .el-carousel__item:nth-child(2n+1) {
         background-color: #d3dce6;
     }
+
     .zero {
         a {
             display: inline-block;
@@ -169,6 +248,7 @@
             }
         }
     }
+
     .first {
         margin-top: 30px;
 

@@ -1,14 +1,6 @@
 <template>
     <div class="home">
-        <el-header class="header">
-            <div class="title">
-                <h1 class="title_h1">菏泽</h1>
-                <div class="backBtn" @click="backBtn()">
-                    <span>Back</span>
-                    <i class="iconfont el-icon-diy-geren2"></i>
-                </div>
-            </div>
-        </el-header>
+        <Header></Header>
         <el-main>
             <div class="menu">
                 <div class="menuBox cm-Layout">
@@ -19,7 +11,7 @@
                         <el-menu-item index="/Account">Account</el-menu-item>
                         <el-menu-item index="/About">About</el-menu-item>
                     </el-menu>
-                    <div class="icons">
+                    <div class="icons" @click="toCart()">
                         <i style="color: #e2231a; font-size: 24px;" class="el-icon-diy-icon-test"></i>
                     </div>
                 </div>
@@ -30,13 +22,21 @@
 </template>
 
 <script>
+    import Header from "../components/Header"
+
     export default {
         name: 'home',
-        components: {},
+        components: {
+            Header
+        },
         data() {
-            return {}
+            return {
+            }
         },
         methods: {
+            toCart() {
+                this.$router.push('/cart');
+            },
             backBtn() {
                 this.$confirm('是否退出登陆?', '提示', {
                     confirmButtonText: '确定',

@@ -31,50 +31,10 @@
         color: #42b983;
     }
 
-    .el-header {
-        background-color: #2e4d6f;
-
-        .title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 60px;
-            padding-right: 20px;
-        }
-
-        h1 {
-            font-size: 28px;
-            color: #fcddb4;
-            padding: 20px;
-            text-align: left;
-            float: left;
-        }
-
-        .backBtn {
-            background-color: #ffdbc4;
-            width: 140px;
-            height: 35px;
-            float: right;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-
-            span {
-                font-size: 14px;
-                margin-left: 20px;
-            }
-
-            i {
-                font-size: 24px;
-                margin-right: 20px;
-            }
-        }
-    }
-
     .loginTitle {
         background-color: #2e4d6f;
         width: 100%;
-        height: 40px;
+        height: 50px;
 
         .title-content {
             width: 80px;
@@ -91,6 +51,26 @@
             transform: translateX(-50%);
             color: #9da5a7;
             font-weight: 700;
+        }
+    }
+
+    .loginDialog {
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #666666;
+            margin-top: 3px;
+        }
+
+        p {
+            color: #999999;
+            margin-bottom: 40px;
+            margin-top: 20px;
+        }
+
+        .el-button {
+            width: 150px;
+            color: blue;
         }
     }
 </style>
