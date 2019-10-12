@@ -99,16 +99,16 @@ axios.interceptors.response.use(
 /**------------------------------------- 响应拦截器 --------------------------------*/
 
 /**------------------------------------- 导航守卫 --------------------------------*/
-router.beforeEach((to, from, next) => {
-    //判断该路由是否需要登录权限
-    let token = Vue.prototype.$cookieStore.getCookie("gn_request_token");
-    if (to.path === '/login' || token) {
-        // 有token，放行
-        next()
-    } else {
-        next('/login')
-    }
-});
+// router.beforeEach((to, from, next) => {
+//     //判断该路由是否需要登录权限
+//     let token = Vue.prototype.$cookieStore.getCookie("gn_request_token");
+//     if (to.path === '/login' || token) {
+//         // 有token，放行
+//         next()
+//     } else {
+//         next('/login')
+//     }
+// });
 /**------------------------------------- 导航守卫 --------------------------------*/
 
 
