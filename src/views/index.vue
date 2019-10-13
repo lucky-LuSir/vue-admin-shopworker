@@ -72,7 +72,7 @@
                 </el-tab-pane>
             </el-tabs>
         </div> -->
-        <div class="two cm-Layout">
+        <div class="two cm-Layout clearfix">
             <div class="carousel__slide slick-slide slick-active" style="width: 203px;">
                 <div class="promo-style" @click="toCart()">
                     <div class="style-image">
@@ -101,7 +101,7 @@
                 </div>
             </div>
         </div>
-        <div class="three cm-Layout">
+        <div class="three cm-Layout clearfix">
             <div class="lunbo">
                 <ul>
                     <li><a href="#"><img src="//img30.360buyimg.com/mobilecms/s150x150_jfs/t2974/96/1802531561/76680/78b522f0/57907469N4606eb75.jpg!q70.jpg.webp" alt=""></a></li>
@@ -164,7 +164,7 @@
         },
         methods: {
             toCart() {
-                this.$router.push('/cart');
+                this.$router.push('/detail');
             }
         }
     }
@@ -213,6 +213,36 @@
             min-height: 150px;
         }
     }
+
+    /deep/ .el-carousel__indicators--outside {
+        bottom: 26px;
+        text-align: center;
+        position: static;
+        -webkit-transform: none;
+        transform: none;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        z-index: 999;
+
+        .el-carousel__button {
+            width: 20px;
+            // width: 100%;
+            height: 5px;
+            background-color: #fff;
+        }
+
+        /deep/ .el-carousel__indicator.is-active .el-carousel__button {
+            width: 30px;
+        }
+
+    }
+
+    .two {
+        margin-top: 20px;
+    }
+
+
 
 
     .el-carousel__item a {

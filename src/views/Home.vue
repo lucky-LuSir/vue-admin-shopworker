@@ -1,5 +1,7 @@
 <template>
     <div class="home">
+        <div>
+        </div>
         <Header></Header>
         <el-main>
             <div class="menu">
@@ -18,22 +20,50 @@
             </div>
             <router-view></router-view>
         </el-main>
+        <Footer></Footer>
     </div>
 </template>
 
 <script>
     import Header from "../components/Header"
+    import Footer from "../components/Footer"
+    import {
+        LANGS
+    } from '../assets/languages/lang.js'
 
     export default {
         name: 'home',
         components: {
-            Header
+            Header,
+            Footer
         },
         data() {
             return {
+                form: {
+                    name: '首页'
+                },
+                // locale: 'zh-CN',
+                // langs: LANGS,
+                // skins: [{
+                //     name: 'default',
+                //     label: this.$t('default')
+                // }, {
+                //     name: 'purple',
+                //     label: this.$t('purple')
+                // }],
             }
         },
         methods: {
+            // handleCommand(command) {
+            //     this.locale = command;
+            //     Vue.config.lang = this.locale;
+            // },
+            // changeLanguage(language) {
+            //     // console.log(111)
+            //     console.log(this.$i18n.locale)
+            //     let lang = this.$i18n.locale === 'zh' ? 'en' : 'zh';
+            //     this.$i18n.locale = lang;
+            // },
             toCart() {
                 this.$router.push('/cart');
             },

@@ -7,6 +7,7 @@ import support from '@/views/support'
 import account from '@/views/account'
 import about from '@/views/about'
 import cart from '@/views/cart'
+import detail from '@/views/detail'
 import orderConfirm from '@/views/orderConfirm'
 import orderSuccess from '@/views/orderSuccess'
 import address from '@/views/address'
@@ -52,6 +53,11 @@ export default new Router({
                     path: '/address',
                     name: 'address',
                     component: address
+                },
+                {
+                    path: '/detail',
+                    name: 'detail',
+                    component: detail
                 },
                 {
                     path: '/orderSuccess',

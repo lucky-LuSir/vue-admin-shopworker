@@ -9,6 +9,7 @@ import store from './store'
 import axios from "axios";
 import md5 from "js-md5";
 import App from './App.vue'
+import VueI18n from 'vue-i18n'
 import {
     addCookie,
     getCookie,
@@ -35,6 +36,7 @@ Vue.prototype.$cookieStore = {
 };
 
 Vue.use(ElementUI);
+Vue.use(VueI18n)
 // Vue.use(axios);
 
 Vue.filter("currency", currency);
@@ -110,6 +112,13 @@ axios.interceptors.response.use(
 //     }
 // });
 /**------------------------------------- 导航守卫 --------------------------------*/
+const i18n = new VueI18n({
+    locale: 'zh',
+    messages: {
+        'zh': require('@/assets/languages/zh.json'),
+        'en': require('@/assets/languages/en.json')
+    }
+})
 
 
 let park = new Vue({
@@ -137,5 +146,6 @@ let park = new Vue({
             });
         }
     },
+    i18n,
     render: h => h(App)
 }).$mount('#app')
