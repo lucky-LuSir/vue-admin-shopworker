@@ -3,17 +3,17 @@ const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const isProduction = process.env.NODE_ENV === "production";
 // 作为配置文件，直接导出配置对象即可
 // 导入express
-const express = require("express")
+// const express = require("express")
 
 // 创建express实例
-const app = express()
+// const app = express()
 
 // 读取json数据
-var login = require("./data/login.json");
-var register = require("./data/register.json");
-var editPassword = require("./data/editPassword.json");
-var cartList = require("./data/cartList.json");
-var cartEdit = require("./data/cartEdit.json");
+// var login = require("./data/login.json");
+// var register = require("./data/register.json");
+// var editPassword = require("./data/editPassword.json");
+// var cartList = require("./data/cartList.json");
+// var cartEdit = require("./data/cartEdit.json");
 
 const cdn = {
     // 生产环境
@@ -35,24 +35,36 @@ module.exports = {
     publicPath: isProduction ? "./" : "/",
     outputDir: "dist",
     devServer: {
-        before(app) { // localhost:8080/api/login
-            app.post("/api/login", (req, res) => {
-                res.json(login)
-            })
-            app.post("/api/register", (req, res) => {
-                res.json(register)
-            })
-            app.post("/api/editPassword", (req, res) => {
-                res.json(editPassword)
-            })
-            app.post("/api/cartList", (req, res) => {
-                res.json(cartList)
-            })
-            app.post("/api/cartEdit", (req, res) => {
-                res.json(cartEdit)
-            })
+        proxy: {
+            '/api': {
+                target: 'http://47.100.79.150:8000/', //对应自己的接口
+                changeOrigin: true,
+                ws: true,
+                pathRewrite: {
+                    '^/api': ''
+                }
+            }
         }
     },
+    // devServer: {
+    //     before(app) { // localhost:8080/api/login
+    //         app.post("/api/login", (req, res) => {
+    //             res.json(login)
+    //         })
+    //         app.post("/api/register", (req, res) => {
+    //             res.json(register)
+    //         })
+    //         app.post("/api/editPassword", (req, res) => {
+    //             res.json(editPassword)
+    //         })
+    //         app.post("/api/cartList", (req, res) => {
+    //             res.json(cartList)
+    //         })
+    //         app.post("/api/cartEdit", (req, res) => {
+    //             res.json(cartEdit)
+    //         })
+    //     }
+    // },
     configureWebpack: config => {
         if (isProduction) {
             config.externals = {

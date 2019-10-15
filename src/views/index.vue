@@ -119,7 +119,7 @@
         </div>
         <!-- <img src="../img/img1.png" alt=""> -->
         <!-- <img src="../img/DSC_0180.jpg" alt=""> -->
-        
+
 
     </div>
 </template>
@@ -129,16 +129,12 @@
         data() {
             return {
                 imgArr0: [{
-                    // imgSrc: require('../img/DSC_0125.JPG'),
-                    // imgSrc: '//pics.lvjs.com.cn/uploads/pc/place2/2019-09-03/09165a41-be74-4618-ad72-96185ec8b6ad.jpg',
                     imgSrc: require("../img/DSC_0180.jpg"),
                     linkHref: 'javascript:;'
                 }, {
-                    // imgSrc: '//pics.lvjs.com.cn/uploads/pc/place2/2019-09-03/09165a41-be74-4618-ad72-96185ec8b6ad.jpg',
                     imgSrc: require("../img/DSC_0233.jpg"),
                     linkHref: 'javascript:;'
                 }, {
-                    // imgSrc: '//pics.lvjs.com.cn/uploads/pc/place2/2019-09-20/40830622-d1ac-4e23-9b18-d9f66337057c.jpg',
                     imgSrc: require("../img/DSC_0238.jpg"),
                     linkHref: 'javascript:;'
                 }],
@@ -169,6 +165,21 @@
                     linkHref: 'javascript:;'
                 }]
             }
+        },
+        created() {
+            // console.log(22222)
+            // const res = await this.$ajax.post(`/user/`, {});
+            // console.log(res);
+
+        },
+        mounted() {
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?12654172b756f1bd55823c2cccc70024";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            })();
         },
         methods: {
             toCart() {

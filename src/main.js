@@ -9,6 +9,7 @@ import store from './store'
 import axios from "axios";
 import md5 from "js-md5";
 import App from './App.vue'
+import BASE_URL from "../public/park_BASE_URL"; //配置全局URL
 import VueI18n from 'vue-i18n'
 import {
     addCookie,
@@ -34,6 +35,9 @@ Vue.prototype.$cookieStore = {
     getCookie,
     delCookie
 };
+
+axios.defaults.baseURL = BASE_URL.BASE_URL; //设置全局URL
+axios.defaults.headers.post["Content-Type"] = "application/json";
 
 Vue.use(ElementUI);
 Vue.use(VueI18n)
