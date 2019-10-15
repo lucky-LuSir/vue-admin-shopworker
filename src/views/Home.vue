@@ -105,6 +105,7 @@
         .el-menu-item {
             height: 45px;
             line-height: 45px;
+            padding: 0 40px;
         }
 
         /deep/ .el-menu-item:hover {

@@ -77,7 +77,7 @@
                 <div class="promo-style" @click="toCart()">
                     <div class="style-image">
                         <a href="javascript:;" alt="">
-                            <img src="https://www.theshutterstore.com/images/2017/products/tier-on-tier-solid-raised/solidtierontier_categorypromolrg" alt=""></a>
+                            <img style="height: 200px;" src="../img/DSC_0180.jpg" alt=""></a>
                     </div>
                     <div class="content" data-mh="style-content" style="height: 165px;">
                         <h4 class="heading"><a href="javascript:;" class="icon--arrow" tabindex="0">Tier on Tier <i class="el-icon-diy-youjiantou"></i></a></h4>
@@ -90,7 +90,7 @@
                 <div class="promo-style">
                     <div class="style-image">
                         <a href="javascript:;" alt="">
-                            <img src="https://www.theshutterstore.com/images/2017/products/full-height-solid-raised/fullsolid_categorypromolrg" alt=""></a>
+                            <img style="height: 200px;" src="../img/DSC_0233.jpg" alt=""></a>
                     </div>
                     <div class="content" data-mh="style-content" style="height: 165px;">
                         <h4 class="heading"><a href="javascript:;" class="icon--arrow" tabindex="0">Full Solid Raised <i class="el-icon-diy-youjiantou"></i></a></h4>
@@ -117,6 +117,10 @@
                 </ul>
             </div>
         </div>
+        <!-- <img src="../img/img1.png" alt=""> -->
+        <!-- <img src="../img/DSC_0180.jpg" alt=""> -->
+        
+
     </div>
 </template>
 
@@ -125,13 +129,17 @@
         data() {
             return {
                 imgArr0: [{
-                    imgSrc: '//pics.lvjs.com.cn/uploads/pc/place2/2019-09-12/371fa5c3-d300-4b92-833c-08ddaef5e54b.jpg',
+                    // imgSrc: require('../img/DSC_0125.JPG'),
+                    // imgSrc: '//pics.lvjs.com.cn/uploads/pc/place2/2019-09-03/09165a41-be74-4618-ad72-96185ec8b6ad.jpg',
+                    imgSrc: require("../img/DSC_0180.jpg"),
                     linkHref: 'javascript:;'
                 }, {
-                    imgSrc: '//pics.lvjs.com.cn/uploads/pc/place2/2019-09-03/09165a41-be74-4618-ad72-96185ec8b6ad.jpg',
+                    // imgSrc: '//pics.lvjs.com.cn/uploads/pc/place2/2019-09-03/09165a41-be74-4618-ad72-96185ec8b6ad.jpg',
+                    imgSrc: require("../img/DSC_0233.jpg"),
                     linkHref: 'javascript:;'
                 }, {
-                    imgSrc: '//pics.lvjs.com.cn/uploads/pc/place2/2019-09-20/40830622-d1ac-4e23-9b18-d9f66337057c.jpg',
+                    // imgSrc: '//pics.lvjs.com.cn/uploads/pc/place2/2019-09-20/40830622-d1ac-4e23-9b18-d9f66337057c.jpg',
+                    imgSrc: require("../img/DSC_0238.jpg"),
                     linkHref: 'javascript:;'
                 }],
                 imgArr1: [{
@@ -174,6 +182,7 @@
     .carousel__slide {
         float: left;
         margin-right: 20px;
+        width: 275px !important;
 
         .promo-style {
             border: 1px solid rgba(0, 0, 0, .16);
@@ -241,9 +250,6 @@
     .two {
         margin-top: 20px;
     }
-
-
-
 
     .el-carousel__item a {
         color: #475669;

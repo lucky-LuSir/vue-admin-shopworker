@@ -6,7 +6,7 @@
                 <el-carousel indicator-position="outside">
                     <el-carousel-item v-for="(item, index) in detailImg" :key="index">
                         <a :href="item.linkHref">
-                            <img :src="item.imgSrc" alt="">
+                            <img style="width: 542px; height: 542px;" :src="item.imgSrc" alt="">
                         </a>
                     </el-carousel-item>
                 </el-carousel>
@@ -89,16 +89,33 @@
     export default {
         data() {
             return {
-                detailImg: [{
-                    imgSrc: 'https://www.theshutterstore.com/images/2017/products/full-height/fullheight_style_product_3',
-                    linkHref: 'javascript:;'
-                }, {
-                    imgSrc: 'https://www.theshutterstore.com/images/2017/products/full-height/fullheight_style_product_4',
-                    linkHref: 'javascript:;'
-                }, {
-                    imgSrc: 'https://www.theshutterstore.com/images/2017/products/full-height/fullheight_style_product_5',
-                    linkHref: 'javascript:;'
-                }],
+                detailImg: [
+                    //     {
+                    //     imgSrc: 'https://www.theshutterstore.com/images/2017/products/full-height/fullheight_style_product_3',
+                    //     linkHref: 'javascript:;'
+                    // }, {
+                    //     imgSrc: 'https://www.theshutterstore.com/images/2017/products/full-height/fullheight_style_product_4',
+                    //     linkHref: 'javascript:;'
+                    // }, {
+                    //     imgSrc: 'https://www.theshutterstore.com/images/2017/products/full-height/fullheight_style_product_5',
+                    //     linkHref: 'javascript:;'
+                    // },
+                    {
+                        // imgSrc: require('../img/DSC_0125.JPG'),
+                        // imgSrc: '//pics.lvjs.com.cn/uploads/pc/place2/2019-09-03/09165a41-be74-4618-ad72-96185ec8b6ad.jpg',
+                        imgSrc: require("../img/DSC_0180.jpg"),
+                        linkHref: 'javascript:;'
+                    }, {
+                        // imgSrc: '//pics.lvjs.com.cn/uploads/pc/place2/2019-09-03/09165a41-be74-4618-ad72-96185ec8b6ad.jpg',
+                        imgSrc: require("../img/DSC_0233.jpg"),
+                        linkHref: 'javascript:;'
+                    }, {
+                        // imgSrc: '//pics.lvjs.com.cn/uploads/pc/place2/2019-09-20/40830622-d1ac-4e23-9b18-d9f66337057c.jpg',
+                        imgSrc: require("../img/DSC_0238.jpg"),
+                        linkHref: 'javascript:;'
+                    }
+                ],
+
                 form: {
                     caizhi: '', // 材质
                     casement: '', // 窗扇类型
