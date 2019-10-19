@@ -62,7 +62,7 @@
                 <div class="cart-foot-inner">
                     <div class="cart-foot-l">
                         <div class="item-all-check">
-                            <a href="javascipt:;" @click="toggleCheckAll">
+                            <a href="javascipt:;" @click.prevent="toggleCheckAll()">
                                 <span class="checkbox-btn item-check-btn quanxuan" v-bind:class="{'check':checkAllFlag}">
                                     <i class="el-icon-diy-duigou"></i>
                                 </span>
@@ -81,27 +81,31 @@
                 </div>
             </div>
         </div>
-        <el-dialog class="loginDialog" title="提示" :visible.sync="dialogVisible" width="45%">
-            <div class="btn-wrap">
-                <!-- <div>你确认要删除此条数据吗?</div> -->
-                <p>请妥善保管您的账户信息</p>
-
+        <el-dialog class="delDialog" title="" :visible.sync="modalConfirm" width="45%">
+            <div>
+                <p>你确认要删除此条数据吗?</p>
                 <a class="btn btn--m" href="javascript:;" @click="delCart()">确认</a>
-                <a class="btn btn--m btn--red" href="javascript:;" @click="dialogVisible = false">关闭</a>
+                <a class="btn btn--m btn--red" href="javascript:;" @click="modalConfirm = false">关闭</a>
             </div>
         </el-dialog>
     </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import axios from "axios";
+axios.defaults.baseURL = "http://localhost:8080"; //设置全局URL
+axios.defaults.headers.post["Content-Type"] = "application/json";
+    import Modal from '../components/Modal'
     export default {
         data() {
             return {
                 cartList: [],
-                // checkAllFlag: false,
-                // checkedCount: 0,
-                dialogVisible: false,
+                modalConfirm: false,
             }
+        },
+        components: {
+            Modal,
         },
         created() {
             this.init();
@@ -129,35 +133,25 @@
         },
         methods: {
             async init() {
-                const res = await this.$ajax.post(`/api/cartList`, {});
+                const res = await axios.get(`/cartList/`, {});
                 var result = res.data.data.result;
                 this.cartList = result;
             },
-            closeModal() {
-                this.dialogVisible = false;
-            },
             delCartConfirm(item) {
-                console.log(item)
                 this.delItem = item;
-                this.dialogVisible = true;
+                this.modalConfirm = true;
             },
-            delCart() {
-                this.$message.success('删除成功');
-                this.dialogVisible = false;
-                // axios.post("/users/cartDel", {
-                //     productId: this.delItem.productId
-                // }).then((response) => {
-                //     let res = response.data;
-                //     if (res.status == '0') {
-                //         this.dialogVisible = false;
-                //         var delCount = this.delItem.productNum;
-                //         this.$store.commit("updateCartCount", -delCount);
-                //         this.init();
-                //     }
-                // });
+            async delCart() {
+                const res = await axios.delete(`/cartDel/`, {});
+                if (res.data.status === 200) {
+                    this.$message.success('删除成功');
+                    this.modalConfirm = false;
+                    var delCount = this.delItem.productNum;
+                    this.$store.commit("updateCartCount", -delCount);
+                    this.init();
+                }
             },
             async editCart(flag, item) {
-                console.log(1111)
                 if (flag == 'add') {
                     item.productNum++;
                 } else if (flag == 'minu') {
@@ -168,10 +162,13 @@
                 } else {
                     item.checked = item.checked == "1" ? '0' : '1';
                 }
-                const res = await this.$ajax.post(`/api/cartEdit`, {});
-                console.log(res)
-                if (res.data.code == 200) {
-                    this.$store.commit("updateCartCount", flag == "add" ? 1 : -1);
+                const res = await axios.put(`/cartEdit/`, {
+                    sku_id: item.productId,
+                    count: item.productNum,
+                    checked: item.checked
+                })
+                if (res.data.code === 200) {
+                    this.$store.commit("updateCartCount",flag=="add"?1:-1);
                 }
             },
             async toggleCheckAll() {
@@ -179,8 +176,10 @@
                 this.cartList.forEach((item) => {
                     item.checked = flag ? '1' : '0';
                 })
-                const res = await this.$ajax.post(`/api/cartEdit`, {});
-                if (res.data.code == 200) {
+                const res = await axios.put(`/cartEdit/`, {
+                    checkAll:flag
+                })
+                if (res.data.code === 200) {
                     console.log("update suc");
                 }
             },
@@ -199,26 +198,47 @@
     .root {
         background-color: #f5f7fc;
     }
+    // 删除弹出框
+    .delDialog {
+        p {
+            color: #999;
+            margin-bottom: 60px;
+        }
+        /deep/ .el-dialog__close {
+            color: #999;
+            font-size: 24px;
+            transition: all .5s;
+        }
+        /deep/ .el-dialog__close:hover {
+            transform: rotate(-180deg);
+            color: #999;
+        }
+
+        .btn {
+            width: 195px;
+            height: 40px;
+        }
+        .btn--m {
+            background-color: #fff;
+            color: #d1434a;
+            margin-right: 10px;
+        }
+        .btn--red {
+            background-color: #d1434a;
+            color: #fff;
+            margin-left: 10px;
+        }
+    }
     .quanxuan {
         line-height: 18px;
     }
     .el-icon-diy-duigou {
         color: #fff;
     }
-
     .btn-wrap {
-        // margin-top: 20px;
         text-align: center;
-        // position: relative;
         p {
             height: 20px;
-            // margin-bottom: 20px;
-            // color: #000;
-            // position: absolute;
-            // width: 100%;
-            // top: 0;
-            // left: 0;
-            // z-index: 99999;
         }
 
         .btn {
@@ -1020,84 +1040,6 @@
         /* letter-spacing: .25em; */
         font-weight: bold;
         text-align: left;
-    }
-
-    @charset "UTF-8";
-
-    html {
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-    }
-
-    *,
-    *::after,
-    *::before {
-        -webkit-box-sizing: inherit;
-        box-sizing: inherit;
-    }
-
-    /** erro msg **/
-    .lemall-error-top-wrap {
-        width: 100%;
-        left: 0;
-    }
-
-    .lemall-error-top-wrap.fixed .lemall-error-top {
-        margin-bottom: 0;
-        border-bottom: 1px solid #e9e9e9;
-        -webkit-transition: margin-bottom .3s ease-out;
-        transition: margin-bottom .3s ease-out;
-    }
-
-    .lemall-error-top-wrap .lemall-error-top:last-child {
-        border-bottom: none;
-    }
-
-    .lemall-error-top {
-        position: relative;
-        margin-bottom: 10px;
-        padding: 10px 0;
-        background: #FBEFE7;
-        font-size: 12px;
-        -webkit-transition: margin-bottom .3s ease-out;
-        transition: margin-bottom .3s ease-out;
-    }
-
-    .lemall-error-top:before {
-        position: absolute;
-        top: 50%;
-        left: 20px;
-        content: "";
-        width: 15px;
-        height: 15px;
-        background: url(http://image4.lecloud.com/lemallus/20161104-dfc340f2-cd94-4a1c-b158-2d899b23071e.png) no-repeat 0 0;
-        background-size: 100% auto;
-        -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
-    }
-
-    .lemall-error-top .error-text {
-        padding: 0 45px;
-        color: #333;
-        line-height: 1.25;
-    }
-
-    .lemall-error-top .error-text a {
-        color: #ee7a23;
-        text-decoration: underline;
-    }
-
-    .lemall-error-top .error-btn {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        width: 12px;
-        height: 12px;
-        z-index: 1;
-        -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
     }
 
     .lemall-error-top .error-close-btn {

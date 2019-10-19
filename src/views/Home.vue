@@ -53,6 +53,7 @@
                 // }],
             }
         },
+        
         methods: {
             // handleCommand(command) {
             //     this.locale = command;

@@ -16,20 +16,24 @@
                                 </el-input>
                             </el-form-item>
                             <el-form-item class="item-password" prop="password">
-                                <el-input v-model="secure" type="password" class="input-text" @keyup.enter.native="loginSys('loginObj')" placeholder="请输入密码" clearable prefix-icon="el-icon-diy-mima">
+                                <el-input v-model="loginObj.password" type="password" class="input-text" @keyup.enter.native="loginSys('loginObj')" placeholder="请输入密码" clearable prefix-icon="el-icon-diy-mima">
                                 </el-input>
                             </el-form-item>
+                            <!-- <el-form-item class="item-password" prop="password">
+                                <el-input v-model="secure" type="password" class="input-text" @keyup.enter.native="loginSys('loginObj')" placeholder="请输入密码" clearable prefix-icon="el-icon-diy-mima">
+                                </el-input>
+                            </el-form-item> -->
                             <el-button type="primary" @click="loginSys('loginObj')">
                                 <span style="font-family: Arvo">登&nbsp;&nbsp;&nbsp;&nbsp;录</span>
                             </el-button>
-                            <el-form-item class="item-tools clearfix" prop="password">
+                            <el-form-item class="item-tools clearfix">
                                 <p class="zhuangtai"><input type="checkbox" value="1" v-model="redoaParam">记住登录状态</p>
                                 <div class="link">
                                     <a class="first" @click="registerBtn()" href="javascript:;">注册新用户</a>
                                     <a class="two" @click="editPassword()" href="javascript:;">忘记密码</a>
                                 </div>
                             </el-form-item>
-                            <el-form-item class="item-login" prop="password">
+                            <el-form-item class="item-login">
                                 <a style="margin-top: 5px;" href="#"><i class="iconfont el-icon-diy-weixin"></i></a>
                                 <a href="#">谷歌登录</a>
                                 <a href="#">facebook登录</a>
@@ -80,38 +84,36 @@
         },
         methods: {
             loginSys(formName) {
-                this.loginObj.password = this.$md5(this.secure);
+                // this.loginObj.password = this.$md5(this.secure);
                 if (this.loginObj) {
                     this.$refs[formName].validate(async (valid) => {
                         if (valid) {
-                            console.log(99999)
-                            if (this.loginObj.keyword === 'admin' && this.loginObj.password === 'e10adc3949ba59abbe56e057f20f883e') {
-                                const res = await this.$ajax.post(`/api/login`, {});
-                                console.log(res)
-                                var mainObj = {
-                                    userName: res.data.data.userName,
-                                    userCode: res.data.data.userCode
+                            var loginObj = {
+                                username: this.loginObj.keyword,
+                                password: this.loginObj.password,
+                            }
+                            // {
+                            //     "email": "hhpbaby@126.com",
+                            //     "mobile": null,
+                            //     "company": "夏数",
+                            //     "first_name": "sdfs",
+                            //     "last_name": "aaaa",
+                            //     "gender": "222",
+                            //     "username": "adasd9999919999",
+                            //     "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyOSwidXNlcm5hbWUiOiJhZGFzZDk5OTk5MTk5OTkiLCJleHAiOjE1NzE1MjU0MDksImVtYWlsIjoiaGhwYmFieUAxMjYuY29tIn0.-4JI-XvQTw8xmNEVN9VbVZEKBGCKrZyTEZc7pnczbu4"
+                            // }
+                            const res = await this.$ajax.post(`/authorizations/`, loginObj);
+
+                            console.log(res)
+                            if (res.status === 200) {
+                                this.$router.push('/index');
+                                var _mainObj = {
+                                    'user_id': res.data.user_id,
+                                    'token': res.data.token,
+                                    'username': res.data.username
                                 }
-                                mainObj = JSON.stringify(mainObj);
-                                window.sessionStorage.setItem('mainObj', mainObj);
-                                let token = res.data.data.token;
-                                this.$cookieStore.addCookie(
-                                    "gn_request_token",
-                                    JSON.stringify(token),
-                                    0
-                                )
-                                if (res.data.code === 200) {
-                                    this.$router.push('home');
-                                }
-                            } else {
-                                // this.$alert("页面：登录方法异常", "系统异常", {
-                                //     confirmButtonText: "确定",
-                                //     callback: action => {}
-                                // });
-                                this.$alert("密码错误", "系统异常", {
-                                    confirmButtonText: "确定",
-                                    callback: action => {}
-                                });
+                                _mainObj = JSON.stringify(_mainObj);
+                                window.sessionStorage.setItem('_mainObj', _mainObj)
                             }
                         }
                     });

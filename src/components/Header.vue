@@ -15,41 +15,167 @@
         </div>
         <div v-if="isLogin" class="title">
             <h1 class="title_h1">菏泽</h1>
-            <div class="btnBox">
+            <!-- <div class="btnBox">
                 <keep-alive>
                     <span>{{userName}}</span>
                 </keep-alive>
                 <i class="iconfont el-icon-diy-geren2"></i>
-            </div>
+            </div> -->
+            <el-dropdown class="btnBox">
+                <keep-alive>
+                    <span>{{userName}}</span>
+                </keep-alive>
+                <i class="iconfont el-icon-diy-geren2"></i>
+                <el-dropdown-menu class="dropdownMenu" slot="dropdown">
+                    <el-dropdown-item class="changepswParent">
+                        <el-button class="changepsw logoutBtn" @click="editPassword()" type="text">
+                            修改密码
+                        </el-button>
+                    </el-dropdown-item>
+                    <el-dropdown-item class="logoutParent">
+                        <el-button class="logout logoutBtn" @click="logout()" type="text">退出</el-button>
+                    </el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
         </div>
+        <el-dialog title="修改密码" :visible.sync="dialogFormVisible" width="50%" center>
+            <el-form :model="mainObj.updatePwd" ref="updatePwd" :rules="rules" label-width="100px">
+                <el-row :gutter="20">
+                    <el-col :span="20">
+                        <div class="grid-content">
+                            <el-form-item label="原密码：" prop="oldPwd">
+                                <el-input v-model="mainObj.updatePwd.oldPwd" type="password" clearable></el-input>
+                            </el-form-item>
+                        </div>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="20">
+                    <el-col :span="20">
+                        <div class="grid-content">
+                            <el-form-item label="新密码：" prop="newPwd">
+                                <el-input v-model="mainObj.updatePwd.newPwd" type="password" clearable></el-input>
+                            </el-form-item>
+                        </div>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="20">
+                    <el-col :span="20">
+                        <div class="grid-content">
+                            <el-form-item label="确认密码：" prop="confirmPwd">
+                                <el-input v-model="mainObj.updatePwd.confirmPwd" type="password" clearable></el-input>
+                            </el-form-item>
+                        </div>
+                    </el-col>
+                </el-row>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="resetForm('updatePwd')">取 消</el-button>
+                <el-button type="primary" @click="submitForm('updatePwd')">确 定</el-button>
+            </span>
+        </el-dialog>
     </el-header>
 </template>
 
 <script>
     export default {
         data() {
+            // 校验两次密码输入是否一致
+            let newPwd = (rule, value, callback) => {
+                if (value === "") {
+                    callback(new Error("请输入密码"));
+                } else {
+                    if (this.mainObj.updatePwd.newPwd !== "") {
+                        this.$refs.updatePwd.validateField("confirmPwd");
+                    }
+                    callback();
+                }
+            };
+            let confirmPwd = (rule, value, callback) => {
+                if (value === "") {
+                    callback(new Error("请再次输入密码"));
+                } else if (value !== this.mainObj.updatePwd.newPwd) {
+                    callback(new Error("两次输入密码不一致!"));
+                } else {
+                    callback();
+                }
+            };
             return {
                 isLogin: false,
                 userName: '',
+                dialogFormVisible: false,
+                mainObj: {
+                    // 修改密码
+                    updatePwd: {
+                        oldPwd: "",
+                        newPwd: "",
+                        confirmPwd: ""
+                    },
+                },
+                rules: {
+                    oldPwd: [{
+                        required: true,
+                        message: "请输入原密码",
+                        trigger: "blur"
+                    }],
+                    newPwd: [{
+                            required: true,
+                            message: "请输入新密码",
+                            trigger: "blur"
+                        },
+                        {
+                            validator: newPwd,
+                            trigger: "blur"
+                        }
+                    ],
+                    confirmPwd: [{
+                            required: true,
+                            message: "请确认新密码",
+                            trigger: "blur"
+                        },
+                        {
+                            validator: confirmPwd,
+                            trigger: "blur"
+                        }
+                    ]
+                }
             }
         },
         created() {
-            let _mainObj = window.sessionStorage.getItem("mainObj");
-            console.log(_mainObj)
-            _mainObj = JSON.parse(_mainObj);
-            if (_mainObj) {
-                if (!_mainObj.userName) {
-                    console.log(1)
-                    this.isLogin = false;
-                } else {
-                    console.log(2)
-                    this.isLogin = true;
-                    this.userName = _mainObj.userName;
-                }
+            let _mainObj = window.sessionStorage.getItem("_mainObj");
+            if (!_mainObj) {
+                return;
+            } else {
+                _mainObj = JSON.parse(_mainObj);
             }
-
+            if (!_mainObj.username) {
+                this.isLogin = false;
+            } else {
+                this.isLogin = true;
+                this.userName = _mainObj.username;
+            }
         },
         methods: {
+            submitForm() {
+            },
+            resetForm() {
+            },
+            editPassword() {
+                this.dialogFormVisible = true;
+            },
+            logout() {
+                var _mainObj = window.sessionStorage.getItem('_mainObj');
+                if (_mainObj) {
+                    this.$confirm("是否退出登陆？", "提示", {
+                        confirmButtonText: "确定",
+                        cancelButtonText: "取消",
+                        type: "warning"
+                    }).then(() => {
+                        window.sessionStorage.removeItem('_mainObj');
+                        this.$router.push('/login');
+                    });
+                }
+
+            },
             loginBtn() {
                 this.$router.push('/login');
             },
@@ -60,8 +186,24 @@
         }
     }
 </script>
+<style>
+    .el-dropdown-menu__item {
+        padding: 0;
+    }
+</style>
 
 <style scoped lang="less">
+    .logoutBtn {
+        color: #409EFF;
+        background: 0 0;
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+        padding: 0 20px;
+        text-align: left;
+        height: 36px;
+    }
+
     .el-header {
         width: 100%;
         background-color: #2e4d6f;
@@ -111,6 +253,8 @@
                 margin-left: 10px;
             }
         }
+
+
     }
 
     @media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {

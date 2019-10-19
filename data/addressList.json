@@ -1,0 +1,23 @@
+{
+    "data": {
+        "result": [{
+            "addressId": "410001",
+            "isDefault": false,
+            "postCode": 410001,
+            "streetName": "湖南 长沙市 岳麓区 城区麓谷企业广场",
+            "tel": 1017735262,
+            "userName": "admin",
+            "_id": "59e46f96f58f3233c7c0ccc3"
+        }, {
+            "addressId": "410001",
+            "isDefault": false,
+            "postCode": 410001,
+            "streetName": "湖北 武汉市 武昌区 城区麓谷企业广场",
+            "tel": 1017735262,
+            "userName": "admin",
+            "_id": "59e46f96f58f3233c7c0ccc3"
+        }]
+    },
+    "code": 200,
+    "message": "操作成功!"
+}

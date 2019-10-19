@@ -13,8 +13,8 @@
             </div>
             <div class="right">
                 <h1>Tier on Tier </h1>
-                <el-form :inline="true" ref="form" :model="form" label-width="80px">
-                    <el-form-item label="材质">
+                <el-form :inline="true" :rules="rules" ref="form" :model="form" label-width="80px">
+                    <el-form-item label="材质" prop="caizhi">
                         <el-select size="mini" v-model="form.caizhi" placeholder="请选择材质">
                             <el-option v-for="item in options1" :key="item.value" :label="item.label" :value="item.value">
                                 <span style="float: left">{{ item.label }}</span>
@@ -22,7 +22,7 @@
                             </el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="窗扇类型">
+                    <el-form-item label="窗扇类型" prop="casement">
                         <el-select size="mini" v-model="form.casement" placeholder="请选择窗扇类型">
                             <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
                                 <span style="float: left">{{ item.label }}</span>
@@ -78,7 +78,7 @@
                             </el-option>
                         </el-select>
                     </el-form-item>
-                    <el-button size="mini" class="configure" type="primary" @click="toCart()">Configure and buy!</el-button>
+                    <el-button size="mini" class="configure" type="primary" @click="toCart('form')">Configure and buy!</el-button>
                 </el-form>
             </div>
         </div>
@@ -127,6 +127,18 @@
                     plate: '', // 下板
 
 
+                },
+                rules: {
+                    caizhi: [{
+                        required: true,
+                        message: "请选择材质",
+                        trigger: "blur"
+                    }],
+                    casement: [{
+                        required: true,
+                        message: "请选择窗扇类型",
+                        trigger: "blur"
+                    }]
                 },
                 options1: [{ // 材质
                         label: 'BASSWOOD',
@@ -292,11 +304,23 @@
                         price: '$70 ft2'
                     },
                 ],
-
             }
         },
         methods: {
-            toCart() {
+            async toCart(form) {
+                console.log(form)
+                console.log(this.form)
+                // this.$refs[form].validate(async(valid) => {
+                //     if (valid) {
+                //         console.log(111)
+                //     }
+                // })
+                 
+                // const res = await this.$ajax.get('/goods_record/', {
+                //     id: 28
+                // });
+                // console.log(res)
+
                 this.$router.push('/cart');
             }
         }

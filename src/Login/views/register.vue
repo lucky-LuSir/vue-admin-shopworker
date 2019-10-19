@@ -11,6 +11,10 @@
                             </div>
                         </div>
                         <div class="main-content">
+                            <el-form-item class="item-username" prop="username">
+                                <el-input type="text" placeholder="请输入username" v-model="loginObj.username" class="input-text" clearable prefix-icon="el-icon-diy-yonghuming">
+                                </el-input>
+                            </el-form-item>
                             <el-form-item class="item-firstName" prop="firstName">
                                 <el-input type="text" placeholder="请输入first name" v-model="loginObj.firstName" class="input-text" clearable prefix-icon="el-icon-diy-yonghuming">
                                 </el-input>
@@ -20,19 +24,19 @@
                                 </el-input>
                             </el-form-item>
                             <el-form-item class="item-email" prop="email">
-                                <el-input type="email" v-model="loginObj.email" class="input-text" @keyup.enter.native="loginSys('loginObj')" placeholder="请输入邮件地址" clearable prefix-icon="el-icon-diy-youjian">
+                                <el-input type="email" v-model="loginObj.email" class="input-text" placeholder="请输入邮件地址" clearable prefix-icon="el-icon-diy-youjian">
                                 </el-input>
                             </el-form-item>
                             <el-form-item class="item-iphone" prop="iphone">
-                                <el-input type="text" v-model="loginObj.iphone" class="input-text" @keyup.enter.native="loginSys('loginObj')" placeholder="请输入手机号码" clearable prefix-icon="el-icon-diy-shoujihao">
+                                <el-input type="text" v-model="loginObj.iphone" class="input-text" @blur="hasIphone()" placeholder="请输入手机号码" clearable prefix-icon="el-icon-diy-shoujihao">
                                 </el-input>
                             </el-form-item>
                             <el-form-item class="item-password" prop="password">
-                                <el-input type="password" v-model="loginObj.password" class="input-text" @keyup.enter.native="loginSys('loginObj')" placeholder="设置6至20位登录密码" clearable prefix-icon="el-icon-diy-mima">
+                                <el-input type="password" v-model="loginObj.password" class="input-text" placeholder="设置6至20位登录密码" clearable prefix-icon="el-icon-diy-mima">
                                 </el-input>
                             </el-form-item>
-                            <el-form-item class="item-confirmPassword" prop="confirmPassword">
-                                <el-input type="password" v-model="loginObj.confirmPassword" class="input-text" @keyup.enter.native="loginSys('loginObj')" placeholder="请再次输入登录密码" clearable prefix-icon="el-icon-diy-mima">
+                            <el-form-item class="item-password2" prop="password2">
+                                <el-input type="password" v-model="loginObj.password2" class="input-text" placeholder="请再次输入登录密码" clearable prefix-icon="el-icon-diy-mima">
                                 </el-input>
                             </el-form-item>
                             <el-form-item class="item-gouxuan" prop="radioGouxuan">
@@ -71,71 +75,78 @@
                 message: '',
                 secure: '',
                 loginObj: {
+                    username: '',
                     firstName: '',
                     lastName: '',
                     email: '',
                     iphone: '',
                     password: '',
-                    confirmPassword: '',
+                    password2: '',
                     gouxuanValue: false
                 },
                 activeName: 'first',
                 rules: {
-                    firstName: [{
-                        required: true,
-                        message: "请输入first name",
-                        trigger: "blur"
-                    }],
-                    lastName: [{
-                        required: true,
-                        message: "请输入last name",
-                        trigger: "blur"
-                    }],
-                    email: [{
-                            required: true,
-                            message: '请输入邮箱地址',
-                            trigger: 'blur'
-                        },
-                        {
-                            type: 'email',
-                            message: '请输入正确的邮箱地址',
-                            trigger: 'blur'
-                        }
-                    ],
-                    iphone: [{
-                            required: true,
-                            message: "请输入last name",
-                            trigger: "blur",
-                        },
-                        {
-                            pattern: /^1[34578]\d{9}$/,
-                            message: '请输入正确的手机号格式'
-                        }
-                    ],
-                    password: [{
-                            required: true,
-                            message: "请输入last name",
-                            trigger: "blur"
-                        },
-                        {
-                            min: 6,
-                            max: 20,
-                            message: '长度在 6 到 20 个字符',
-                            trigger: 'change'
-                        }
-                    ],
-                    confirmPassword: [{
-                            required: true,
-                            message: "请输入last name",
-                            trigger: "blur"
-                        },
-                        {
-                            min: 6,
-                            max: 20,
-                            message: '长度在 6 到 20 个字符',
-                            trigger: 'change'
-                        }
-                    ],
+                    
+                    // username: [{
+                    //     required: true,
+                    //     message: "请输入username",
+                    //     trigger: "blur"
+                    // }],
+                    // firstName: [{
+                    //     required: true,
+                    //     message: "请输入first name",
+                    //     trigger: "blur"
+                    // }],
+                    // lastName: [{
+                    //     required: true,
+                    //     message: "请输入last name",
+                    //     trigger: "blur"
+                    // }],
+                    // email: [{
+                    //         required: true,
+                    //         message: '请输入邮箱地址',
+                    //         trigger: 'blur'
+                    //     },
+                    //     {
+                    //         type: 'email',
+                    //         message: '请输入正确的邮箱地址',
+                    //         trigger: 'blur'
+                    //     }
+                    // ],
+                    // iphone: [{
+                    //         required: true,
+                    //         message: "请输入last name",
+                    //         trigger: "blur",
+                    //     },
+                    //     {
+                    //         pattern: /^1[34578]\d{9}$/,
+                    //         message: '请输入正确的手机号格式'
+                    //     }
+                    // ],
+                    // password: [{
+                    //         required: true,
+                    //         message: "请输入last name",
+                    //         trigger: "blur"
+                    //     },
+                    //     {
+                    //         min: 6,
+                    //         max: 20,
+                    //         message: '长度在 6 到 20 个字符',
+                    //         trigger: 'change'
+                    //     }
+                    // ],
+                    // password2: [{
+                    //         required: true,
+                    //         message: "请输入last name",
+                    //         trigger: "blur"
+                    //     },
+                    //     {
+                    //         min: 6,
+                    //         max: 20,
+                    //         message: '长度在 6 到 20 个字符',
+                    //         trigger: 'change'
+                    //     }
+                    // ],
                 }
             }
         },
@@ -143,10 +154,20 @@
             Header
         },
         methods: {
+            async hasIphone() {
+                console.log(111)
+                console.log(this.loginObj.iphone)
+                let iphone = this.loginObj.iphone;
+                var obj = {
+                    "mobile": iphone
+                }
+                const res = await this.$ajax.get(`mobliles/(?P<mobile>1[3-9]\d{9}/count)`, obj);
+
+            },
             loginSys(loginObj) {
                 this.$refs.loginObj.validate(async (valid) => {
                     if (valid) {
-                        if (this.loginObj.password != this.loginObj.confirmPassword) {
+                        if (this.loginObj.password != this.loginObj.password2) {
                             this.$message.info('两次密码不一致');
                             return;
                         }
@@ -154,19 +175,32 @@
                             this.$message.info('请勾选用户服务协议');
                             return;
                         }
-                        const res = await this.$ajax.post(`/api/register`, this.loginObj);
-                        if (res.data.code === 200) {
+                        console.log(this.loginObj)
+                        var registerObj = {
+                            password: this.loginObj.password,
+                            password2: this.loginObj.password2,
+                            username: this.loginObj.username,
+                            email: this.loginObj.email,
+                            first_name: this.loginObj.first_name,
+                            last_name: this.loginObj.last_name,
+                            mobile: this.loginObj.iphone,
+                            gender: "222",
+                            company: "夏数",
+                            allow: "true"
+                        }
+                        const res = await this.$ajax.post(`/users/`, registerObj);
+                        console.log(res)
+                        if (!res.token) {
                             // this.$message.success(res.data.message);    
                             this.dialogVisible = true;
                             this.message = '注册成功';
-                            this.isSuccess = 1;                     
+                            this.isSuccess = 1;
                         } else {
                             this.dialogVisible = true;
                             this.message = '很遗憾注册失败';
                             this.isSuccess = 2;
                         }
-                    } else {
-                    }
+                    } else {}
                 })
             },
             handleClick(tab, event) {

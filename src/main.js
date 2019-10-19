@@ -36,8 +36,9 @@ Vue.prototype.$cookieStore = {
     delCookie
 };
 
-axios.defaults.baseURL = BASE_URL.BASE_URL; //设置全局URL
-axios.defaults.headers.post["Content-Type"] = "application/json";
+// axios.defaults.baseURL = BASE_URL.BASE_URL; //设置全局URL
+// axios.defaults.baseURL = "http://47.100.79.150:8000"; //设置全局URL
+// axios.defaults.headers.post["Content-Type"] = "application/json";
 
 Vue.use(ElementUI);
 Vue.use(VueI18n)
@@ -66,11 +67,11 @@ function endLoading() {
 /**------------------------------------- 请求拦截器 --------------------------------*/
 axios.interceptors.request.use(
     config => {
-        let token = Vue.prototype.$cookieStore.getCookie("gn_request_token");
-        if (token == null) {
-            token = "";
-        }
-        config.headers.gn_request_token = token;
+        // let token = Vue.prototype.$cookieStore.getCookie("gn_request_token");
+        // if (token == null) {
+        //     token = "";
+        // }
+        // config.headers.gn_request_token = token;
         startLoading();
         return config;
     },
@@ -83,23 +84,25 @@ axios.interceptors.request.use(
 /**------------------------------------- 响应拦截器 --------------------------------*/
 axios.interceptors.response.use(
     response => {
-        if (response.data.code != 200) {
-            park.$alert(response.data.message, "系统异常", {
-                confirmButtonText: "确定",
-                callback: action => {}
-            });
-            endLoading();
-            return null;
-        } else {
-            endLoading();
-            return response;
-        }
+        // if (response.data.code != 200) {
+        //     park.$alert(response.data.message, "系统异常", {
+        //         confirmButtonText: "确定",
+        //         callback: action => {}
+        //     });
+        //     endLoading();
+        //     return null;
+        // } else {
+        //     endLoading();
+        //     return response;
+        // }
+        endLoading();
+        return response;
     },
     error => {
-        park.$alert("服务器发生未知异常，请联系管理员", "系统异常", {
-            confirmButtonText: "确定",
-            callback: action => {}
-        });
+        // park.$alert("服务器发生未知异常，请联系管理员", "系统异常", {
+        //     confirmButtonText: "确定",
+        //     callback: action => {}
+        // });
     }
 );
 /**------------------------------------- 响应拦截器 --------------------------------*/
