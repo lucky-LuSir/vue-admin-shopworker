@@ -37,12 +37,11 @@ Vue.prototype.$cookieStore = {
 };
 
 // axios.defaults.baseURL = BASE_URL.BASE_URL; //设置全局URL
-// axios.defaults.baseURL = "http://47.100.79.150:8000"; //设置全局URL
-// axios.defaults.headers.post["Content-Type"] = "application/json";
+axios.defaults.baseURL = "http://47.100.79.150:8000"; //设置全局URL
+axios.defaults.headers.post["Content-Type"] = "application/json";
 
 Vue.use(ElementUI);
 Vue.use(VueI18n)
-// Vue.use(axios);
 
 Vue.filter("currency", currency);
 

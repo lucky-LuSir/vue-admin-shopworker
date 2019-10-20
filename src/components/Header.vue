@@ -1,7 +1,9 @@
 <template>
-    <el-header>
+    <el-header :class="isLogin ? 'islogin' : 'notLogin'">
         <div v-if="!isLogin" class="title">
-            <h1 class="title_h1">菏泽</h1>
+            <h1 class="title_h1">
+                BW shutters and blinds
+            </h1>
             <div class="btnBox">
                 <keep-alive>
                     <span @click="loginBtn()">Log In</span>
@@ -14,29 +16,41 @@
             </div>
         </div>
         <div v-if="isLogin" class="title">
-            <h1 class="title_h1">菏泽</h1>
+            <h1 class="title_h1">
+                BW shutters and blinds
+            </h1>
             <!-- <div class="btnBox">
                 <keep-alive>
                     <span>{{userName}}</span>
                 </keep-alive>
                 <i class="iconfont el-icon-diy-geren2"></i>
             </div> -->
-            <el-dropdown class="btnBox">
-                <keep-alive>
-                    <span>{{userName}}</span>
-                </keep-alive>
-                <i class="iconfont el-icon-diy-geren2"></i>
-                <el-dropdown-menu class="dropdownMenu" slot="dropdown">
-                    <el-dropdown-item class="changepswParent">
-                        <el-button class="changepsw logoutBtn" @click="editPassword()" type="text">
-                            修改密码
-                        </el-button>
-                    </el-dropdown-item>
-                    <el-dropdown-item class="logoutParent">
-                        <el-button class="logout logoutBtn" @click="logout()" type="text">退出</el-button>
-                    </el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
+            <div class="btnBoxs">
+                <el-dropdown class="btnBox">
+                    <keep-alive>
+                        <span>{{userName}}</span>
+                    </keep-alive>
+                    <i class="iconfont el-icon-diy-geren2"></i>
+
+                    <el-dropdown-menu class="dropdownMenu" slot="dropdown">
+                        <el-dropdown-item class="changepswParent">
+                            <el-button class="changepsw logoutBtn" @click="editPassword()" type="text">
+                                修改密码
+                            </el-button>
+                        </el-dropdown-item>
+                        <el-dropdown-item class="logoutParent">
+                            <el-button class="logout logoutBtn" @click="logout()" type="text">退出</el-button>
+                        </el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+                <div class="cart">
+                    treasure
+                    <div class="icons" @click="toCart()">
+                        <i style="color: #e2231a; font-size: 24px;" class="el-icon-diy-icon-test"></i>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <el-dialog title="修改密码" :visible.sync="dialogFormVisible" width="50%" center>
             <el-form :model="mainObj.updatePwd" ref="updatePwd" :rules="rules" label-width="100px">
@@ -155,10 +169,8 @@
             }
         },
         methods: {
-            submitForm() {
-            },
-            resetForm() {
-            },
+            submitForm() {},
+            resetForm() {},
             editPassword() {
                 this.dialogFormVisible = true;
             },
@@ -181,7 +193,6 @@
             },
             registerBtn() {
                 this.$router.push('/register');
-
             }
         }
     }
@@ -193,6 +204,31 @@
 </style>
 
 <style scoped lang="less">
+    .btnBoxs {
+        display: flex;
+        align-items: center;
+
+        .btnBox {
+            margin-right: 30px;
+        }
+
+        .cart {
+            align-items: center;
+            display: flex;
+            background-color: #ffdbc4;
+            padding-left: 15px;
+            padding-right: 15px;
+            height: 35px;
+            border-radius: 5px;
+            box-shadow: inset -0.11px -3px 0 0 rgba(0, 0, 0, 0.4);
+            -webkit-transition: all 150ms;
+            transition: all 150ms;
+            background-color: #c9c6c9;
+            border: none;
+            cursor: pointer;
+        }
+    }
+
     .logoutBtn {
         color: #409EFF;
         background: 0 0;
@@ -204,9 +240,35 @@
         height: 36px;
     }
 
+    .islogin {
+        background-color: #fff;
+    }
+
+    .notLogin {
+        background-color: #2e4d6f;
+
+        @media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+            .title_h1 {
+                float: left;
+                z-index: 9999;
+                font-size: 30px;
+                background-image: -webkit-linear-gradient(left,
+                        #ff9300,
+                        #e6d205 25%,
+                        #147b96 50%,
+                        #e6d205 75%,
+                        #ffdbc4);
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+                -webkit-background-size: 200% 100%;
+                -webkit-animation: masked-animation 4s infinite linear;
+                color: #000 !important;
+            }
+        }
+    }
+
     .el-header {
         width: 100%;
-        background-color: #2e4d6f;
 
         .title {
             display: flex;
@@ -214,13 +276,13 @@
             align-items: center;
             height: 60px;
             padding-right: 20px;
-            width: 1200px;
+            width: 980px;
             margin: 0 auto;
         }
 
         h1 {
-            font-size: 28px;
-            color: #fcddb4;
+            font-size: 30px;
+            color: #000 !important;
             padding: 20px;
             text-align: left;
             float: left;
@@ -236,6 +298,10 @@
             align-items: center;
             padding-left: 15px;
             padding-right: 15px;
+            border-radius: 5px;
+            box-shadow: inset -0.11px -3px 0 0 rgba(0, 0, 0, 0.4);
+            -webkit-transition: all 150ms;
+            transition: all 150ms;
 
             span {
                 font-size: 14px;
@@ -257,31 +323,15 @@
 
     }
 
-    @media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
-        .title_h1 {
-            float: left;
-            z-index: 9999;
-            font-size: 40px;
-            background-image: -webkit-linear-gradient(left,
-                    #ff9300,
-                    #e6d205 25%,
-                    #147b96 50%,
-                    #e6d205 75%,
-                    #ffdbc4);
-            -webkit-text-fill-color: transparent;
-            -webkit-background-clip: text;
-            -webkit-background-size: 200% 100%;
-            -webkit-animation: masked-animation 4s infinite linear;
-        }
-    }
 
-    @-webkit-keyframes masked-animation {
-        0% {
-            background-position: 0 0;
-        }
 
-        100% {
-            background-position: -100% 0;
-        }
-    }
+    // @-webkit-keyframes masked-animation {
+    //     0% {
+    //         background-position: 0 0;
+    //     }
+
+    //     100% {
+    //         background-position: -100% 0;
+    //     }
+    // }
 </style>

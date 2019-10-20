@@ -13,9 +13,7 @@
                         <el-menu-item index="/account">Account</el-menu-item>
                         <el-menu-item index="/about">About</el-menu-item>
                     </el-menu>
-                    <div class="icons" @click="toCart()">
-                        <i style="color: #e2231a; font-size: 24px;" class="el-icon-diy-icon-test"></i>
-                    </div>
+                    
                 </div>
             </div>
             <router-view></router-view>
@@ -93,25 +91,35 @@
     .backBtn {
         cursor: pointer;
     }
-
+    
     .menuBox {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        background-color: #ff4401!important;
     }
 
     .el-menu {
         border-bottom: 0;
+        background-color: #ff4401!important;
 
         .el-menu-item {
             height: 45px;
             line-height: 45px;
             padding: 0 40px;
+            background-color: #ff4401 !important;
+            color: #fff!important;
+            font-weight: 700;
         }
 
         /deep/ .el-menu-item:hover {
-            background-color: #65b200 !important;
-            color: #fff !important;
+            // background-color: #65b200 !important;
+            // color: #fff !important;
+            border-bottom: 4px solid #ffdbc4 !important;
+            
+        }
+        .el-menu-item.is-active {
+            border-bottom: 4px solid #ffdbc4 !important;
         }
 
     }
@@ -122,5 +130,6 @@
 
     .menu {
         border-bottom: 1px solid #ccc;
+        background-color: #ff4401;
     }
 </style>

@@ -2,7 +2,7 @@
     <div class="root">
         <el-container>
             <Header></Header>
-            <el-main>
+            <el-main :class="isLogin ? 'isloginMain' : 'notLoginMain'">
                 <el-form :model="loginObj" :rules="rules" ref="loginObj">
                     <div class="view-wrapper">
                         <div class="loginTitle clearfix">
@@ -32,7 +32,7 @@
                                 </el-input>
                             </el-form-item>
                             <el-form-item class="item-password" prop="password">
-                                <el-input type="password" v-model="loginObj.password" class="input-text" placeholder="设置6至20位登录密码" clearable prefix-icon="el-icon-diy-mima">
+                                <el-input type="password" v-model="loginObj.password" class="input-text" autocomplete="new-password" placeholder="设置6至20位登录密码" clearable prefix-icon="el-icon-diy-mima">
                                 </el-input>
                             </el-form-item>
                             <el-form-item class="item-password2" prop="password2">
@@ -70,6 +70,7 @@
     export default {
         data() {
             return {
+                isLogin: false,
                 dialogVisible: false,
                 isSuccess: 1,
                 message: '',
@@ -87,67 +88,81 @@
                 activeName: 'first',
                 rules: {
                     
-                    // username: [{
-                    //     required: true,
-                    //     message: "请输入username",
-                    //     trigger: "blur"
-                    // }],
-                    // firstName: [{
-                    //     required: true,
-                    //     message: "请输入first name",
-                    //     trigger: "blur"
-                    // }],
-                    // lastName: [{
-                    //     required: true,
-                    //     message: "请输入last name",
-                    //     trigger: "blur"
-                    // }],
-                    // email: [{
-                    //         required: true,
-                    //         message: '请输入邮箱地址',
-                    //         trigger: 'blur'
-                    //     },
-                    //     {
-                    //         type: 'email',
-                    //         message: '请输入正确的邮箱地址',
-                    //         trigger: 'blur'
-                    //     }
-                    // ],
-                    // iphone: [{
-                    //         required: true,
-                    //         message: "请输入last name",
-                    //         trigger: "blur",
-                    //     },
-                    //     {
-                    //         pattern: /^1[34578]\d{9}$/,
-                    //         message: '请输入正确的手机号格式'
-                    //     }
-                    // ],
-                    // password: [{
-                    //         required: true,
-                    //         message: "请输入last name",
-                    //         trigger: "blur"
-                    //     },
-                    //     {
-                    //         min: 6,
-                    //         max: 20,
-                    //         message: '长度在 6 到 20 个字符',
-                    //         trigger: 'change'
-                    //     }
-                    // ],
-                    // password2: [{
-                    //         required: true,
-                    //         message: "请输入last name",
-                    //         trigger: "blur"
-                    //     },
-                    //     {
-                    //         min: 6,
-                    //         max: 20,
-                    //         message: '长度在 6 到 20 个字符',
-                    //         trigger: 'change'
-                    //     }
-                    // ],
+                    username: [{
+                        required: true,
+                        message: "请输入username",
+                        trigger: "blur"
+                    }],
+                    firstName: [{
+                        required: true,
+                        message: "请输入first name",
+                        trigger: "blur"
+                    }],
+                    lastName: [{
+                        required: true,
+                        message: "请输入last name",
+                        trigger: "blur"
+                    }],
+                    email: [{
+                            required: true,
+                            message: '请输入邮箱地址',
+                            trigger: 'blur'
+                        },
+                        {
+                            type: 'email',
+                            message: '请输入正确的邮箱地址',
+                            trigger: 'blur'
+                        }
+                    ],
+                    iphone: [{
+                            required: true,
+                            message: "请输入last name",
+                            trigger: "blur",
+                        },
+                        {
+                            pattern: /^1[34578]\d{9}$/,
+                            message: '请输入正确的手机号格式'
+                        }
+                    ],
+                    password: [{
+                            required: true,
+                            message: "请输入last name",
+                            trigger: "blur"
+                        },
+                        {
+                            min: 6,
+                            max: 20,
+                            message: '长度在 6 到 20 个字符',
+                            trigger: 'change'
+                        }
+                    ],
+                    password2: [{
+                            required: true,
+                            message: "请输入last name",
+                            trigger: "blur"
+                        },
+                        {
+                            min: 6,
+                            max: 20,
+                            message: '长度在 6 到 20 个字符',
+                            trigger: 'change'
+                        }
+                    ],
                 }
+            }
+        },
+        created() {
+            let _mainObj = window.sessionStorage.getItem("_mainObj");
+            if (!_mainObj) {
+                return;
+            } else {
+                _mainObj = JSON.parse(_mainObj);
+            }
+            if (!_mainObj.username) {
+                this.isLogin = false;
+            } else {
+                this.isLogin = true;
+                this.userName = _mainObj.username;
             }
         },
         components: {
@@ -155,14 +170,16 @@
         },
         methods: {
             async hasIphone() {
-                console.log(111)
-                console.log(this.loginObj.iphone)
                 let iphone = this.loginObj.iphone;
-                var obj = {
-                    "mobile": iphone
+                console.log(iphone)
+                const res = await this.$ajax.get(`/mobiles/${iphone}/count/`, {
+                    'mobiles': iphone
+                });
+                console.log(res)
+                if (res.data.count === 0) {
+                    this.$message.info("当前手机号已注册");
+                    return;
                 }
-                const res = await this.$ajax.get(`mobliles/(?P<mobile>1[3-9]\d{9}/count)`, obj);
-
             },
             loginSys(loginObj) {
                 this.$refs.loginObj.validate(async (valid) => {
@@ -237,16 +254,15 @@
         width: 100%;
         position: absolute;
     }
-
+    
     .view-wrapper {
-        position: absolute;
-        right: 15%;
-        top: 47%;
+        // position: absolute;
+        // right: 15%;
+        // top: 47%;
         background-color: #fff;
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
+        // -webkit-transform: translateY(-50%);
+        // transform: translateY(-50%);
         width: 380px;
-        height: 560px;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
         text-align: center;
@@ -256,6 +272,7 @@
             background-color: #2e4d6f;
             width: 100%;
             height: 50px;
+            margin-top: 50px;
 
             .title-content {
                 width: 80px;
@@ -277,15 +294,16 @@
 
 
         .main-content {
-            position: absolute;
             width: 100%;
             padding: 0 35px;
             box-sizing: border-box;
-            top: 88px;
             z-index: 1000;
 
             .el-form-item {
                 margin-bottom: 15px;
+            }
+            .el-form-item:first-child {
+                margin-top: 30px;
             }
 
             .item-gouxuan {
@@ -305,7 +323,7 @@
         width: 100%;
         margin-top: 60px;
         z-index: 999;
-        height: calc(100vh - 60px);
+        // height: calc(100vh - 60px);
 
         @-webkit-keyframes masked-animation {
             0% {
@@ -317,5 +335,12 @@
             }
         }
 
+    }
+
+
+    .notLoginMain {
+        height: auto;
+        background: #70859c;
+        padding-bottom: 20px;
     }
 </style>

@@ -1,12 +1,11 @@
 <template>
     <div class="detail-container">
-        <!-- <h2>1111</h2> -->
         <div class="cm-Layout clearfix">
             <div class="left">
                 <el-carousel indicator-position="outside">
                     <el-carousel-item v-for="(item, index) in detailImg" :key="index">
                         <a :href="item.linkHref">
-                            <img style="width: 542px; height: 542px;" :src="item.imgSrc" alt="">
+                            <img :src="item.imgSrc" alt="">
                         </a>
                     </el-carousel-item>
                 </el-carousel>
@@ -14,7 +13,7 @@
             <div class="right">
                 <h1>Tier on Tier </h1>
                 <el-form :inline="true" :rules="rules" ref="form" :model="form" label-width="80px">
-                    <el-form-item label="材质" prop="caizhi">
+                    <el-form-item label="material" prop="caizhi">
                         <el-select size="mini" v-model="form.caizhi" placeholder="请选择材质">
                             <el-option v-for="item in options1" :key="item.value" :label="item.label" :value="item.value">
                                 <span style="float: left">{{ item.label }}</span>
@@ -22,7 +21,7 @@
                             </el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="窗扇类型" prop="casement">
+                    <el-form-item label="windos_sash_type" prop="casement">
                         <el-select size="mini" v-model="form.casement" placeholder="请选择窗扇类型">
                             <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
                                 <span style="float: left">{{ item.label }}</span>
@@ -315,7 +314,7 @@
                 //         console.log(111)
                 //     }
                 // })
-                 
+
                 // const res = await this.$ajax.get('/goods_record/', {
                 //     id: 28
                 // });
@@ -329,15 +328,19 @@
 
 <style scoped lang="less">
     .left {
-        width: 542px;
-        height: 542px;
+        width: 520px;
+        height: 520px;
         float: left;
+        img {
+            width: 520px;
+            height: 520px;
+        }
     }
 
     .right {
-        width: 650px;
+        width: 460px;
         float: left;
-        min-height: 542px;
+        min-height: 520px;
         position: relative;
 
         h1 {
@@ -353,7 +356,7 @@
         }
 
         .el-select {
-            width: 220px;
+            width: 135px;
         }
 
         .el-form-item:nth-child(2n) {
@@ -391,7 +394,6 @@
     }
 
     /deep/ .el-carousel__container {
-        height: 542px;
-
+        height: 520px;
     }
 </style>

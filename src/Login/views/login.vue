@@ -114,6 +114,14 @@
                                 }
                                 _mainObj = JSON.stringify(_mainObj);
                                 window.sessionStorage.setItem('_mainObj', _mainObj)
+                                // this.$cookieStore.addCookie('gn_token', _mainObj.token)
+                                var token = res.data.token;
+                                console.log(token)
+                                this.$cookieStore.addCookie(
+                                    "gn_request_token",
+                                    JSON.stringify(token),
+                                    0
+                                );
                             }
                         }
                     });

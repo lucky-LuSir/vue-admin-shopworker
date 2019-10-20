@@ -1,6 +1,27 @@
 <template>
     <div class="index">
         <div class="zero cm-Layout">
+            <div class="zeroLeft">
+                <div class="carousel__slide slide slick-slide slick-active" style="width: 203px;">
+                    <div class="promo-style" @click="toCart()">
+                        <!-- <div class="style-image">
+                        <a href="javascript:;" alt>
+                            <img style="height: 200px;" src="../img/DSC_0180.jpg" alt>
+                        </a>
+                    </div> -->
+                        <div class="content" data-mh="style-content">
+                            <h4 class="heading">
+                                <a href="javascript:;" class="icon--arrow" tabindex="0">
+                                    Tier on Tier
+                                    <i class="el-icon-diy-youjiantou"></i>
+                                </a>
+                            </h4>
+                            <p>Shutters have been used as fine window furniture for centuries.They can create a warm,peaceful and welcoming atmosphere in any home,whether you seek a contemporary look or classic appearance.Shutters can also help you maintain a comfortable environment and allow you to take control of light and ventilation,as well as offer excellent privacy.Timeless beauty ,capturing the very essence of classic and modern style and the level of function,make shutters the most versatile window covering available in the market.
+                                Our shutters are custom made especially for your home needs,providing some extra stylish decoration and adding character and value in the process.With superior finishes,our shutters ensure resistance to cracking,chipping or peeling.They’re also an excellent insulator,and will help to reduce your cooling and heating energy costs throughout the year.Options include fixed,hinged,bi-folding and sliding shutters in a choice of 64mm,89mm and 114mm slat sizes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <el-carousel indicator-position="outside">
                 <el-carousel-item v-for="(item, index) in imgArr0" :key="index">
                     <a :href="item.linkHref">
@@ -109,6 +130,24 @@
                     </div>
                 </div>
             </div>
+            <div class="carousel__slide slick-slide slick-active" style="width: 203px;">
+                <div class="promo-style">
+                    <div class="style-image">
+                        <a href="javascript:;" alt>
+                            <img style="height: 200px;" src="../img/DSC_0233.jpg" alt>
+                        </a>
+                    </div>
+                    <div class="content" data-mh="style-content" style="height: 165px;">
+                        <h4 class="heading">
+                            <a href="javascript:;" class="icon--arrow" tabindex="0">
+                                Full Solid Raised
+                                <i class="el-icon-diy-youjiantou"></i>
+                            </a>
+                        </h4>
+                        <p>These solid shutters provide complete window coverage and have a lovely, traditional feel to them.</p>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="three cm-Layout clearfix">
             <div class="lunbo">
@@ -166,7 +205,6 @@
                 </ul>
             </div>
         </div>
-
         <!-- <img src="../img/img1.png" alt=""> -->
         <!-- <img src="../img/DSC_0180.jpg" alt=""> -->
     </div>
@@ -241,6 +279,19 @@
             })(document, window, "Chatra");
         },
         methods: {
+            async ccc() {
+                var _mainObj = window.sessionStorage.getItem("_mainObj");
+                _mainObj = JSON.parse(_mainObj);
+                var token = _mainObj.token;
+                console.log(token)
+
+                const res = await this.$ajax.get(`/user/`, {
+                    headers: {
+                        'Authorization': 'JWT ' + token
+                    },
+                });
+                console.log(res)
+            },
             async aaa() {
                 //   console.log(111121);
                 var obj = {
@@ -265,14 +316,21 @@
 </script>
 
 <style scoped lang="less">
+    .two {
+        display: flex;
+    }
+
     .carousel__slide {
         float: left;
         margin-right: 20px;
-        width: 275px !important;
+        width: 33.33% !important;
+        // width: 275px !important;
+        // width: 470px !important;
 
         .promo-style {
             border: 1px solid rgba(0, 0, 0, 0.16);
-            box-shadow: 4px 4px 0 0 rgba(50, 50, 50, 0.07);
+            // box-shadow: 4px 4px 0 0 rgba(50, 50, 50, 0.07);
+            box-sizing: border-box;
         }
 
         .promo-style .style-image {
@@ -281,7 +339,7 @@
 
         h4 {
             color: #282323;
-            font-size: 16px;
+            font-size: 20px;
             font-family: Lato, Arial, sans-serif;
             font-weight: 700;
             margin-bottom: 7px;
@@ -293,9 +351,14 @@
         }
 
         p {
-            font-size: 13px;
-            height: 126px;
+            // font-size: 13px;
+            font-size: 14px;
+            // height: 126px;
             line-height: 18px;
+            height: 236px;
+            overflow: hidden;
+            text-align: left;
+            text-indent: 2em;
         }
 
         img {
@@ -306,6 +369,18 @@
         .promo-style .content {
             padding: 15px;
             min-height: 150px;
+        }
+    }
+
+    .carousel__slide:nth-child(3n) {
+        margin-right: 0;
+    }
+
+    .slide {
+        width: 430px !important;
+        margin-right: 0;
+        .promo-style {
+            height: 300px;
         }
     }
 

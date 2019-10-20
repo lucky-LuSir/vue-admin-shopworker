@@ -116,6 +116,7 @@
         methods: {
             async init() {
                 const res = await axios.get(`/addressList/`, {});
+                console.log(res)
                 this.addressList = res.data.data.result;
                 this.selectedAddrId = this.addressList[0].addressId;
             },
@@ -164,3 +165,10 @@
         }
     }
 </script>
+
+<style scoped lang="less">
+    .addr-set-default-btn {
+        color: #ee7a23;
+        font-size: 14px;
+    }
+</style>
