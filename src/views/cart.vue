@@ -2710,10 +2710,6 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
             display: none;
         }
 
-        .addr-list-wrap {
-            /*padding-bottom:23px;*/
-        }
-
         .cart-blank-wrap .page-title-normal {
             display: block;
         }

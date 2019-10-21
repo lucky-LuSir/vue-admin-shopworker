@@ -384,7 +384,7 @@
         }
     }
 
-    /deep/ .el-carousel__indicators--outside {
+    .index /deep/ .el-carousel__indicators--outside {
         bottom: 26px;
         text-align: center;
         position: static;

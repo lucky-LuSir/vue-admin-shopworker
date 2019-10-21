@@ -19,18 +19,14 @@
                                 <el-input v-model="loginObj.password" type="password" class="input-text" @keyup.enter.native="loginSys('loginObj')" placeholder="请输入密码" clearable prefix-icon="el-icon-diy-mima">
                                 </el-input>
                             </el-form-item>
-                            <!-- <el-form-item class="item-password" prop="password">
-                                <el-input v-model="secure" type="password" class="input-text" @keyup.enter.native="loginSys('loginObj')" placeholder="请输入密码" clearable prefix-icon="el-icon-diy-mima">
-                                </el-input>
-                            </el-form-item> -->
                             <el-button type="primary" @click="loginSys('loginObj')">
-                                <span style="font-family: Arvo">登&nbsp;&nbsp;&nbsp;&nbsp;录</span>
+                                <span style="font-family: Arvo">{{ $t('login.signin') }}&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </el-button>
                             <el-form-item class="item-tools clearfix">
-                                <p class="zhuangtai"><input type="checkbox" value="1" v-model="redoaParam">记住登录状态</p>
+                                <!-- <p class="zhuangtai"><input type="checkbox" value="1" v-model="redoaParam">{{ $t('login.status') }}</p> -->
                                 <div class="link">
-                                    <a class="first" @click="registerBtn()" href="javascript:;">注册新用户</a>
-                                    <a class="two" @click="editPassword()" href="javascript:;">忘记密码</a>
+                                    <a class="first" @click="registerBtn()" href="javascript:;">{{ $t('login.register') }}</a>
+                                    <a class="two" @click="editPassword()" href="javascript:;">{{ $t('login.forget') }}</a>
                                 </div>
                             </el-form-item>
                             <el-form-item class="item-login">
@@ -39,13 +35,6 @@
                                 <a href="#">facebook登录</a>
                             </el-form-item>
                         </div>
-
-                        <!-- <el-tabs class="view-tabs" v-model="activeName" type="card" @tab-click="handleClick">
-                            <el-tab-pane label="个人登录" name="first">
-                              
-                            </el-tab-pane>
-                            <el-tab-pane label="集团登录" name="second">集团登录</el-tab-pane>
-                        </el-tabs> -->
                     </div>
                 </el-form>
             </el-main>
@@ -92,19 +81,7 @@
                                 username: this.loginObj.keyword,
                                 password: this.loginObj.password,
                             }
-                            // {
-                            //     "email": "hhpbaby@126.com",
-                            //     "mobile": null,
-                            //     "company": "夏数",
-                            //     "first_name": "sdfs",
-                            //     "last_name": "aaaa",
-                            //     "gender": "222",
-                            //     "username": "adasd9999919999",
-                            //     "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyOSwidXNlcm5hbWUiOiJhZGFzZDk5OTk5MTk5OTkiLCJleHAiOjE1NzE1MjU0MDksImVtYWlsIjoiaGhwYmFieUAxMjYuY29tIn0.-4JI-XvQTw8xmNEVN9VbVZEKBGCKrZyTEZc7pnczbu4"
-                            // }
                             const res = await this.$ajax.post(`/authorizations/`, loginObj);
-
-                            console.log(res)
                             if (res.status === 200) {
                                 this.$router.push('/index');
                                 var _mainObj = {
@@ -112,11 +89,10 @@
                                     'token': res.data.token,
                                     'username': res.data.username
                                 }
+                                let token = _mainObj.token;
                                 _mainObj = JSON.stringify(_mainObj);
-                                window.sessionStorage.setItem('_mainObj', _mainObj)
-                                // this.$cookieStore.addCookie('gn_token', _mainObj.token)
-                                var token = res.data.token;
-                                console.log(token)
+                                window.sessionStorage.setItem('_mainObj', _mainObj);
+                                window.sessionStorage.setItem("authentication", JSON.stringify(token));
                                 this.$cookieStore.addCookie(
                                     "gn_request_token",
                                     JSON.stringify(token),
@@ -128,7 +104,6 @@
                 }
             },
             handleClick(tab, event) {
-                console.log(tab, event);
             },
             backBtn() {
                 this.$confirm('是否退出登陆?', '提示', {
@@ -234,12 +209,15 @@
             }
 
             .link {
-                width: 60%;
+                // width: 60%;
                 float: right;
 
                 a {
                     color: #218bf9;
                     font-size: 13px;
+                }
+                .first {
+                    margin-right: 20px;
                 }
             }
 

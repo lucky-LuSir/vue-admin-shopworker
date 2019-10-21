@@ -51,7 +51,7 @@
                             </ul>
                         </div>
                         <ul class="cart-item-list">
-                            <li v-for="item in cartList" v-if="item.checked=='1'">
+                            <li v-for="(item, index) in cartList" v-if="item.checked=='1'" :key="index">
                                 <div class="cart-tab-1">
                                     <div class="cart-item-pic">
                                         <img :src="item.productImage" :alt="item.productName">
@@ -1954,10 +1954,6 @@
 
         .order-foot-wrap .prev-btn-wrap {
             display: none;
-        }
-
-        .addr-list-wrap {
-            /*padding-bottom:23px;*/
         }
 
         .cart-blank-wrap .page-title-normal {

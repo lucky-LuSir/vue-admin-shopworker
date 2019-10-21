@@ -109,18 +109,18 @@ export default new Router({
         {
             path: '/login',
             name: 'login',
-            component: () => import( /* webpackChunkName: "about" */ './Login/views/login.vue')
+            component: () => import( /* webpackChunkName: "Login" */ './Login/views/login.vue')
         },
         {
             path: '/register',
             name: 'register',
-            component: () => import( /* webpackChunkName: "about" */ './Login/views/register.vue')
+            component: () => import( /* webpackChunkName: "Login" */ './Login/views/register.vue')
 
         },
         {
             path: '/editPassword',
             name: 'editPassword',
-            component: () => import( /* webpackChunkName: "about" */ './Login/views/editPassword.vue')
+            component: () => import( /* webpackChunkName: "Login" */ './Login/views/editPassword.vue')
         }
 
     ]

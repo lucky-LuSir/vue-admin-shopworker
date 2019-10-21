@@ -9,8 +9,8 @@ import store from './store'
 import axios from "axios";
 import md5 from "js-md5";
 import App from './App.vue'
+import i18n from './i18n'
 import BASE_URL from "../public/park_BASE_URL"; //配置全局URL
-import VueI18n from 'vue-i18n'
 import {
     addCookie,
     getCookie,
@@ -41,7 +41,6 @@ axios.defaults.baseURL = "http://47.100.79.150:8000"; //设置全局URL
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 Vue.use(ElementUI);
-Vue.use(VueI18n)
 
 Vue.filter("currency", currency);
 
@@ -71,8 +70,13 @@ axios.interceptors.request.use(
         //     token = "";
         // }
         // config.headers.gn_request_token = token;
+        let token  = window.sessionStorage.getItem("authentication");
+        if (token) {
+            config.headers['Authorization'] = token;
+        }
         startLoading();
         return config;
+        // authorization
     },
     error => {
         console.log("error", error);
@@ -118,13 +122,6 @@ axios.interceptors.response.use(
 //     }
 // });
 /**------------------------------------- 导航守卫 --------------------------------*/
-const i18n = new VueI18n({
-    locale: 'zh',
-    messages: {
-        'zh': require('@/assets/languages/zh.json'),
-        'en': require('@/assets/languages/en.json')
-    }
-})
 
 
 let park = new Vue({

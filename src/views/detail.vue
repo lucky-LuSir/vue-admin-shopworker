@@ -393,7 +393,7 @@
         }
     }
 
-    /deep/ .el-carousel__container {
+    .detail-container /deep/ .el-carousel__container {
         height: 520px;
     }
 </style>

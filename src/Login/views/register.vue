@@ -65,282 +65,269 @@
 </template>
 
 <script>
-    import Header from "../../components/Header"
+import Header from "../../components/Header"
 
-    export default {
-        data() {
-            return {
-                isLogin: false,
-                dialogVisible: false,
-                isSuccess: 1,
-                message: '',
-                secure: '',
-                loginObj: {
-                    username: '',
-                    firstName: '',
-                    lastName: '',
-                    email: '',
-                    iphone: '',
-                    password: '',
-                    password2: '',
-                    gouxuanValue: false
+export default {
+    data () {
+        return {
+            isLogin: false,
+            dialogVisible: false,
+            isSuccess: 1,
+            message: '',
+            secure: '',
+            loginObj: {
+                username: '',
+                firstName: '',
+                lastName: '',
+                email: '',
+                iphone: '',
+                password: '',
+                password2: '',
+                gouxuanValue: false
+            },
+            activeName: 'first',
+            rules: {
+                username: [{
+                    required: true,
+                    message: "请输入username",
+                    trigger: "blur"
+                }],
+                firstName: [{
+                    required: true,
+                    message: "请输入first name",
+                    trigger: "blur"
+                }],
+                lastName: [{
+                    required: true,
+                    message: "请输入last name",
+                    trigger: "blur"
+                }],
+                email: [{
+                    required: true,
+                    message: '请输入邮箱地址',
+                    trigger: 'blur'
                 },
-                activeName: 'first',
-                rules: {
-                    
-                    username: [{
-                        required: true,
-                        message: "请输入username",
-                        trigger: "blur"
-                    }],
-                    firstName: [{
-                        required: true,
-                        message: "请输入first name",
-                        trigger: "blur"
-                    }],
-                    lastName: [{
-                        required: true,
-                        message: "请输入last name",
-                        trigger: "blur"
-                    }],
-                    email: [{
-                            required: true,
-                            message: '请输入邮箱地址',
-                            trigger: 'blur'
-                        },
-                        {
-                            type: 'email',
-                            message: '请输入正确的邮箱地址',
-                            trigger: 'blur'
-                        }
-                    ],
-                    iphone: [{
-                            required: true,
-                            message: "请输入last name",
-                            trigger: "blur",
-                        },
-                        {
-                            pattern: /^1[34578]\d{9}$/,
-                            message: '请输入正确的手机号格式'
-                        }
-                    ],
-                    password: [{
-                            required: true,
-                            message: "请输入last name",
-                            trigger: "blur"
-                        },
-                        {
-                            min: 6,
-                            max: 20,
-                            message: '长度在 6 到 20 个字符',
-                            trigger: 'change'
-                        }
-                    ],
-                    password2: [{
-                            required: true,
-                            message: "请输入last name",
-                            trigger: "blur"
-                        },
-                        {
-                            min: 6,
-                            max: 20,
-                            message: '长度在 6 到 20 个字符',
-                            trigger: 'change'
-                        }
-                    ],
+                {
+                    type: 'email',
+                    message: '请输入正确的邮箱地址',
+                    trigger: 'blur'
                 }
-            }
-        },
-        created() {
-            let _mainObj = window.sessionStorage.getItem("_mainObj");
-            if (!_mainObj) {
-                return;
-            } else {
-                _mainObj = JSON.parse(_mainObj);
-            }
-            if (!_mainObj.username) {
-                this.isLogin = false;
-            } else {
-                this.isLogin = true;
-                this.userName = _mainObj.username;
-            }
-        },
-        components: {
-            Header
-        },
-        methods: {
-            async hasIphone() {
-                let iphone = this.loginObj.iphone;
-                console.log(iphone)
-                const res = await this.$ajax.get(`/mobiles/${iphone}/count/`, {
-                    'mobiles': iphone
-                });
-                console.log(res)
-                if (res.data.count === 0) {
-                    this.$message.info("当前手机号已注册");
-                    return;
+                ],
+                iphone: [{
+                    required: true,
+                    message: "请输入last name",
+                    trigger: "blur",
+                },
+                {
+                    pattern: /^1[34578]\d{9}$/,
+                    message: '请输入正确的手机号格式'
                 }
-            },
-            loginSys(loginObj) {
-                this.$refs.loginObj.validate(async (valid) => {
-                    if (valid) {
-                        if (this.loginObj.password != this.loginObj.password2) {
-                            this.$message.info('两次密码不一致');
-                            return;
-                        }
-                        if (!this.loginObj.gouxuanValue) {
-                            this.$message.info('请勾选用户服务协议');
-                            return;
-                        }
-                        console.log(this.loginObj)
-                        var registerObj = {
-                            password: this.loginObj.password,
-                            password2: this.loginObj.password2,
-                            username: this.loginObj.username,
-                            email: this.loginObj.email,
-                            first_name: this.loginObj.first_name,
-                            last_name: this.loginObj.last_name,
-                            mobile: this.loginObj.iphone,
-                            gender: "222",
-                            company: "夏数",
-                            allow: "true"
-                        }
-                        const res = await this.$ajax.post(`/users/`, registerObj);
-                        console.log(res)
-                        if (!res.token) {
-                            // this.$message.success(res.data.message);    
-                            this.dialogVisible = true;
-                            this.message = '注册成功';
-                            this.isSuccess = 1;
-                        } else {
-                            this.dialogVisible = true;
-                            this.message = '很遗憾注册失败';
-                            this.isSuccess = 2;
-                        }
-                    } else {}
-                })
-            },
-            handleClick(tab, event) {
-                console.log(tab, event);
-            },
-            backBtn() {
-                this.$confirm('是否退出登陆?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                    this.$message({
-                        type: 'success',
-                        message: '退出成功!'
-                    });
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: '已取消退出'
-                    });
-                });
-            },
-            toLogin() {
-                this.$router.push('/login');
+                ],
+                password: [{
+                    required: true,
+                    message: "请输入last name",
+                    trigger: "blur"
+                },
+                {
+                    min: 6,
+                    max: 20,
+                    message: '长度在 6 到 20 个字符',
+                    trigger: 'change'
+                }
+                ],
+                password2: [{
+                    required: true,
+                    message: "请输入last name",
+                    trigger: "blur"
+                },
+                {
+                    min: 6,
+                    max: 20,
+                    message: '长度在 6 到 20 个字符',
+                    trigger: 'change'
+                }
+                ],
             }
         }
+    },
+    created () {
+        let _mainObj = window.sessionStorage.getItem("_mainObj");
+        if (!_mainObj) {
+            return;
+        } else {
+            _mainObj = JSON.parse(_mainObj);
+        }
+        if (!_mainObj.username) {
+            this.isLogin = false;
+        } else {
+            this.isLogin = true;
+            this.userName = _mainObj.username;
+        }
+    },
+    components: {
+        Header
+    },
+    methods: {
+        async hasIphone () {
+            let iphone = this.loginObj.iphone;
+            console.log(iphone)
+            const res = await this.$ajax.get(`/mobiles/${iphone}/count/`, {
+                'mobiles': iphone
+            });
+            console.log(res)
+            if (res.data.count === 0) {
+                this.$message.info("当前手机号已注册");
+                return;
+            }
+        },
+        loginSys (loginObj) {
+            this.$refs.loginObj.validate(async (valid) => {
+                if (valid) {
+                    if (this.loginObj.password != this.loginObj.password2) {
+                        this.$message.info('两次密码不一致');
+                        return;
+                    }
+                    if (!this.loginObj.gouxuanValue) {
+                        this.$message.info('请勾选用户服务协议');
+                        return;
+                    }
+                    console.log(this.loginObj)
+                    var registerObj = {
+                        password: this.loginObj.password,
+                        password2: this.loginObj.password2,
+                        username: this.loginObj.username,
+                        email: this.loginObj.email,
+                        first_name: this.loginObj.first_name,
+                        last_name: this.loginObj.last_name,
+                        mobile: this.loginObj.iphone,
+                        gender: "222",
+                        company: "夏数",
+                        allow: "true"
+                    }
+                    const res = await this.$ajax.post(`/users/`, registerObj);
+                    console.log(res)
+                    if (!res.token) {
+                        // this.$message.success(res.data.message);    
+                        this.dialogVisible = true;
+                        this.message = '注册成功';
+                        this.isSuccess = 1;
+                    } else {
+                        this.dialogVisible = true;
+                        this.message = '很遗憾注册失败';
+                        this.isSuccess = 2;
+                    }
+                } else { }
+            })
+        },
+        handleClick (tab, event) {
+            console.log(tab, event);
+        },
+        backBtn () {
+            this.$confirm('是否退出登陆?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                this.$message({
+                    type: 'success',
+                    message: '退出成功!'
+                });
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '已取消退出'
+                });
+            });
+        },
+        toLogin () {
+            this.$router.push('/login');
+        }
     }
+}
 </script>
 
 <style scoped lang="less">
-    .root {
-        background-color: #70859c;
-        height: 100%;
-        width: 100%;
-        position: absolute;
+.root {
+    background-color: #70859c;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.el-main {
+    position: absolute;
+    width: 100%;
+    margin-top: 60px;
+    z-index: 999;
+    @-webkit-keyframes masked-animation {
+        0% {
+            background-position: 0 0;
+        }
+
+        100% {
+            background-position: -100% 0;
+        }
     }
-    
-    .view-wrapper {
-        // position: absolute;
-        // right: 15%;
-        // top: 47%;
-        background-color: #fff;
-        // -webkit-transform: translateY(-50%);
-        // transform: translateY(-50%);
-        width: 380px;
-        -webkit-box-sizing: border-box;
+}
+.notLoginMain {
+    height: auto;
+    background: #70859c;
+    padding-bottom: 20px;
+}
+.view-wrapper {
+    background-color: #fff;
+    width: 380px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+    margin-top: 10vh;
+    margin-left: 60vw;
+
+    .loginTitle {
+        background-color: #2e4d6f;
+        width: 100%;
+        height: 50px;
+        margin-top: 50px;
+
+        .title-content {
+            width: 80px;
+            height: 80px;
+            background-color: #fff;
+            font-size: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #9da5a7;
+            font-weight: 700;
+        }
+    }
+
+    .main-content {
+        width: 100%;
+        padding: 0 35px;
         box-sizing: border-box;
-        text-align: center;
-        margin: auto;
+        z-index: 1000;
 
-        .loginTitle {
-            background-color: #2e4d6f;
+        .el-form-item {
+            margin-bottom: 15px;
+        }
+        .el-form-item:first-child {
+            margin-top: 30px;
+        }
+
+        .item-gouxuan {
+            margin-top: -10px;
+            margin-bottom: 5px;
+        }
+
+        .el-button {
             width: 100%;
-            height: 50px;
-            margin-top: 50px;
-
-            .title-content {
-                width: 80px;
-                height: 80px;
-                background-color: #fff;
-                font-size: 20px;
-                border-radius: 50%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 999;
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-                color: #9da5a7;
-                font-weight: 700;
-            }
         }
-
-
-        .main-content {
-            width: 100%;
-            padding: 0 35px;
-            box-sizing: border-box;
-            z-index: 1000;
-
-            .el-form-item {
-                margin-bottom: 15px;
-            }
-            .el-form-item:first-child {
-                margin-top: 30px;
-            }
-
-            .item-gouxuan {
-                margin-top: -10px;
-                margin-bottom: 5px;
-            }
-
-            .el-button {
-                width: 100%;
-            }
-        }
-
     }
-
-    .el-main {
-        position: absolute;
-        width: 100%;
-        margin-top: 60px;
-        z-index: 999;
-        // height: calc(100vh - 60px);
-
-        @-webkit-keyframes masked-animation {
-            0% {
-                background-position: 0 0;
-            }
-
-            100% {
-                background-position: -100% 0;
-            }
-        }
-
-    }
-
-
-    .notLoginMain {
-        height: auto;
-        background: #70859c;
-        padding-bottom: 20px;
-    }
+}
 </style>
