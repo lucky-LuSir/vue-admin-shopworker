@@ -5,11 +5,11 @@
             <div class="menu">
                 <div class="menuBox cm-Layout">
                     <el-menu router :default-active="$route.path ? $route.path : '/index'" class="header_menu" mode="horizontal" background-color="#fff" text-color="#000" active-text-color="#6eaa21">
-                        <el-menu-item index="/index">Home</el-menu-item>
-                        <el-menu-item index="/product">Product</el-menu-item>
-                        <el-menu-item index="/support">Support</el-menu-item>
-                        <el-menu-item index="/account">Account</el-menu-item>
-                        <el-menu-item index="/about">About</el-menu-item>
+                        <el-menu-item index="/index">{{ $t('home.Home') }}</el-menu-item>
+                        <el-menu-item index="/product">{{ $t('home.Product') }}</el-menu-item>
+                        <el-menu-item index="/support">{{ $t('home.Support') }}</el-menu-item>
+                        <el-menu-item index="/account">{{ $t('home.Account') }}</el-menu-item>
+                        <el-menu-item index="/about">{{ $t('home.About') }}</el-menu-item>
                     </el-menu>
                 </div>
             </div>

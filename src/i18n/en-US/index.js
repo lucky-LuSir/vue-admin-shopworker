@@ -9,5 +9,12 @@ export default {
     main: {
         name: "lusir",
         age: "one"
+    },
+    home: {
+        Home: "Home",
+        Product: "Product",
+        Support: "Support",
+        Account: "Account",
+        About: "About"
     }
 }

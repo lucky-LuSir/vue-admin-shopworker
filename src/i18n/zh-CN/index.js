@@ -10,5 +10,12 @@ export default {
     main: {
         name: "鲁秋",
         age: "1"
+    },
+    home: {
+        Home: "主页",
+        Product: "产品",
+        Support: "支持",
+        Account: "帐户",
+        About: "关于我们"
     }
 }
