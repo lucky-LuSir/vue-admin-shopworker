@@ -1,7 +1,7 @@
 <template>
     <el-header :class="isLogin ? 'islogin' : 'notLogin'">
         <div v-if="!isLogin" class="title">
-            <h1 class="title_h1">
+            <h1 class="title_h1" @click="toHome()">
                 BW shutters and blinds
             </h1>
             <div class="btnBoxs">
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div v-if="isLogin" class="title">
-            <h1 class="title_h1">
+            <h1 class="title_h1" @click="toHome()">
                 BW shutters and blinds
             </h1>
             <div class="btnBoxs">
@@ -210,6 +210,9 @@
             }
         },
         methods: {
+            toHome() {
+                this.$router.push('/home');
+            },
             ...mapMutations(['setLanguage']),
             handleSetLang(lang) {
                 // 设置i18n.locale 组件库会按照上面的配置使用对应的文案文件

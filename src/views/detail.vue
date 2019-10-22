@@ -235,6 +235,21 @@
                 </el-form>
             </div>
         </div>
+        <el-dialog width="390px"  title="Sign in" :visible.sync="dialogFormVisible">
+            <el-form :model="loginObj" :rules="rules1" ref="loginObj">
+                <el-form-item class="item-keyword" prop="keyword">
+                    <el-input placeholder="请输入手机号" v-model="loginObj.keyword" class="input-text" clearable prefix-icon="el-icon-diy-yonghuming">
+                    </el-input>
+                </el-form-item>
+                <el-form-item class="item-password" prop="password">
+                    <el-input v-model="loginObj.password" type="password" class="input-text" @keyup.enter.native="loginSys('loginObj')" placeholder="请输入密码" clearable prefix-icon="el-icon-diy-mima">
+                    </el-input>
+                </el-form-item>
+                <el-button style="width: 100%;" type="primary" @click="loginSys('loginObj')">
+                    <span style="font-family: Arvo">{{ $t('login.signin') }}&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                </el-button>
+            </el-form>
+        </el-dialog>
     </div>
 </template>
 
@@ -242,6 +257,24 @@
     export default {
         data() {
             return {
+                loginObj: {
+                    keywork: '',
+                    password: ''
+                },
+                dialogFormVisible: false,
+                formLabelWidth: '120px',
+                rules1: {
+                    keyword: [{
+                        required: true,
+                        message: "请输入手机号",
+                        trigger: "blur"
+                    }],
+                    password: [{
+                        required: true,
+                        message: "请输入密码",
+                        trigger: "blur"
+                    }]
+                },
                 detailImg: [
                     //     {
                     //     imgSrc: 'https://www.theshutterstore.com/images/2017/products/full-height/fullheight_style_product_3',
@@ -268,7 +301,6 @@
                         linkHref: 'javascript:;'
                     }
                 ],
-
                 form: {
                     caizhi: '', // 材质
                     casement: '', // 窗扇类型
@@ -278,8 +310,6 @@
                     hardwareColor: '', // 五金颜色
                     blade: '', // 叶片
                     plate: '', // 下板
-
-
                 },
                 rules: {
                     caizhi: [{
@@ -459,7 +489,49 @@
                 ],
             }
         },
+        created() {
+            console.log(1)
+            var token = window.sessionStorage.getItem("authentication");
+            console.log(token)
+            if (!token) {
+                console.log(333);
+                this.dialogFormVisible = true;
+            } else {
+                console.log(222)
+            }
+        },
         methods: {
+            loginSys(formName) {
+                // this.loginObj.password = this.$md5(this.secure);
+                if (this.loginObj) {
+                    this.$refs[formName].validate(async (valid) => {
+                        if (valid) {
+                            var loginObj = {
+                                username: this.loginObj.keyword,
+                                password: this.loginObj.password,
+                            }
+                            const res = await this.$ajax.post(`/authorizations/`, loginObj);
+                            if (res.status === 200) {
+                                this.$router.push('/index');
+                                var _mainObj = {
+                                    'user_id': res.data.user_id,
+                                    'token': res.data.token,
+                                    'username': res.data.username
+                                }
+                                let token = _mainObj.token;
+                                _mainObj = JSON.stringify(_mainObj);
+                                window.sessionStorage.setItem('_mainObj', _mainObj);
+                                window.sessionStorage.setItem("authentication", JSON.stringify(token));
+                                this.$cookieStore.addCookie(
+                                    "gn_request_token",
+                                    JSON.stringify(token),
+                                    0
+                                );
+                            }
+                        }
+                    });
+                }
+            },
             async toCart(form) {
                 console.log(form)
                 console.log(this.form)
@@ -525,11 +597,6 @@
             width: 230px;
         }
 
-        // .el-form-item:nth-child(2n) {
-        //     margin-right: 0;
-        //     margin-left: 0;
-        // }
-        
         .configure {
             display: inline-block;
             padding: 5px 20px 6px;
@@ -552,11 +619,13 @@
             right: 50px;
             bottom: 0;
         }
+
         .configure0 {
             position: absolute;
             right: 350px !important;
             bottom: 0;
         }
+
         .configure:hover {
             color: #fff;
             background-color: #9a9790;

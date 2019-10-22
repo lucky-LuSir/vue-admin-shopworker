@@ -51,7 +51,6 @@ export default {
             // }],
         }
     },
-
     methods: {
         // handleCommand(command) {
         //     this.locale = command;

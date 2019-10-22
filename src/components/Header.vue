@@ -1,7 +1,7 @@
 <template>
     <el-header :class="isLogin ? 'islogin' : 'notLogin'">
         <div v-if="!isLogin" class="title">
-            <h1 class="title_h1">
+            <h1 class="title_h1" @click="toHome()">
                 BW shutters and blinds
             </h1>
             <div class="btnBoxs">
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div v-if="isLogin" class="title">
-            <h1 class="title_h1">
+            <h1 class="title_h1" @click="toHome()">
                 BW shutters and blinds
             </h1>
             <div class="btnBoxs">
@@ -43,8 +43,8 @@
 
                     <el-dropdown-menu class="dropdownMenu dropUser" slot="dropdown">
                         <el-dropdown-item class="changepswParent">
-                            <el-button class="changepsw logoutBtn" @click="editPassword()" type="text">
-                                修改密码
+                            <el-button class="changepsw logoutBtn" @click="toUser()" type="text">
+                                个人中心
                             </el-button>
                         </el-dropdown-item>
                         <el-dropdown-item class="logoutParent">
@@ -209,6 +209,12 @@
             }
         },
         methods: {
+            toUser() {
+                this.$router.push('/user');
+            },
+            toHome() {
+                this.$router.push('/home');
+            },
             ...mapMutations(['setLanguage']),
             handleSetLang(lang) {
                 // 设置i18n.locale 组件库会按照上面的配置使用对应的文案文件
@@ -230,6 +236,7 @@
                         type: "warning"
                     }).then(() => {
                         window.sessionStorage.removeItem('_mainObj');
+                        window.sessionStorage.removeItem('authentication');
                         this.$router.push('/login');
                     });
                 }

@@ -1,7 +1,5 @@
 // 设置localStorage
 export const setStorage = function (key, obj) {
-    console.log(key);
-    console.log(obj);
     let json = JSON.stringify(obj);
     window.localStorage.setItem(key, json)
 }
@@ -9,7 +7,6 @@ export const setStorage = function (key, obj) {
 // 获取localStorage
 export const getStorage = function (key) {
     const str = window.localStorage.getItem(key);
-    console.log(str);
     if (!str) {
         return null
     }

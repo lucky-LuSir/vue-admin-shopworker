@@ -18,9 +18,6 @@ Vue.use(VueI18n)
 // 获取当前语言（初始化时localStorage里没有存语言，默认为浏览器当前的语言）
 const lang = getStorage('lang') || getBrowserLang()
 
-console.log(enLocale);
-console.log(cnLocale);
-
 // 组合element ui 和 项目自身的文案文件
 const messages = {
     'en-US': {
@@ -32,7 +29,6 @@ const messages = {
         ...cnLocale
     }
 }
-console.log(messages);
 
 // 创建vueI18n实例并输出，在main.js中调用
 const i18n = new VueI18n({
