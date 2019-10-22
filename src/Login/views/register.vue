@@ -4,52 +4,54 @@
             <Header></Header>
             <el-main :class="isLogin ? 'isloginMain' : 'notLoginMain'">
                 <el-form :model="loginObj" :rules="rules" ref="loginObj">
-                    <div class="view-wrapper">
-                        <div class="loginTitle clearfix">
-                            <div class="title-content">
-                                LOGO
+                    <div class="banner">
+                        <div class="view-wrapper">
+                            <div class="loginTitle clearfix">
+                                <div class="title-content">
+                                    LOGO
+                                </div>
                             </div>
-                        </div>
-                        <div class="main-content">
-                            <el-form-item class="item-username" prop="username">
-                                <el-input type="text" placeholder="请输入username" v-model="loginObj.username" class="input-text" clearable prefix-icon="el-icon-diy-yonghuming">
-                                </el-input>
-                            </el-form-item>
-                            <el-form-item class="item-firstName" prop="firstName">
-                                <el-input type="text" placeholder="请输入first name" v-model="loginObj.firstName" class="input-text" clearable prefix-icon="el-icon-diy-yonghuming">
-                                </el-input>
-                            </el-form-item>
-                            <el-form-item class="item-lastName" prop="lastName">
-                                <el-input type="text" placeholder="请输入last name" v-model="loginObj.lastName" class="input-text" clearable prefix-icon="el-icon-diy-yonghuming">
-                                </el-input>
-                            </el-form-item>
-                            <el-form-item class="item-email" prop="email">
-                                <el-input type="email" v-model="loginObj.email" class="input-text" placeholder="请输入邮件地址" clearable prefix-icon="el-icon-diy-youjian">
-                                </el-input>
-                            </el-form-item>
-                            <el-form-item class="item-iphone" prop="iphone">
-                                <el-input type="text" v-model="loginObj.iphone" class="input-text" @blur="hasIphone()" placeholder="请输入手机号码" clearable prefix-icon="el-icon-diy-shoujihao">
-                                </el-input>
-                            </el-form-item>
-                            <el-form-item class="item-password" prop="password">
-                                <el-input type="password" v-model="loginObj.password" class="input-text" autocomplete="new-password" placeholder="设置6至20位登录密码" clearable prefix-icon="el-icon-diy-mima">
-                                </el-input>
-                            </el-form-item>
-                            <el-form-item class="item-password2" prop="password2">
-                                <el-input type="password" v-model="loginObj.password2" class="input-text" placeholder="请再次输入登录密码" clearable prefix-icon="el-icon-diy-mima">
-                                </el-input>
-                            </el-form-item>
-                            <el-form-item class="item-gouxuan" prop="radioGouxuan">
-                                <input v-model="loginObj.gouxuanValue" type="checkbox">勾选用户《用户服务协议》
-                            </el-form-item>
-                            <el-button type="primary" @click="loginSys('loginObj')">
-                                <span style="font-family: Arvo">注&nbsp;&nbsp;&nbsp;&nbsp;册</span>
-                            </el-button>
-                            <el-form-item class="item-tools clearfix" prop="password">
-                                <a @click="toLogin()" href="javascript:;">已有账号 , 立即登录</a>
-                            </el-form-item>
-                        </div>
+                            <div class="main-content">
+                                <el-form-item class="item-username" prop="username">
+                                    <el-input type="text" placeholder="请输入username" v-model="loginObj.username" class="input-text" clearable prefix-icon="el-icon-diy-yonghuming">
+                                    </el-input>
+                                </el-form-item>
+                                <el-form-item class="item-firstName" prop="firstName">
+                                    <el-input type="text" placeholder="请输入first name" v-model="loginObj.firstName" class="input-text" clearable prefix-icon="el-icon-diy-yonghuming">
+                                    </el-input>
+                                </el-form-item>
+                                <el-form-item class="item-lastName" prop="lastName">
+                                    <el-input type="text" placeholder="请输入last name" v-model="loginObj.lastName" class="input-text" clearable prefix-icon="el-icon-diy-yonghuming">
+                                    </el-input>
+                                </el-form-item>
+                                <el-form-item class="item-email" prop="email">
+                                    <el-input type="email" v-model="loginObj.email" class="input-text" placeholder="请输入邮件地址" clearable prefix-icon="el-icon-diy-youjian">
+                                    </el-input>
+                                </el-form-item>
+                                <el-form-item class="item-iphone" prop="iphone">
+                                    <el-input type="text" v-model="loginObj.iphone" class="input-text" @blur="hasIphone()" placeholder="请输入手机号码" clearable prefix-icon="el-icon-diy-shoujihao">
+                                    </el-input>
+                                </el-form-item>
+                                <el-form-item class="item-password" prop="password">
+                                    <el-input type="password" v-model="loginObj.password" class="input-text" autocomplete="new-password" placeholder="设置6至20位登录密码" clearable prefix-icon="el-icon-diy-mima">
+                                    </el-input>
+                                </el-form-item>
+                                <el-form-item class="item-password2" prop="password2">
+                                    <el-input type="password" v-model="loginObj.password2" class="input-text" placeholder="请再次输入登录密码" clearable prefix-icon="el-icon-diy-mima">
+                                    </el-input>
+                                </el-form-item>
+                                <el-form-item class="item-gouxuan" prop="radioGouxuan">
+                                    <input v-model="loginObj.gouxuanValue" type="checkbox">勾选用户《用户服务协议》
+                                </el-form-item>
+                                <el-button type="primary" @click="loginSys('loginObj')">
+                                    <span style="font-family: Arvo">注&nbsp;&nbsp;&nbsp;&nbsp;册</span>
+                                </el-button>
+                                <el-form-item class="item-tools clearfix" prop="password">
+                                    <a @click="toLogin()" href="javascript:;">已有账号 , 立即登录</a>
+                                </el-form-item>
+                            </div>
 
+                        </div>
                     </div>
                 </el-form>
             </el-main>
@@ -65,7 +67,8 @@
 </template>
 
 <script>
-import Header from "../../components/Header"
+import Header from "../components/Header"
+
 
 export default {
     data () {
@@ -274,50 +277,56 @@ export default {
     background: #70859c;
     padding-bottom: 20px;
 }
+.banner {
+    width: 980px;
+    margin: 0 auto;
+}
 .view-wrapper {
-    background-color: #fff;
+    // background-color: #fff;
+    // width: 380px;
+    // -webkit-box-sizing: border-box;
+    // box-sizing: border-box;
+    // text-align: center;
+    // margin-top: 10vh;
+    // margin-left: 60vw;
+    float: right;
+    margin-top: 13vh;
+    background-color: #f0f8fa;
     width: 380px;
-    -webkit-box-sizing: border-box;
+    // height: 400px;
     box-sizing: border-box;
     text-align: center;
-    margin-top: 10vh;
-    margin-left: 60vw;
 
     .loginTitle {
-        background-color: #2e4d6f;
-        width: 100%;
+        position: relative;
         height: 50px;
-        margin-top: 50px;
-
+        background-color: #2e4d6f;
         .title-content {
-            width: 80px;
-            height: 80px;
-            background-color: #fff;
-            font-size: 20px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
+            background-color: #fff;
             color: #9da5a7;
-            font-weight: 700;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            line-height: 80px;
+            text-align: center;
         }
     }
 
     .main-content {
         width: 100%;
         padding: 0 35px;
+        padding-top: 35px;
         box-sizing: border-box;
         z-index: 1000;
 
         .el-form-item {
             margin-bottom: 15px;
         }
-        .el-form-item:first-child {
-            margin-top: 30px;
+        /deep/ .el-form-item:first-child {
+            margin-top: 15px;
         }
 
         .item-gouxuan {
