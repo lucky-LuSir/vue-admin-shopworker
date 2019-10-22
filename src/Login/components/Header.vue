@@ -41,7 +41,7 @@
                     </keep-alive>
                     <i class="iconfont el-icon-diy-geren2"></i>
 
-                    <el-dropdown-menu class="dropdownMenu dropUser" slot="dropdown">
+                    <el-dropdown-menu class="dropdownMenu" slot="dropdown">
                         <el-dropdown-item class="changepswParent">
                             <el-button class="changepsw logoutBtn" @click="editPassword()" type="text">
                                 修改密码
@@ -60,7 +60,7 @@
                 </div>
                 <el-dropdown @command="handleSetLang" trigger="click">
                     <div class="lang-active">
-                        <div  class="langbox" v-for="(lang, i) in langs" :key="`LangActive${i}`" v-show="lang.key === activeLang">
+                        <div v-for="(lang, i) in langs" :key="`LangActive${i}`" v-show="lang.key === activeLang">
                             {{ lang.value }}
                             <i class="el-icon-arrow-down el-icon--right"></i>
                         </div>
@@ -74,6 +74,7 @@
             </div>
 
         </div>
+
         <el-dialog title="修改密码" :visible.sync="dialogFormVisible" width="50%" center>
             <el-form :model="mainObj.updatePwd" ref="updatePwd" :rules="rules" label-width="100px">
                 <el-row :gutter="20">
@@ -244,6 +245,7 @@
         }
     }
 </script>
+
 <style>
     /* .el-dropdown-menu__item {
         padding: 0;
@@ -251,9 +253,6 @@
 </style>
 
 <style scoped lang="less">
-    .dropUser /deep/ .el-dropdown-menu__item {
-        padding: 0;
-    }
     .btnBoxs {
         display: flex;
         align-items: center;
@@ -263,7 +262,6 @@
         }
 
         .cart {
-            margin-right: 30px;
             align-items: center;
             display: flex;
             background-color: #ffdbc4;
@@ -290,7 +288,6 @@
         text-align: left;
         height: 36px;
     }
-
     .langbox {
          width: 75px;
          color: #999;
@@ -298,6 +295,12 @@
     }
     .islogin {
         background-color: #fff;
+    }
+    .notLogin {
+        background: #2e4d6f;
+        .langbox {
+            color: #ccc;
+        }
     }
 
     .notLogin {

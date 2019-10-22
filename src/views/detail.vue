@@ -9,12 +9,13 @@
                         </a>
                     </el-carousel-item>
                 </el-carousel>
+                <p>Basswood has become one of the most widely used materials for shutters in the global market. This is due to its resistance to warping, easy workability, durability, and its acceptance of a variety of colors and finishes. Basswood (tilia americana) is a member of the hardwood family, with all our Basswood being plantation grown. Basswood shutters are manufactured for indoors only, and are not recommended for wet areas.</p>
             </div>
             <div class="right">
                 <h1>Tier on Tier </h1>
-                <el-form :inline="true" :rules="rules" ref="form" :model="form" label-width="80px">
+                <el-form :rules="rules" ref="form" :model="form" label-width="130px">
                     <el-form-item label="material" prop="caizhi">
-                        <el-select size="mini" v-model="form.caizhi" placeholder="请选择材质">
+                        <el-select size="mini" v-model="form.caizhi" placeholder="请材质">
                             <el-option v-for="item in options1" :key="item.value" :label="item.label" :value="item.value">
                                 <span style="float: left">{{ item.label }}</span>
                                 <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
@@ -22,14 +23,166 @@
                         </el-select>
                     </el-form-item>
                     <el-form-item label="windos_sash_type" prop="casement">
-                        <el-select size="mini" v-model="form.casement" placeholder="请选择窗扇类型">
+                        <el-select size="mini" v-model="form.casement" placeholder="窗扇类型">
                             <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
                                 <span style="float: left">{{ item.label }}</span>
                                 <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
                             </el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="拉杆类型">
+                    <el-form-item label="Installation_location" prop="casement">
+                        <el-select size="mini" v-model="form.casement" placeholder="安装位置">
+                            <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="size_type" prop="casement">
+                        <el-select size="mini" v-model="form.casement" placeholder="尺寸类型">
+                            <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="length" prop="casement">
+                        <el-select size="mini" v-model="form.casement" placeholder="长度">
+                            <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="width" prop="casement">
+                        <el-select size="mini" v-model="form.casement" placeholder="宽度">
+                            <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="midplane_postion" prop="casement">
+                        <el-select size="mini" v-model="form.casement" placeholder="中板位置">
+                            <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="ploduct_color" prop="casement">
+                        <el-select size="mini" v-model="form.casement" placeholder="产品颜色">
+                            <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="frame_type" prop="casement">
+                        <el-select size="mini" v-model="form.casement" placeholder="框条类型">
+                            <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="frame_number" prop="casement">
+                        <el-select size="mini" v-model="form.casement" placeholder="框条边数">
+                            <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="opening_method" prop="casement">
+                        <el-select size="mini" v-model="form.casement" placeholder="开启方式">
+                            <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="tcolumn_type" prop="casement">
+                        <el-select size="mini" v-model="form.casement" placeholder="T柱类型">
+                            <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="column_type" prop="casement">
+                        <el-select size="mini" v-model="form.casement" placeholder="立柱型号">
+                            <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="balde_type" prop="casement">
+                        <el-select size="mini" v-model="form.casement" placeholder="叶片型号">
+                            <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="poll_rod_type" prop="casement">
+                        <el-select size="mini" v-model="form.casement" placeholder="拉杆类型">
+                            <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="ploo_rod_dis" prop="casement">
+                        <el-select size="mini" v-model="form.casement" placeholder="拉杆断开">
+                            <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="hardware_type" prop="casement">
+                        <el-select size="mini" v-model="form.casement" placeholder="五金类型">
+                            <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="hardware_colour" prop="casement">
+                        <el-select size="mini" v-model="form.casement" placeholder="五金颜色">
+                            <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="blade_state" prop="casement">
+                        <el-select size="mini" v-model="form.casement" placeholder="叶片状态">
+                            <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="lower_palte_state" prop="casement">
+                        <el-select size="mini" v-model="form.casement" placeholder="下板状态">
+                            <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="number" prop="casement">
+                        <el-select size="mini" v-model="form.casement" placeholder="数量">
+                            <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+                                <span style="float: left">{{ item.label }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <!-- <el-form-item label="拉杆类型">
                         <el-select size="mini" v-model="form.PullRod" placeholder="请选择拉杆类型">
                             <el-option v-for="item in options3" :key="item.value" :label="item.label" :value="item.value">
                                 <span style="float: left">{{ item.label }}</span>
@@ -76,7 +229,8 @@
                                 <span style="float: right; color: #8492a6; font-size: 13px">{{ item.price }}</span>
                             </el-option>
                         </el-select>
-                    </el-form-item>
+                    </el-form-item> -->
+                    <el-button size="mini" class="configure configure0" type="primary" @click="toCart('form')">生成图片</el-button>
                     <el-button size="mini" class="configure" type="primary" @click="toCart('form')">Configure and buy!</el-button>
                 </el-form>
             </div>
@@ -331,15 +485,27 @@
         width: 520px;
         height: 520px;
         float: left;
+
         img {
             width: 520px;
             height: 520px;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 18px;
+            height: 236px;
+            overflow: hidden;
+            text-align: left;
+            text-indent: 2em;
+            color: #666;
         }
     }
 
     .right {
         width: 460px;
         float: left;
+        padding-bottom: 50px;
         min-height: 520px;
         position: relative;
 
@@ -356,14 +522,14 @@
         }
 
         .el-select {
-            width: 135px;
+            width: 230px;
         }
 
-        .el-form-item:nth-child(2n) {
-            margin-right: 0;
-            margin-left: 0;
-        }
-
+        // .el-form-item:nth-child(2n) {
+        //     margin-right: 0;
+        //     margin-left: 0;
+        // }
+        
         .configure {
             display: inline-block;
             padding: 5px 20px 6px;
@@ -383,10 +549,14 @@
             -ms-user-select: none;
             user-select: none;
             position: absolute;
-            right: 0;
+            right: 50px;
             bottom: 0;
         }
-
+        .configure0 {
+            position: absolute;
+            right: 350px !important;
+            bottom: 0;
+        }
         .configure:hover {
             color: #fff;
             background-color: #9a9790;

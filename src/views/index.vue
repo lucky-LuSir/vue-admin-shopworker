@@ -149,7 +149,7 @@
                 </div>
             </div>
         </div>
-        <div class="three cm-Layout clearfix">
+        <!-- <div class="three cm-Layout clearfix">
             <div class="lunbo">
                 <ul>
                     <li>
@@ -204,6 +204,18 @@
                     </li>
                 </ul>
             </div>
+        </div> -->
+        <div class="four cm-Layout">
+            <el-carousel :interval="4000" type="card" height="250px">
+                <!-- <el-carousel-item v-for="(item, index) in imgArr3" :key="index">
+                    <h3 class="medium">{{ item }}</h3>
+                </el-carousel-item> -->
+                <el-carousel-item v-for="(item, index) in imgArr3" :key="index">
+                    <a class="alink" :href="item.linkHref">
+                        <img class="aimg" :src="item.imgSrc" alt>
+                    </a>
+                </el-carousel-item>
+            </el-carousel>
         </div>
         <!-- <img src="../img/img1.png" alt=""> -->
         <!-- <img src="../img/DSC_0180.jpg" alt=""> -->
@@ -260,7 +272,28 @@
                         imgSrc: "//img.alicdn.com/bao/uploaded/i4/105888541/TB24Bslw29TBuNjy0FcXXbeiFXa_!!0-saturn_solar.jpg_200x200q90.jpg_.webp",
                         linkHref: "javascript:;"
                     }
-                ]
+                ],
+                imgArr3: [{
+                        imgSrc: require("../img/slide_001.jpg"),
+                        linkHref: "javascript:;"
+                    },
+                    {
+                        imgSrc: require("../img/slide_002.jpg"),
+                        linkHref: "javascript:;"
+                    },
+                    {
+                        imgSrc: require("../img/slide_003.jpg"),
+                        linkHref: "javascript:;"
+                    },
+                    {
+                        imgSrc: require("../img/slide_004.jpg"),
+                        linkHref: "javascript:;"
+                    },
+                    {
+                        imgSrc: require("../img/slide_005.jpg"),
+                        linkHref: "javascript:;"
+                    }
+                ],
             };
         },
         async created() {},
@@ -319,7 +352,15 @@
     .two {
         display: flex;
     }
-
+    .four {
+        .alink {
+            height: 100%;
+        }
+        .aimg {
+            width: 100%;
+            height: 100%;
+        }
+    }
     .carousel__slide {
         float: left;
         margin-right: 20px;
@@ -379,6 +420,7 @@
     .slide {
         width: 430px !important;
         margin-right: 0;
+
         .promo-style {
             height: 300px;
         }

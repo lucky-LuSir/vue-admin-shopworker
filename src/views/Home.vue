@@ -11,12 +11,10 @@
                         <el-menu-item index="/account">Account</el-menu-item>
                         <el-menu-item index="/about">About</el-menu-item>
                     </el-menu>
-
                 </div>
             </div>
             <router-view></router-view>
         </el-main>
-        <Lang></Lang>
         <Footer></Footer>
     </div>
 </template>
