@@ -15,6 +15,7 @@
             </div>
             <router-view></router-view>
         </el-main>
+        <el-button @click="aaa()">发送</el-button>
         <Footer></Footer>
     </div>
 </template>
@@ -52,6 +53,18 @@ export default {
         }
     },
     methods: {
+        async aaa() {
+            console.log(111)
+            const res = await this.$ajax.post(`/address/`, {
+                // 'id': 1
+                "title": 'aaa',
+                "receiver": 'sss',
+                "province": '111',
+                'city': 'sss'
+            });
+            console.log(res)
+            // ${iphone}/count/
+        },
         // handleCommand(command) {
         //     this.locale = command;
         //     Vue.config.lang = this.locale;

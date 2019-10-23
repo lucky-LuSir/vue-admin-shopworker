@@ -178,8 +178,11 @@ export default {
                 'mobiles': iphone
             });
             console.log(res)
-            if (res.data.count === 0) {
+            if (res.data.count === 1) {
                 this.$message.info("当前手机号已注册");
+                return;
+            } else {
+                this.$message.info("当前手机号可以注册");
                 return;
             }
         },

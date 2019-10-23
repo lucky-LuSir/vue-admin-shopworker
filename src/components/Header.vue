@@ -15,6 +15,12 @@
                     </keep-alive>
                     <i class="iconfont el-icon-diy-geren2"></i>
                 </div>
+                <div class="cart">
+                    treasure
+                    <div class="icons" @click="toCart()">
+                        <i style="color: #e2231a; font-size: 24px;" class="el-icon-diy-icon-test"></i>
+                    </div>
+                </div>
                 <el-dropdown @command="handleSetLang" trigger="click">
                     <div class="lang-active">
                         <div class="langbox" v-for="(lang, i) in langs" :key="`LangActive${i}`" v-show="lang.key === activeLang">
@@ -40,7 +46,6 @@
                         <span>{{userName}}</span>
                     </keep-alive>
                     <i class="iconfont el-icon-diy-geren2"></i>
-
                     <el-dropdown-menu class="dropdownMenu dropUser" slot="dropdown">
                         <el-dropdown-item class="changepswParent">
                             <el-button class="changepsw logoutBtn" @click="toUser()" type="text">
