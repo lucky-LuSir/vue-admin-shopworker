@@ -548,6 +548,9 @@ export default {
         text-align: left;
         text-indent: 2em;
         color: #666;
+        width: 460px;
+        margin: 0 auto;
+        line-height: 24px;
     }
 }
 
