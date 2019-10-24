@@ -174,9 +174,7 @@ export default {
         async hasIphone () {
             let iphone = this.loginObj.iphone;
             console.log(iphone)
-            const res = await this.$ajax.get(`/mobiles/${iphone}/count/`, {
-                'mobiles': iphone
-            });
+            const res = await this.$ajax.get(`/mobiles/${iphone}/count/`);
             console.log(res)
             if (res.data.count === 1) {
                 this.$message.info("当前手机号已注册");

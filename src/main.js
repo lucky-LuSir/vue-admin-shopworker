@@ -38,7 +38,9 @@ Vue.prototype.$cookieStore = {
 
 // axios.defaults.baseURL = BASE_URL.BASE_URL; //设置全局URL
 axios.defaults.baseURL = "http://47.100.79.150:8000"; //设置全局URL
-axios.defaults.headers.post["Content-Type"] = "application/json";
+// axios.defaults.headers.post["Content-Type"] = "application/json";
+axios.defaults.headers.get["Content-Type"] = "application/json";
+// axios.defaults.headers.post["Content-Type"] = "application/json";
 
 Vue.use(ElementUI);
 
@@ -46,19 +48,19 @@ Vue.filter("currency", currency);
 
 
 /*------------------------------------ Loading加载 ------------------------------------*/
-let loading;
+// let loading;
 
-function startLoading() {
-    loading = Loading.service({
-        lock: true,
-        text: "拼命加载中...",
-        target: document.querySelector(".mainBox")
-    });
-}
+// function startLoading() {
+//     loading = Loading.service({
+//         lock: true,
+//         text: "拼命加载中...",
+//         target: document.querySelector(".mainBox")
+//     });
+// }
 
-function endLoading() {
-    loading.close(); // 关闭 loading
-}
+// function endLoading() {
+//     loading.close(); // 关闭 loading
+// }
 
 /*------------------------------------ Loading加载 ------------------------------------*/
 
@@ -74,7 +76,7 @@ axios.interceptors.request.use(
         if (token) {
             config.headers['Authorization'] = token;
         }
-        startLoading();
+        // startLoading();
         return config;
         // authorization
     },
@@ -98,7 +100,7 @@ axios.interceptors.response.use(
         //     endLoading();
         //     return response;
         // }
-        endLoading();
+        // endLoading();
         return response;
     },
     error => {

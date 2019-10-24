@@ -35,23 +35,23 @@
                             <ul class="content">
                                 <li>
                                     <i class="iconfont el-icon-diy-zuobiaofill"></i>
-                                    <span>工厂地址：INDUSTRY ZONE,CHENJI TOWN,DINGTAO COUNTY,HEZE CITY, SHANDONG ,CHINA </span>
+                                    <span><em>Factory address</em>：INDUSTRY ZONE,CHENJI TOWN,DINGTAO COUNTY,HEZE CITY, SHANDONG ,CHINA </span>
                                 </li>
                                 <li>
                                     <i class="iconfont el-icon-diy-gongsi"></i>
-                                    <span>办公室地址：No.98 ,ZhongHua Road,Heze City, ShanDong ,China. 274000</span>
+                                    <span><em>Office address</em>：No.98 ,ZhongHua Road,Heze City, ShanDong ,China. 274000</span>
                                 </li>
                                 <li>
                                     <i class="iconfont el-icon-diy-dianhua1"></i>
-                                    <span>400-820-2058</span>
+                                    <span><em>iphone</em>: 400-820-2058</span>
                                 </li>
                                 <li>
                                     <i class="iconfont el-icon-diy-chuzu"></i>
-                                    <span>传真： 0530-2205865 </span>
+                                    <span><em>Fax</em>： 0530-2205865 </span>
                                 </li>
                                 <li>
                                     <i class="iconfont el-icon-diy-youxiang"></i>
-                                    <span>总邮箱：info@jmshutter.net </span>
+                                    <span><em>mailbox</em>：info@jmshutter.net </span>
                                 </li>
                             </ul>
                         </div>
@@ -175,6 +175,10 @@
             font-weight: 400;
             color: rgba(153, 153, 153, 1);
             line-height: 28px;
+        }
+        em {
+            color: #7c6666;
+            font-weight: 600;
         }
     }
 

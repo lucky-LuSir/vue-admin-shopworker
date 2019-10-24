@@ -15,7 +15,14 @@
             </div>
             <router-view></router-view>
         </el-main>
-        <el-button @click="aaa()">发送</el-button>
+        <!-- <img src="../img/DSC_0125.jpg" alt=""> -->
+        <!-- <img src="../img/DSC_0134.jpg" alt=""> -->
+        
+        <!-- <el-button @click="aaa()">发送</el-button> -->
+        <!-- <form action="/cart/" method="get">
+            <input type="text" name="id" value="2">
+            <button type="submit">提交</button>
+        </form> -->
         <Footer></Footer>
     </div>
 </template>
@@ -53,17 +60,24 @@ export default {
         }
     },
     methods: {
-        async aaa() {
-            console.log(111)
-            const res = await this.$ajax.post(`/address/`, {
-                // 'id': 1
-                "title": 'aaa',
-                "receiver": 'sss',
-                "province": '111',
-                'city': 'sss'
-            });
+        async aaa () {
+            var token = sessionStorage.getItem("authentication");
+            // var obj = {
+            //     "id": 2
+            // }
+            const res = await this.$ajax({
+                method: 'get',
+                url: '/cart/',
+                params: {
+                    "id": 1
+                },
+                headers: {
+                    'Authorization': 'JWT' + token
+                },
+                withCredentials: true,
+                responseType: 'json',
+            })
             console.log(res)
-            // ${iphone}/count/
         },
         // handleCommand(command) {
         //     this.locale = command;

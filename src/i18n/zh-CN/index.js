@@ -14,8 +14,8 @@ export default {
     home: {
         Home: "主页",
         Product: "产品",
-        Support: "支持",
-        Account: "帐户",
+        Support: "测量",
+        Account: "安装",
         About: "关于我们"
     }
 }

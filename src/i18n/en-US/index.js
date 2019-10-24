@@ -13,8 +13,8 @@ export default {
     home: {
         Home: "Home",
         Product: "Product",
-        Support: "Support",
-        Account: "Account",
+        Support: "Measure",
+        Account: "Install",
         About: "About"
     }
 }
