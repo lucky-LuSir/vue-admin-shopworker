@@ -48,19 +48,19 @@ Vue.filter("currency", currency);
 
 
 /*------------------------------------ Loading加载 ------------------------------------*/
-// let loading;
+let loading;
 
-// function startLoading() {
-//     loading = Loading.service({
-//         lock: true,
-//         text: "拼命加载中...",
-//         target: document.querySelector(".mainBox")
-//     });
-// }
+function startLoading() {
+    loading = Loading.service({
+        lock: true,
+        text: "拼命加载中...",
+        target: document.querySelector(".mainBox")
+    });
+}
 
-// function endLoading() {
-//     loading.close(); // 关闭 loading
-// }
+function endLoading() {
+    loading.close(); // 关闭 loading
+}
 
 /*------------------------------------ Loading加载 ------------------------------------*/
 
@@ -76,7 +76,7 @@ axios.interceptors.request.use(
         if (token) {
             config.headers['Authorization'] = token;
         }
-        // startLoading();
+        startLoading();
         return config;
         // authorization
     },
@@ -100,14 +100,15 @@ axios.interceptors.response.use(
         //     endLoading();
         //     return response;
         // }
-        // endLoading();
+        endLoading();
         return response;
     },
     error => {
-        // park.$alert("服务器发生未知异常，请联系管理员", "系统异常", {
-        //     confirmButtonText: "确定",
-        //     callback: action => {}
-        // });
+        park.$alert("服务器发生未知异常，请联系管理员", "系统异常", {
+            confirmButtonText: "确定",
+            callback: action => {}
+        });
+        endLoading();
     }
 );
 /**------------------------------------- 响应拦截器 --------------------------------*/

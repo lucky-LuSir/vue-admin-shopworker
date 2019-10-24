@@ -88,10 +88,6 @@
 </template>
 
 <script>
-    import Vue from 'vue'
-    import axios from "axios";
-    axios.defaults.baseURL = "http://localhost:8080"; //设置全局URL
-    axios.defaults.headers.post["Content-Type"] = "application/json";
     export default {
         data() {
             return {
@@ -115,9 +111,13 @@
         components: {},
         methods: {
             async init() {
-                const res = await axios.get(`/addressList/`, {});
+                const res = await this.$ajax.get(`/address/1/`);
                 console.log(res)
-                this.addressList = res.data.data.result;
+                var data = res.data;
+                data = JSON.parse(data);
+                console.log(data)
+
+                this.addressList = data;
                 this.selectedAddrId = this.addressList[0].addressId;
             },
             expand() {

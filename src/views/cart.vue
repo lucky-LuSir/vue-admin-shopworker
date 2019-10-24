@@ -8,9 +8,9 @@
                 <div class="cart-item">
                     <div class="cart-item-head">
                         <ul>
+                            <li>选择</li>
                             <li>商品</li>
-                            <li>单价</li>
-                            <li>数量</li>
+                            <li>详情</li>
                             <li>小计</li>
                             <li>操作</li>
                         </ul>
@@ -23,18 +23,25 @@
                                         <i class="el-icon-diy-duigou"></i>
                                     </a>
                                 </div>
-                                <div class="cart-item-pic">
+                                <!-- <div class="cart-item-pic">
                                     <img v-bind:alt="item.productName" :src="item.productImage">
-                                </div>
-                                <div class="cart-item-title">
+                                </div> -->
+                                <!-- <div class="cart-item-title">
                                     <div class="item-name">{{item.productName}}</div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="cart-tab-2">
-                                <div class="item-price">{{item.salePrice|currency('￥')}}</div>
+                                <!-- <div class="item-price">{{item.salePrice|currency('￥')}}</div> -->
+                                <div>
+                                    <ul>
+                                        <li>Classic Poplar</li>
+                                        <li>Full height</li>
+                                        <li>Bright White</li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="cart-tab-3">
-                                <div class="item-quantity">
+                                <!-- <div class="item-quantity">
                                     <div class="select-self select-self-open">
                                         <div class="select-self-area">
                                             <a class="input-sub" @click="editCart('minu',item)">-</a>
@@ -42,10 +49,39 @@
                                             <a class="input-add" @click="editCart('add',item)">+</a>
                                         </div>
                                     </div>
+                                </div> -->
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <span>Width:</span>
+                                            <i>40</i>
+                                        </li>
+                                        <li>
+                                            <span>Height:</span>
+                                            <i>40</i>
+                                        </li>
+                                        <li>
+                                            <span>Number of panels:</span>
+                                            <i>4</i>
+                                        </li>
+                                        <li>
+                                            <span>Panel configuration:</span>
+                                            <i>Left 2 Right 2</i>
+                                        </li>
+                                        <li>
+                                            <span>Mid rails:</span>
+                                            <i>0</i>
+                                        </li>
+                                        <li>
+                                            <span>Slat size:</span>
+                                            <i>3 1/2</i>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="cart-tab-4">
-                                <div class="item-price-total">{{(item.productNum*item.salePrice)|currency('￥')}}</div>
+                                <!-- <div class="item-price-total">{{(item.productNum*item.salePrice)|currency('￥')}}</div> -->
+                                <div class="price">$262.50</div>
                             </div>
                             <div class="cart-tab-5">
                                 <div class="cart-item-opration">
@@ -74,7 +110,7 @@
                         <div class="item-total">
                             总价: <span class="total-price">{{totalPrice|currency('￥')}}</span>
                         </div>
-                        <div class="btn-wrap">
+                        <div class="btn-wrap" style="cursor: pointer;">
                             <a class="btn btn--red" v-bind:class="{'btn--dis':checkedCount==0}" @click="checkOut">去结算</a>
                         </div>
                     </div>
@@ -92,10 +128,10 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import axios from "axios";
-axios.defaults.baseURL = "http://localhost:8080"; //设置全局URL
-axios.defaults.headers.post["Content-Type"] = "application/json";
+    import Vue from 'vue'
+    import axios from "axios";
+    axios.defaults.baseURL = "http://localhost:8080"; //设置全局URL
+    axios.defaults.headers.post["Content-Type"] = "application/json";
     import Modal from '../components/Modal'
     export default {
         data() {
@@ -110,22 +146,22 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
         created() {
             this.init();
         },
-        computed:{
-            checkAllFlag(){
+        computed: {
+            checkAllFlag() {
                 return this.checkedCount == this.cartList.length;
             },
-            checkedCount(){
+            checkedCount() {
                 var i = 0;
-                this.cartList.forEach((item)=>{
-                    if(item.checked=='1')i++;
+                this.cartList.forEach((item) => {
+                    if (item.checked == '1') i++;
                 })
                 return i;
             },
-            totalPrice(){
+            totalPrice() {
                 var money = 0;
-                this.cartList.forEach((item)=>{
-                    if(item.checked=='1'){
-                        money += parseFloat(item.salePrice)*parseInt(item.productNum);
+                this.cartList.forEach((item) => {
+                    if (item.checked == '1') {
+                        money += parseFloat(item.salePrice) * parseInt(item.productNum);
                     }
                 })
                 return money;
@@ -133,9 +169,13 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
         },
         methods: {
             async init() {
-                const res = await axios.get(`/cartList/`, {});
-                var result = res.data.data.result;
-                this.cartList = result;
+                const res = await axios.get(`/cart/1/`, {});
+                let data = res.data;
+                data = JSON.parse(data);
+                // data = data[0];
+                console.log(data)
+                // var result = res.data.data.result;
+                this.cartList = data;
             },
             delCartConfirm(item) {
                 this.delItem = item;
@@ -168,7 +208,7 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
                     checked: item.checked
                 })
                 if (res.data.code === 200) {
-                    this.$store.commit("updateCartCount",flag=="add"?1:-1);
+                    this.$store.commit("updateCartCount", flag == "add" ? 1 : -1);
                 }
             },
             async toggleCheckAll() {
@@ -177,18 +217,18 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
                     item.checked = flag ? '1' : '0';
                 })
                 const res = await axios.put(`/cartEdit/`, {
-                    checkAll:flag
+                    checkAll: flag
                 })
                 if (res.data.code === 200) {
                     console.log("update suc");
                 }
             },
             checkOut() {
-                if (this.checkedCount > 0) {
+                // if (this.checkedCount > 0) {
                     this.$router.push({
                         path: "/address"
                     });
-                }
+                // }
             }
         }
     }
@@ -198,17 +238,20 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
     .root {
         background-color: #f5f7fc;
     }
+
     // 删除弹出框
     .delDialog {
         p {
             color: #999;
             margin-bottom: 60px;
         }
+
         /deep/ .el-dialog__close {
             color: #999;
             font-size: 24px;
             transition: all .5s;
         }
+
         /deep/ .el-dialog__close:hover {
             transform: rotate(-180deg);
             color: #999;
@@ -218,25 +261,86 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
             width: 195px;
             height: 40px;
         }
+
         .btn--m {
             background-color: #fff;
             color: #d1434a;
             margin-right: 10px;
         }
+
         .btn--red {
             background-color: #d1434a;
             color: #fff;
             margin-left: 10px;
         }
     }
+
     .quanxuan {
         line-height: 18px;
     }
+
     .el-icon-diy-duigou {
         color: #fff;
     }
+
+    .cart-tab-1 {
+        border-right: 1px solid #e9e9e9;
+    }
+
+    .cart-tab-2 {
+        padding-top: 40px !important;
+        border-right: 1px solid #e9e9e9;
+
+        li {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    }
+
+    .cart-tab-3 {
+        padding-top: 15px !important;
+        padding-bottom: 10px !important;
+        border-right: 1px solid #e9e9e9;
+
+        li {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 10px;
+
+            span {
+                display: inline-block;
+                width: 150px;
+                text-align: left;
+                white-space: nowrap;
+
+            }
+
+            i {
+                display: inline-block;
+                width: 60px;
+                text-align: left;
+                white-space: nowrap;
+            }
+        }
+    }
+
+    .cart-tab-4 {
+        border-right: 1px solid #e9e9e9;
+        .price {
+            color: #fe5558;
+            font-size: 20px;
+            font-size: 1.53846rem;
+            line-height: 24px;
+            line-height: 1.84615rem;
+            margin-top: 7px;
+            font-weight: 700;
+            display: inline-block;
+        }
+    }
+
     .btn-wrap {
         text-align: center;
+
         p {
             height: 20px;
         }

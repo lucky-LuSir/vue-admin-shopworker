@@ -15,7 +15,7 @@
                 <h1>Tier on Tier </h1>
                 <el-form :rules="rules" ref="form" :model="form" label-width="130px">
                     <el-collapse v-model="activeNames" @change="handleChange">
-                        <el-collapse-item title="First-step design shutters" name="1">
+                        <el-collapse-item title="First-step" name="1">
                             <el-form-item label="material" prop="caizhi">
                                 <el-select size="mini" v-model="form.caizhi" placeholder="请材质">
                                     <el-option v-for="item in options1" :key="item.value" :label="item.label" :value="item.value">
@@ -57,7 +57,7 @@
                                 </el-select>
                             </el-form-item>
                         </el-collapse-item>
-                        <el-collapse-item title="Two-step design shutters" name="2">
+                        <el-collapse-item title="Two-step" name="2">
                             <el-form-item label="width" prop="casement">
                                 <el-select size="mini" v-model="form.casement" placeholder="宽度">
                                     <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
@@ -99,7 +99,7 @@
                                 </el-select>
                             </el-form-item>
                         </el-collapse-item>
-                        <el-collapse-item title="Three-step design shutters" name="3">
+                        <el-collapse-item title="Three-step" name="3">
                             <el-form-item label="opening_method" prop="casement">
                                 <el-select size="mini" v-model="form.casement" placeholder="开启方式">
                                     <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
@@ -141,7 +141,7 @@
                                 </el-select>
                             </el-form-item>
                         </el-collapse-item>
-                        <el-collapse-item title="Four-step design shutters" name="4">
+                        <el-collapse-item title="Four-step" name="4">
                             <el-form-item label="ploo_rod_dis" prop="casement">
                                 <el-select size="mini" v-model="form.casement" placeholder="拉杆断开">
                                     <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">

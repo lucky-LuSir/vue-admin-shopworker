@@ -4,7 +4,7 @@
             <div class="zeroLeft">
                 <div class="carousel__slide slide slick-slide slick-active" style="width: 203px;">
                     <!-- <img src="../img/DSC_0231.JPG" alt=""> -->
-                    <div class="promo-style" @click="toCart()">
+                    <div class="promo-style">
                         <!-- <div class="style-image">
                         <a href="javascript:;" alt>
                             <img style="height: 200px;" src="../img/DSC_0180.jpg" alt>
@@ -114,7 +114,7 @@
                 </div>
             </div>
             <div class="carousel__slide slick-slide slick-active" style="width: 203px;">
-                <div class="promo-style">
+                <div class="promo-style" @click="toCart()">
                     <div class="style-image">
                         <a href="javascript:;" alt>
                             <img style="height: 200px;" src="../img/DSC_0253.jpg" alt>
@@ -132,7 +132,7 @@
                 </div>
             </div>
             <div class="carousel__slide slick-slide slick-active" style="width: 203px;">
-                <div class="promo-style">
+                <div class="promo-style" @click="toCart()">
                     <div class="style-image">
                         <a href="javascript:;" alt>
                             <img style="height: 200px;" src="../img/DSC_0159.jpg" alt>
