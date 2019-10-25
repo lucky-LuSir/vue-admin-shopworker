@@ -2,17 +2,54 @@
     <div class="detail-container">
         <div class="cm-Layout clearfix">
             <div class="left">
-                <el-carousel indicator-position="outside">
-                    <el-carousel-item v-for="(item, index) in detailImg" :key="index">
-                        <a :href="item.linkHref">
-                            <img :src="item.imgSrc" alt="">
-                        </a>
-                    </el-carousel-item>
-                </el-carousel>
-                <p>Basswood has become one of the most widely used materials for shutters in the global market. This is due to its resistance to warping, easy workability, durability, and its acceptance of a variety of colors and finishes. Basswood (tilia americana) is a member of the hardwood family, with all our Basswood being plantation grown. Basswood shutters are manufactured for indoors only, and are not recommended for wet areas.</p>
+                <div v-if="type == 1">
+                    <el-carousel>
+                        <el-carousel-item v-for="(item, index) in detailImg1" :key="index">
+                            <a :href="item.linkHref">
+                                <img :src="item.imgSrc" alt="">
+                            </a>
+                        </el-carousel-item>
+                    </el-carousel>
+                    <h2>
+                        {{ $t('public.BasswoodName') }}
+                    </h2>
+                    <p>
+                        {{ $t('public.BasswoodDetail') }}
+                    </p>
+                </div>
+                <div v-if="type == 2">
+                    <el-carousel>
+                        <el-carousel-item v-for="(item, index) in detailImg2" :key="index">
+                            <a :href="item.linkHref">
+                                <img :src="item.imgSrc" alt="">
+                            </a>
+                        </el-carousel-item>
+                    </el-carousel>
+                    <h2>
+                        {{ $t('public.PaulowniaName') }}
+                    </h2>
+                    <p>
+                        {{ $t('public.PaulowniaDetail') }}
+                    </p>
+                </div>
+                <div v-if="type == 3">
+                    <el-carousel>
+                        <el-carousel-item v-for="(item, index) in detailImg3" :key="index">
+                            <a :href="item.linkHref">
+                                <img :src="item.imgSrc" alt="">
+                            </a>
+                        </el-carousel-item>
+                    </el-carousel>
+                    <h2>
+                        {{ $t('public.PVCName') }}
+                    </h2>
+                    <p>
+                        {{ $t('public.PVCDetail') }}
+                    </p>
+                </div>
             </div>
             <div class="right">
-                <h1>Tier on Tier </h1>
+                <h1>four-step design shutters</h1>
                 <el-form :rules="rules" ref="form" :model="form" label-width="130px">
                     <el-collapse v-model="activeNames" @change="handleChange">
                         <el-collapse-item title="First-step" name="1">
@@ -219,6 +256,7 @@
 export default {
     data () {
         return {
+            type: 1,
             loginObj: {
                 keywork: '',
                 password: ''
@@ -238,29 +276,75 @@ export default {
                     trigger: "blur"
                 }]
             },
-            detailImg: [
-                //     {
-                //     imgSrc: 'https://www.theshutterstore.com/images/2017/products/full-height/fullheight_style_product_3',
-                //     linkHref: 'javascript:;'
-                // }, {
-                //     imgSrc: 'https://www.theshutterstore.com/images/2017/products/full-height/fullheight_style_product_4',
-                //     linkHref: 'javascript:;'
-                // }, {
-                //     imgSrc: 'https://www.theshutterstore.com/images/2017/products/full-height/fullheight_style_product_5',
-                //     linkHref: 'javascript:;'
-                // },
+            detailImg1: [
                 {
-                    // imgSrc: require('../img/DSC_0125.JPG'),
-                    // imgSrc: '//pics.lvjs.com.cn/uploads/pc/place2/2019-09-03/09165a41-be74-4618-ad72-96185ec8b6ad.jpg',
-                    imgSrc: require("../img/DSC_0180.jpg"),
+                    imgSrc: require("../img/BASS_DSC_0311.jpg"),
                     linkHref: 'javascript:;'
                 }, {
-                    // imgSrc: '//pics.lvjs.com.cn/uploads/pc/place2/2019-09-03/09165a41-be74-4618-ad72-96185ec8b6ad.jpg',
-                    imgSrc: require("../img/DSC_0233.jpg"),
+                    imgSrc: require("../img/BASS_DSC_0274.jpg"),
                     linkHref: 'javascript:;'
                 }, {
-                    // imgSrc: '//pics.lvjs.com.cn/uploads/pc/place2/2019-09-20/40830622-d1ac-4e23-9b18-d9f66337057c.jpg',
-                    imgSrc: require("../img/DSC_0238.jpg"),
+                    imgSrc: require("../img/BASS_DSC_0250.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/BASS_DSC_0316.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/BASS_DSC_0324.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/BASS_DSC_0159.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/BASS_DSC_0125.jpg"),
+                    linkHref: 'javascript:;'
+                }
+            ],
+            detailImg2: [
+                {
+                    imgSrc: require("../img/PAU_DSC_0208.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PAU_DSC_0253.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PAU_DSC_0296.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PAU_DSC_0297.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PAU_DSC_0310.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PAU_DSC_0330.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PAU_DSC_0152.jpg"),
+                    linkHref: 'javascript:;'
+                }
+            ],
+            detailImg3: [
+                {
+                    imgSrc: require("../img/PVC_DSC_0113.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PVC_DSC_0110.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PVC_DSC_0167.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PVC_DSC_0189.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PVC_DSC_0379.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PVC_DSC_0110.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PVC_DSC_0130.jpg"),
                     linkHref: 'javascript:;'
                 }
             ],
@@ -453,6 +537,15 @@ export default {
         }
     },
     created () {
+        console.log(window.sessionStorage.getItem('type'));
+        var type = window.sessionStorage.getItem('type');
+        if (type == 1) {
+            this.type = 1;
+        } else if (type == 2) {
+            this.type = 2;
+        } else if (type == 3) {
+            this.type = 3;
+        }
         console.log(1)
         var token = window.sessionStorage.getItem("authentication");
         console.log(token)
@@ -532,12 +625,20 @@ export default {
 
 .left {
     width: 520px;
-    height: 520px;
     float: left;
+    // height: 322px;
 
     img {
+        margin-top: 15px;
         width: 520px;
-        height: 520px;
+        height: 322px;
+    }
+    h2 {
+        font-size: 16px;
+        color: #666;
+        font-weight: 600;
+        margin-top: 25px;
+        margin-bottom: 15px;
     }
 
     p {
@@ -565,6 +666,8 @@ export default {
         font-size: 40px;
         color: #282323;
         margin-bottom: 30px;
+        margin-left: 15px;
+        margin-top: 15px;
     }
 
     .el-form-item {
@@ -613,6 +716,10 @@ export default {
 }
 
 .detail-container /deep/ .el-carousel__container {
-    height: 520px;
+    height: 322px;
+}
+
+.detail-container /deep/ .el-carousel__indicators--horizontal {
+    left: 48%;
 }
 </style>

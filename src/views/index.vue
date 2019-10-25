@@ -3,13 +3,7 @@
         <div class="zero cm-Layout">
             <div class="zeroLeft">
                 <div class="carousel__slide slide slick-slide slick-active" style="width: 203px;">
-                    <!-- <img src="../img/DSC_0231.JPG" alt=""> -->
                     <div class="promo-style">
-                        <!-- <div class="style-image">
-                        <a href="javascript:;" alt>
-                            <img style="height: 200px;" src="../img/DSC_0180.jpg" alt>
-                        </a>
-                    </div> -->
                         <div class="content" data-mh="style-content">
                             <h4 class="heading">
                                 <a href="javascript:;" class="icon--arrow" tabindex="0">
@@ -30,187 +24,69 @@
                 </el-carousel-item>
             </el-carousel>
         </div>
-        <!-- <div class="first cm-Layout">
-            <el-carousel :interval="4000" type="card">
-                <el-carousel-item v-for="(item, index) in imgArr1" :key="index">
-                    <a :href="item.linkHref">
-                        <img :src="item.imgSrc" alt="">
-                    </a>
-                </el-carousel-item>
-            </el-carousel>
-    </div>-->
-        <!-- <div class="second cm-Layout">
-            <el-carousel class="vertical" height="200px" direction="vertical" :autoplay="false">
-                <el-carousel-item v-for="(item, index) in imgArr2" :key="index">
-                    <a :href="item.linkHref">
-                        <img :src="item.imgSrc" alt="">
-                    </a>
-                </el-carousel-item>
-            </el-carousel>
-            <el-carousel class="vertical" height="200px" direction="vertical" :autoplay="false">
-                <el-carousel-item v-for="(item, index) in imgArr2" :key="index">
-                    <a :href="item.linkHref">
-                        <img :src="item.imgSrc" alt="">
-                    </a>
-                </el-carousel-item>
-            </el-carousel>
-            <el-carousel class="vertical" height="200px" direction="vertical" :autoplay="false">
-                <el-carousel-item v-for="(item, index) in imgArr2" :key="index">
-                    <a :href="item.linkHref">
-                        <img :src="item.imgSrc" alt="">
-                    </a>
-                </el-carousel-item>
-            </el-carousel>
-            <el-carousel class="vertical" height="200px" direction="vertical" :autoplay="false">
-                <el-carousel-item v-for="(item, index) in imgArr2" :key="index">
-                    <a :href="item.linkHref">
-                        <img :src="item.imgSrc" alt="">
-                    </a>
-                </el-carousel-item>
-            </el-carousel>
-    </div>-->
-        <!-- <div class="four cm-Layout">
-            <el-tabs tab-position="left">
-                <el-tab-pane label="tab1">
-                    <a href="#" target="_blank">
-                        <img width="885" height="250" alt="" src="http://pic.lvmama.com/uploads/pc/place2/2017-04-21/c0ab9fa7-0a75-4df0-8540-564296addca7.jpg">
-                    </a>
-                </el-tab-pane>
-                <el-tab-pane label="tab2">
-                    <a href="#">
-                        <img width="885" height="250" alt="" src="http://pic.lvmama.com/uploads/pc/place2/2017-04-14/3d59edcb-fafa-4709-acd4-fbe304d6d0e7.jpg">
-                    </a>
-                </el-tab-pane>
-                <el-tab-pane label="tab3">
-                    <a href="#">
-                        <img width="885" height="250" alt="" src="http://pic.lvmama.com/uploads/pc/place2/2017-02-06/ef207053-92ed-4551-b17e-95409c696594.jpg">
-                    </a>
-                </el-tab-pane>
-                <el-tab-pane label="tab4">
-                    <a href="#">
-                        <img width="885" height="250" alt="" src="http://pic.lvmama.com/uploads/pc/place2/2018-04-26/72467d8e-1c77-47de-96bd-0b8332ac1d98.jpg">
-                    </a>
-                </el-tab-pane>
-            </el-tabs>
-    </div>-->
         <div class="two cm-Layout clearfix">
             <div class="carousel__slide slick-slide slick-active" style="width: 203px;">
-                <div class="promo-style" @click="toCart()">
+                <div class="promo-style" @click="toCart(1)">
                     <div class="style-image">
                         <a href="javascript:;" alt>
-                            <img style="height: 200px;" src="../img/DSC_0125.jpg" alt>
+                            <img style="height: 200px;" src="../img/BASS_DSC_0311.jpg" alt>
                         </a>
                     </div>
                     <div class="content" data-mh="style-content" style="height: 165px;">
                         <h4 class="heading">
                             <a href="javascript:;" class="icon--arrow" tabindex="0">
-                                Paulownia shutters
+                                {{ $t('public.BasswoodName') }}
                                 <i class="el-icon-diy-youjiantou"></i>
                             </a>
                         </h4>
-                        <p>Paulownia wood has a straight texture, the material is light and soft, and has a strong grain pattern. Paulownia wood is wear resistant, corrosion resistant and does not conduct electricity.The wood grain texture is bright, prominent and beautiful with stained colours.
+                        <p>
+                            {{ $t('public.BasswoodDetail') }}
                         </p>
                     </div>
                 </div>
             </div>
             <div class="carousel__slide slick-slide slick-active" style="width: 203px;">
-                <div class="promo-style" @click="toCart()">
+                <div class="promo-style" @click="toCart(2)">
                     <div class="style-image">
                         <a href="javascript:;" alt>
-                            <img style="height: 200px;" src="../img/DSC_0253.jpg" alt>
+                            <img style="height: 200px;" src="../img/PAU_DSC_0208.jpg" alt>
                         </a>
                     </div>
                     <div class="content" data-mh="style-content" style="height: 165px;">
                         <h4 class="heading">
                             <a href="javascript:;" class="icon--arrow" tabindex="0">
-                                Basswood shutters
+                                {{ $t('public.PaulowniaName') }}
                                 <i class="el-icon-diy-youjiantou"></i>
                             </a>
                         </h4>
-                        <p>Basswood has become one of the most widely used materials for shutters in the global market. This is due to its resistance to warping, easy workability, durability, and its acceptance of a variety of colors and finishes. Basswood (tilia americana) is a member of the hardwood family, with all our Basswood being plantation grown. Basswood shutters are manufactured for indoors only, and are not recommended for wet areas.</p>
+                        <p>{{ $t('public.PaulowniaDetail') }}
+                        </p>
                     </div>
                 </div>
             </div>
             <div class="carousel__slide slick-slide slick-active" style="width: 203px;">
-                <div class="promo-style" @click="toCart()">
+                <div class="promo-style" @click="toCart(3)">
                     <div class="style-image">
                         <a href="javascript:;" alt>
-                            <img style="height: 200px;" src="../img/DSC_0159.jpg" alt>
+                            <img style="height: 200px;" src="../img/PVC_DSC_0113.jpg" alt>
                         </a>
                     </div>
                     <div class="content" data-mh="style-content" style="height: 165px;">
                         <h4 class="heading">
                             <a href="javascript:;" class="icon--arrow" tabindex="0">
-                                PVC shutters
+                                {{ $t('public.PVCName') }}
                                 <i class="el-icon-diy-youjiantou"></i>
                             </a>
                         </h4>
-                        <p>PVC is extruded using a Foamwood material, and has been developed to make shutters suitable for wet areas such as bathrooms and above kitchen sinks. Our Fauxwood is a solid product and uses the same painted finishes as our Basswood Range. Aluminium reinforcement is used in the stiles to reduce weight and increase the strength of the shutters. Fauxwood shutters are termite and fire resistant. Whilst Fauxwood shutters are suitable for wet areas, they are not recommended for outdoor use.</p>
+                        <p>
+                            {{ $t('public.PVCDetail') }}
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- <div class="three cm-Layout clearfix">
-            <div class="lunbo">
-                <ul>
-                    <li>
-                        <a href="#">
-                            <img src="//img30.360buyimg.com/mobilecms/s150x150_jfs/t2974/96/1802531561/76680/78b522f0/57907469N4606eb75.jpg!q70.jpg.webp" alt>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="//img13.360buyimg.com/mobilecms/s150x150_jfs/t19351/270/2218804636/107637/5990df9f/5aebcd1bN4397a219.png.webp" alt>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="//img12.360buyimg.com/mobilecms/s150x150_jfs/t19075/170/353403504/22771/507844ec/5a701a3bNc4b2da12.jpg!q70.jpg.webp" alt>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="//img14.360buyimg.com/mobilecms/s150x150_jfs/t23821/150/1383390870/44273/e2ece9db/5b5ae2f6N6b00abe4.jpg!q70.jpg.webp" alt>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="//img11.360buyimg.com/mobilecms/s150x150_jfs/t7132/178/1374552914/147347/13ebb5af/598ac825Nfb21aa9a.jpg!q70.jpg.webp" alt>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="//img11.360buyimg.com/mobilecms/s150x150_jfs/t9058/32/1425324216/82939/1780753c/59b9d9b2Nbec847a8.jpg!q70.jpg.webp" alt>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="//img10.360buyimg.com/mobilecms/s150x150_jfs/t1/21826/12/11535/26975/5c90436eE23255ab7/3ec3905dd7014690.jpg!q70.jpg.webp" alt>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="//img14.360buyimg.com/mobilecms/s150x150_jfs/t6955/354/2437854130/24982/df79b865/598bf21eN0cc8561d.jpg!q70.jpg.webp" alt>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="//img30.360buyimg.com/mobilecms/s150x150_jfs/t6757/289/934005318/361057/e1d45eea/5947c46bN32013c68.jpg!q70.jpg.webp" alt>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="//img11.360buyimg.com/mobilecms/s150x150_jfs/t1894/31/88096034/321096/8980fded/55ed2e24N7f04c71b.jpg!q70.jpg.webp" alt>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div> -->
         <div class="four cm-Layout">
             <el-carousel :interval="4000" type="card" height="250px">
-                <!-- <el-carousel-item v-for="(item, index) in imgArr3" :key="index">
-                    <h3 class="medium">{{ item }}</h3>
-                </el-carousel-item> -->
                 <el-carousel-item v-for="(item, index) in imgArr3" :key="index">
                     <a class="alink" :href="item.linkHref">
                         <img class="aimg" :src="item.imgSrc" alt>
@@ -218,8 +94,6 @@
                 </el-carousel-item>
             </el-carousel>
         </div>
-        <!-- <img src="../img/img1.png" alt=""> -->
-        <!-- <img src="../img/DSC_0180.jpg" alt=""> -->
     </div>
 </template>
 
@@ -227,53 +101,19 @@
 export default {
     data () {
         return {
-            imgArr0: [{
-                imgSrc: require("../img/DSC_0316.jpg"),
-                linkHref: "javascript:;"
-            },
-            {
-                imgSrc: require("../img/DSC_0161.jpg"),
-                linkHref: "javascript:;"
-            },
-            {
-                imgSrc: require("../img/DSC_0159.jpg"),
-                linkHref: "javascript:;"
-            }
-            ],
-            imgArr1: [{
-                imgSrc: "https://aecpm.alicdn.com/simba/img/TB183NQapLM8KJjSZFBSutJHVXa.jpg",
-                linkHref: "javascript:;"
-            },
-            {
-                imgSrc: "https://aecpm.alicdn.com/simba/img/TB1XotJXQfb_uJkSnhJSuvdDVXa.jpg",
-                linkHref: "javascript:;"
-            },
-            {
-                imgSrc: "https://aecpm.alicdn.com/simba/img/TB1JNHwKFXXXXafXVXXSutbFXXX.jpg",
-                linkHref: "javascript:;"
-            },
-            {
-                imgSrc: "//img.alicdn.com/tfs/TB1EmdmghD1gK0jSZFKXXcJrVXa-520-280.jpg_q90_.webp",
-                linkHref: "javascript:;"
-            },
-            {
-                imgSrc: "//img.alicdn.com/tfs/TB1VALdgrY1gK0jSZTEXXXDQVXa-520-280.jpg_q90_.webp",
-                linkHref: "javascript:;"
-            }
-            ],
-            imgArr2: [{
-                imgSrc: "//img.alicdn.com/bao/uploaded/i2/98964646/O1CN01DO9bMm1kBufqKZUQo_!!0-saturn_solar.jpg_200x200q90.jpg_.webp",
-                linkHref: "javascript:;"
-            },
-            {
-                imgSrc: "//img.alicdn.com/bao/uploaded/i6/TB1GZZVnpGWBuNjy0FbYXH4sXXa_M2.SS2_200x200q90.jpg_.webp",
-                linkHref: "javascript:;"
-            },
-            {
-                imgSrc: "//img.alicdn.com/bao/uploaded/i4/105888541/TB24Bslw29TBuNjy0FcXXbeiFXa_!!0-saturn_solar.jpg_200x200q90.jpg_.webp",
-                linkHref: "javascript:;"
-            }
-            ],
+            // imgArr0: [{
+            //     imgSrc: require("../img/DSC_0316.jpg"),
+            //     linkHref: "javascript:;"
+            // },
+            // {
+            //     imgSrc: require("../img/DSC_0161.jpg"),
+            //     linkHref: "javascript:;"
+            // },
+            // {
+            //     imgSrc: require("../img/DSC_0159.jpg"),
+            //     linkHref: "javascript:;"
+            // }
+            // ],
             imgArr3: [{
                 imgSrc: require("../img/slide_001.jpg"),
                 linkHref: "javascript:;"
@@ -342,7 +182,9 @@ export default {
             const res = await this.$ajax.post(`/users/`, obj);
             console.log(res);
         },
-        toCart () {
+        toCart (type) {
+            var type = type;
+            window.sessionStorage.setItem("type", type);
             this.$router.push("/detail");
         }
     }

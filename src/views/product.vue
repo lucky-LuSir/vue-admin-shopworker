@@ -4,13 +4,7 @@
             <div class="zero cm-Layout">
                 <div class="zeroLeft">
                     <div class="carousel__slide slide slick-slide slick-active" style="width: 203px;">
-                        <!-- <img src="../img/DSC_0231.JPG" alt=""> -->
                         <div class="promo-style" @click="toCart()">
-                            <!-- <div class="style-image">
-                        <a href="javascript:;" alt>
-                            <img style="height: 200px;" src="../img/DSC_0180.jpg" alt>
-                        </a>
-                    </div> -->
                             <div class="content" data-mh="style-content">
                                 <h4 class="heading">
                                     <a href="javascript:;" class="icon--arrow" tabindex="0">
@@ -35,17 +29,11 @@
             <div class="zero cm-Layout">
                 <div class="zeroLeft">
                     <div class="carousel__slide slide slick-slide slick-active" style="width: 203px;">
-                        <!-- <img src="../img/DSC_0231.JPG" alt=""> -->
                         <div class="promo-style" @click="toCart()">
-                            <!-- <div class="style-image">
-                        <a href="javascript:;" alt>
-                            <img style="height: 200px;" src="../img/DSC_0180.jpg" alt>
-                        </a>
-                    </div> -->
                             <div class="content" data-mh="style-content">
                                 <h4 class="heading">
                                     <a href="javascript:;" class="icon--arrow" tabindex="0">
-                                        PVC shutters 
+                                        PVC shutters
                                         <i class="el-icon-diy-youjiantou"></i>
                                     </a>
                                 </h4>
@@ -65,13 +53,7 @@
             <div class="zero cm-Layout">
                 <div class="zeroLeft">
                     <div class="carousel__slide slide slick-slide slick-active" style="width: 203px;">
-                        <!-- <img src="../img/DSC_0231.JPG" alt=""> -->
                         <div class="promo-style" @click="toCart()">
-                            <!-- <div class="style-image">
-                        <a href="javascript:;" alt>
-                            <img style="height: 200px;" src="../img/DSC_0180.jpg" alt>
-                        </a>
-                    </div> -->
                             <div class="content" data-mh="style-content">
                                 <h4 class="heading">
                                     <a href="javascript:;" class="icon--arrow" tabindex="0">
@@ -96,50 +78,81 @@
     </div>
 </template>
 
-
-
 <script>
 export default {
     data () {
         return {
-            imgArr0: [{
-                imgSrc: require("../img/DSC_0316.jpg"),
-                linkHref: "javascript:;"
-            },
-            {
-                imgSrc: require("../img/DSC_0161.jpg"),
-                linkHref: "javascript:;"
-            },
-            {
-                imgSrc: require("../img/DSC_0159.jpg"),
-                linkHref: "javascript:;"
-            }
+            detailImg1: [
+                {
+                    imgSrc: require("../img/BASS_DSC_0311.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/BASS_DSC_0274.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/BASS_DSC_0250.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/BASS_DSC_0316.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/BASS_DSC_0324.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/BASS_DSC_0159.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/BASS_DSC_0125.jpg"),
+                    linkHref: 'javascript:;'
+                }
             ],
-            imgArr1: [{
-                imgSrc: require("../img/DSC_0250.jpg"),
-                linkHref: "javascript:;"
-            },
-            {
-                imgSrc: require("../img/DSC_0253.jpg"),
-                linkHref: "javascript:;"
-            },
-            {
-                imgSrc: require("../img/DSC_0274.jpg"),
-                linkHref: "javascript:;"
-            }
+            detailImg2: [
+                {
+                    imgSrc: require("../img/PAU_DSC_0208.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PAU_DSC_0253.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PAU_DSC_0296.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PAU_DSC_0297.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PAU_DSC_0310.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PAU_DSC_0330.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PAU_DSC_0152.jpg"),
+                    linkHref: 'javascript:;'
+                }
             ],
-            imgArr2: [{
-                imgSrc: require("../img/DSC_0130.jpg"),
-                linkHref: "javascript:;"
-            },
-            {
-                imgSrc: require("../img/DSC_0119.jpg"),
-                linkHref: "javascript:;"
-            },
-            {
-                imgSrc: require("../img/DSC_0113.jpg"),
-                linkHref: "javascript:;"
-            }
+            detailImg3: [
+                {
+                    imgSrc: require("../img/PVC_DSC_0113.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PVC_DSC_0110.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PVC_DSC_0167.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PVC_DSC_0189.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PVC_DSC_0379.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PVC_DSC_0110.jpg"),
+                    linkHref: 'javascript:;'
+                }, {
+                    imgSrc: require("../img/PVC_DSC_0130.jpg"),
+                    linkHref: 'javascript:;'
+                }
             ],
         }
     },
