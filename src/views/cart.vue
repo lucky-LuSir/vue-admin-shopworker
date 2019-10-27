@@ -23,64 +23,99 @@
                                         <i class="el-icon-diy-duigou"></i>
                                     </a>
                                 </div>
-                                <!-- <div class="cart-item-pic">
-                                    <img v-bind:alt="item.productName" :src="item.productImage">
-                                </div> -->
-                                <!-- <div class="cart-item-title">
-                                    <div class="item-name">{{item.productName}}</div>
-                                </div> -->
                             </div>
                             <div class="cart-tab-2">
-                                <!-- <div class="item-price">{{item.salePrice|currency('￥')}}</div> -->
                                 <div>
                                     <ul>
-                                        <li>Classic Poplar</li>
-                                        <li>Full height</li>
-                                        <li>Bright White</li>
+                                        <li>{{item.material}}</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="cart-tab-3">
-                                <!-- <div class="item-quantity">
-                                    <div class="select-self select-self-open">
-                                        <div class="select-self-area">
-                                            <a class="input-sub" @click="editCart('minu',item)">-</a>
-                                            <span class="select-ipt">{{item.productNum}}</span>
-                                            <a class="input-add" @click="editCart('add',item)">+</a>
-                                        </div>
-                                    </div>
-                                </div> -->
                                 <div>
                                     <ul>
-                                        <li>
-                                            <span>Width:</span>
-                                            <i>40</i>
+                                        <li v-if="item.length">
+                                            <span>length</span>
+                                            <i>{{item.length}}</i>
                                         </li>
-                                        <li>
-                                            <span>Height:</span>
-                                            <i>40</i>
+                                        <li v-if="item.width">
+                                            <span>width</span>
+                                            <i>{{item.width}}</i>
                                         </li>
-                                        <li>
-                                            <span>Number of panels:</span>
-                                            <i>4</i>
+                                        <li v-if="item.windos_sash_type">
+                                            <span>windos_sash_type</span>
+                                            <i>{{item.windos_sash_type}}</i>
                                         </li>
-                                        <li>
-                                            <span>Panel configuration:</span>
-                                            <i>Left 2 Right 2</i>
+                                        <li v-if="item.installation_location">
+                                            <span>installation_location</span>
+                                            <i>{{item.installation_location}}</i>
                                         </li>
-                                        <li>
-                                            <span>Mid rails:</span>
-                                            <i>0</i>
+                                        <li v-if="item.size_type">
+                                            <span>size_type</span>
+                                            <i>{{item.size_type}}</i>
                                         </li>
-                                        <li>
-                                            <span>Slat size:</span>
-                                            <i>3 1/2</i>
+                                        <li v-if="item.midplane_postion">
+                                            <span>midplane_postion</span>
+                                            <i>{{item.midplane_postion}}</i>
+                                        </li>
+                                        <li v-if="item.ploduct_color">
+                                            <span>ploduct_color</span>
+                                            <i>{{item.ploduct_color}}</i>
+                                        </li>
+                                        <li v-if="item.frame_type">
+                                            <span>frame_type</span>
+                                            <i>{{item.frame_type}}</i>
+                                        </li>
+                                        <li v-if="item.frame_number">
+                                            <span>frame_number</span>
+                                            <i>{{item.frame_number}}</i>
+                                        </li>
+                                        <li v-if="item.opening_method">
+                                            <span>opening_method</span>
+                                            <i>{{item.opening_method}}</i>
+                                        </li>
+
+                                        <li v-if="item.tcolumn_type">
+                                            <span>tcolumn_type</span>
+                                            <i>{{item.tcolumn_type}}</i>
+                                        </li>
+                                        <li v-if="item.balde_type">
+                                            <span>balde_type</span>
+                                            <i>{{item.balde_type}}</i>
+                                        </li>
+                                        <li v-if="item.poll_rod_type">
+                                            <span>poll_rod_type</span>
+                                            <i>{{item.poll_rod_type}}</i>
+                                        </li>
+                                        <li v-if="item.ploo_rod_dis">
+                                            <span>ploo_rod_dis</span>
+                                            <i>{{item.ploo_rod_dis}}</i>
+                                        </li>
+                                        <li v-if="item.hardware_type">
+                                            <span>hardware_type</span>
+                                            <i>{{item.hardware_type}}</i>
+                                        </li>
+
+                                        <li v-if="item.hardware_colour">
+                                            <span>hardware_colour</span>
+                                            <i>{{item.hardware_colour}}</i>
+                                        </li>
+
+                                        <li v-if="item.blade_state">
+                                            <span>blade_state</span>
+                                            <i>{{item.blade_state}}</i>
+                                        </li>
+
+                                        <li v-if="item.lower_palte_state">
+                                            <span>lower_palte_state</span>
+                                            <i>{{item.lower_palte_state}}</i>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="cart-tab-4">
                                 <!-- <div class="item-price-total">{{(item.productNum*item.salePrice)|currency('￥')}}</div> -->
+                                <p>Quantity: {{item.number}}</p>
                                 <div class="price">$262.50</div>
                             </div>
                             <div class="cart-tab-5">
@@ -119,7 +154,7 @@
         </div>
         <el-dialog class="delDialog" title="" :visible.sync="modalConfirm" width="45%">
             <div>
-                <p>你确认要删除此条数据吗?</p>
+                <p>Are you sure you want to delete this data??</p>
                 <a class="btn btn--m" href="javascript:;" @click="delCart()">确认</a>
                 <a class="btn btn--m btn--red" href="javascript:;" @click="modalConfirm = false">关闭</a>
             </div>
@@ -128,16 +163,13 @@
 </template>
 
 <script>
-    import Vue from 'vue'
-    import axios from "axios";
-    axios.defaults.baseURL = "http://localhost:8080"; //设置全局URL
-    axios.defaults.headers.post["Content-Type"] = "application/json";
     import Modal from '../components/Modal'
     export default {
         data() {
             return {
                 cartList: [],
                 modalConfirm: false,
+                sku_id: '', // 商品id
             }
         },
         components: {
@@ -169,27 +201,31 @@
         },
         methods: {
             async init() {
-                const res = await axios.get(`/cart/1/`, {});
+                let _mainObj = window.sessionStorage.getItem("_mainObj");
+                _mainObj = JSON.parse(_mainObj);
+                let user_id = _mainObj.user_id;
+                const res = await this.$ajax.get(`/cart/${user_id}/`);
                 let data = res.data;
                 data = JSON.parse(data);
-                // data = data[0];
-                console.log(data)
-                // var result = res.data.data.result;
                 this.cartList = data;
             },
             delCartConfirm(item) {
-                this.delItem = item;
+                console.log(item)
+                // this.delItem = item;
+                // this.sku_id = item.
                 this.modalConfirm = true;
             },
             async delCart() {
-                const res = await axios.delete(`/cartDel/`, {});
-                if (res.data.status === 200) {
-                    this.$message.success('删除成功');
-                    this.modalConfirm = false;
-                    var delCount = this.delItem.productNum;
-                    this.$store.commit("updateCartCount", -delCount);
-                    this.init();
-                }
+                console.log(111)
+                // const res = await axios.delete(`/cart/`, {});
+                // sku_id
+                // if (res.data.status === 200) {
+                //     this.$message.success('删除成功');
+                //     this.modalConfirm = false;
+                //     var delCount = this.delItem.productNum;
+                //     this.$store.commit("updateCartCount", -delCount);
+                //     this.init();
+                // }
             },
             async editCart(flag, item) {
                 if (flag == 'add') {
@@ -225,9 +261,9 @@
             },
             checkOut() {
                 // if (this.checkedCount > 0) {
-                    this.$router.push({
-                        path: "/address"
-                    });
+                this.$router.push({
+                    path: "/address"
+                });
                 // }
             }
         }
@@ -237,6 +273,10 @@
 <style scoped lang="less">
     .root {
         background-color: #f5f7fc;
+    }
+
+    .btn--red {
+        cursor: pointer !important;
     }
 
     // 删除弹出框
@@ -326,6 +366,7 @@
 
     .cart-tab-4 {
         border-right: 1px solid #e9e9e9;
+
         .price {
             color: #fe5558;
             font-size: 20px;

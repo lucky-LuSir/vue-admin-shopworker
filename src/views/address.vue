@@ -3,10 +3,6 @@
         <div class="checkout-page cm-Layout">
             <div class="container">
                 <div class="checkout-addr">
-                    <div class="page-title-normal">
-                        <h2 class="page-title-h2"><span>check out</span></h2>
-                    </div>
-                    <!-- process step -->
                     <div class="check-step">
                         <ul>
                             <li class="cur"><span>确认</span> 收货地址</li>
@@ -15,74 +11,58 @@
                             <li><span>成功提交</span> 订单</li>
                         </ul>
                     </div>
-
-                    <!-- address list -->
-                    <div class="page-title-normal checkout-title">
-                        <h2 style="padding: 20px 0; text-align: left; font-size: 18px;color: #605f5f;"><span>收货人信息</span></h2>
-                    </div>
-                    <div class="addr-list-wrap">
-                        <div class="addr-list">
-                            <ul>
-                                <li v-for="(item,index) in addressListFilter" v-bind:class="{'check':checkIndex==index}" @click="checkIndex=index;selectedAddrId=item.addressId" :key="index">
-                                    <dl>
-                                        <dt>{{item.userName}}</dt>
-                                        <dd class="address">{{item.streetName}}</dd>
-                                        <dd class="tel">{{item.tel}}</dd>
-                                    </dl>
-                                    <div class="addr-opration addr-del">
-                                        <a href="javascript:;" class="addr-del-btn" @click="delAddressConfirm(item.addressId)">
-                                            <svg class="icon icon-del">
-                                                <use xlink:href="#icon-del"></use>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                    <div class="addr-opration addr-set-default">
-                                        <a href="javascript:;" class="addr-set-default-btn" v-if="!item.isDefault" @click="setDefault(item.addressId)"><i>设为默认地址</i></a>
-                                    </div>
-                                    <div class="addr-opration addr-default" v-if="item.isDefault">默认地址</div>
-                                </li>
-                                <li class="addr-new">
-                                    <div class="add-new-inner">
-                                        <i class="icon-add">
-                                            <svg class="icon icon-add">
-                                                <use xlink:href="#icon-add"></use>
-                                            </svg>
-                                        </i>
-                                        <p>新增收货地址</p>
-                                    </div>
-                                </li>
-                            </ul>
+                    <div class="add-list-wrap">
+                        <div class="addr-msg">
+                            <h2 class="clearfix" style="padding: 20px 0; text-align: left; font-size: 18px;color: #605f5f;">
+                                <span>收货人信息</span>
+                                <p class="addr-create" @click="createAddDialog()">使用新地址</p>
+                            </h2>
                         </div>
-                        <div class="shipping-addr-more">
-                            <a style="color: #ee7a23;" class="addr-more-btn up-down-btn" href="javascript:;" @click="expand" v-bind:class="{'open':limit>3}">
-                                更多地址
-                                <i class="el-icon-arrow-down"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- shipping method-->
-                    <div class="page-title-normal checkout-title">
-                        <h2 style="padding: 20px 0; text-align: left; font-size: 18px;color: #605f5f;"><span>货运方式</span></h2>
-                    </div>
-                    <div class="shipping-method-wrap">
-                        <div class="shipping-method">
-                            <ul>
-                                <li class="check">
-                                    <div class="name">京东快递</div>
-                                    <div class="price">包邮</div>
-                                    <div class="shipping-tips">
-                                        <p>自签收后7天内退货，15天内换货，可享1次上门取件服务</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                        <ul class="consignee-list clearfix">
+                            <li v-for="(item, index) in addressList" :key="index" class="addList-item" selected="selected">
+                                <div class="addLabel">
+                                    <span>{{item.title}}</span><b></b>
+                                </div>
+                                <div class="addr-detail">
+                                    <span class="addr-name">{{item.receiver}}</span>
+                                    <span class="addr-info">{{item.province}} {{item.city}} {{item.district}} {{item.place}}</span>
+                                    <span class="addr-tel">{{item.mobile}}</span>
+                                </div>
+                                <div class="op-btns" consigneeid="959992403" isoldaddress="false">
+                                    <a href="#none" class="ftx-05 setdefault-consignee">设为默认地址</a> <a href="#none" class="ftx-05 edit-consignee">编辑</a>
+                                    <a href="#none" class="ftx-05 del-consignee hide">删除</a>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                     <div class="next-btn-wrap">
-                        <router-link class="btn btn--m btn--red" v-bind:to="{path:'orderConfirm',query:{'addressId':selectedAddrId}}">去结算</router-link>
+                        <!-- <router-link class="btn btn--m btn--red" v-bind:to="{path:'orderConfirm',query:{'addressId':selectedAddrId}}">去结算</router-link> -->
+                        <el-button class="configure" type="primary" @click="toOrders()">
+                        <span style="font-family: Arvo">提交订单&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    </el-button>
                     </div>
                 </div>
             </div>
+            <el-dialog class="addDialog" title="Create address" :visible.sync="addDialogVisible" width="680px">
+                <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+                    <el-form-item label="province" prop="province">
+                        <el-input v-model="ruleForm.province"></el-input>
+                    </el-form-item>
+                    <el-form-item label="city" prop="city">
+                        <el-input v-model="ruleForm.city"></el-input>
+                    </el-form-item>
+                    <el-form-item label="receiver" prop="receiver">
+                        <el-input v-model="ruleForm.receiver"></el-input>
+                    </el-form-item>
+                    <el-form-item label="mobile" prop="mobile">
+                        <el-input v-model="ruleForm.mobile"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="createAdd('ruleForm')">立即创建</el-button>
+                        <el-button @click="resetForm('ruleForm')">重置</el-button>
+                    </el-form-item>
+                </el-form>
+            </el-dialog>
         </div>
     </div>
 </template>
@@ -97,7 +77,37 @@
                 addressList: [],
                 isMdShow_del: false,
                 isMdShow_undel: false,
-                addressId: ''
+                addressId: '',
+                addDialogVisible: false,
+                rules: {
+                    province: [{
+                        required: true,
+                        message: 'please select the province',
+                        trigger: 'blur'
+                    }, ],
+                    city: [{
+                        required: true,
+                        message: 'please select the city',
+                        trigger: 'blur'
+                    }, ],
+                    receiver: [{
+                        required: true,
+                        message: 'please select the receiver',
+                        trigger: 'blur'
+                    }, ],
+                    mobile: [{
+                        required: true,
+                        message: 'please select the mobile',
+                        trigger: 'blur'
+                    }, ],
+
+                },
+                ruleForm: {
+                    province: '',
+                    city: '',
+                    receiver: '',
+                    mobile: '',
+                }
             }
         },
         mounted() {
@@ -110,22 +120,59 @@
         },
         components: {},
         methods: {
+            toOrders() {
+                // let 
+                // // this.$router.push(
+                // //     {
+                // //         path: '/orderSuccess', 
+                // //         query: {orderObj: }
+                // //     }
+                // // )
+                this.$router.push('/orderSuccess');
+            },
             async init() {
-                const res = await this.$ajax.get(`/address/1/`);
-                console.log(res)
+                let _mainObj = window.sessionStorage.getItem("_mainObj");
+                _mainObj = JSON.parse(_mainObj);
+                let user_id = _mainObj.user_id;
+                const res = await this.$ajax.get(`/address/${user_id}/`);
                 var data = res.data;
                 data = JSON.parse(data);
-                console.log(data)
-
+                // console.log(data)
                 this.addressList = data;
-                this.selectedAddrId = this.addressList[0].addressId;
+                // this.selectedAddrId = this.addressList[0].addressId;
             },
-            expand() {
-                if (this.limit == 3) {
-                    this.limit = this.addressList.length;
-                } else {
-                    this.limit = 3;
-                }
+            createAddDialog() {
+                this.addDialogVisible = true;
+            },
+            async createAdd() {
+                let user_id = JSON.parse(window.sessionStorage.getItem("_mainObj")).user_id;
+                console.log(user_id)
+                // let obj = {
+                //     "user_id": 2,
+                //     "city": "上海市",
+                //     "district": "浦东区",
+                //     "email": "1@qq.com",
+                //     "mobile": "13388888888",
+                //     "place": "龙华中路111号",
+                //     "province": "上海",
+                //     "receiver": "lusir",
+                //     "tel": "021-00000000",
+                //     "title": "上海接收处"
+                // }
+                // const res = await this.$ajax.post(``, obj);
+                // console.log(res)
+                // {
+                //     "user_id": "2",
+                //     "title": "男",
+                //     "first_name": "1",
+                //     "last_name": "2",
+                //     "zip_code": "430000",
+                //     "mobile": "13333333333",
+                //     "country": "德克萨斯",
+                //     "state": "美国",
+                //     "city": "纽约",
+                //     "address_line": "国际大道222号"
+                // }
             },
             setDefault(addressId) {
                 axios.post("/users/setDefault", {
@@ -171,4 +218,117 @@
         color: #ee7a23;
         font-size: 14px;
     }
+
+    .add-list-wrap {
+        background-color: #fff;
+        padding: 0 20px 10px;
+        border: 1px solid #f0f0f0;
+    }
+
+    .addr-msg {
+        span {
+            float: left;
+        }
+
+        .addr-create {
+            float: right;
+            font-size: 12px;
+            color: #8781c5;
+            cursor: pointer;
+        }
+    }
+
+    .consignee-list {
+        .addList-item {
+            display: list-item;
+            list-style: none;
+            height: 30px;
+            margin: 6px 0;
+            float: left;
+            width: 99.8%;
+        }
+
+        span {
+            font-size: 13px;
+        }
+
+        .addLabel {
+            border: 2px solid #e4393c;
+            padding: 4px 10px;
+            float: left;
+            list-style: none;
+            position: relative;
+            height: 18px;
+            line-height: 18px;
+            width: 120px;
+            text-align: center;
+            cursor: pointer;
+            background-color: #fff;
+            box-sizing: content-box;
+
+            b {
+                display: block;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                width: 12px;
+                height: 12px;
+                overflow: hidden;
+                background: url(//misc.360buyimg.com/user/purchase/2.0.0/css/i/selected-icon.png) no-repeat;
+            }
+        }
+
+        .addr-detail {
+            float: left;
+            height: 30px;
+            line-height: 30px;
+
+            span {
+                display: inline-block;
+                margin-left: 10px;
+            }
+        }
+
+        .op-btns {
+            visibility: hidden;
+            float: right;
+            text-align: right;
+            height: 30px;
+            line-height: 30px;
+
+            a {
+                margin-right: 10px;
+            }
+        }
+
+    }
+
+    .addDialog {}
+
+    .configure {
+            width: 100px;
+            display: inline-block;
+            padding: 5px 20px 6px;
+            min-width: 95px;
+            font-family: Lato, Arial, sans-serif;
+            font-size: 15px;
+            line-height: 24px;
+            font-weight: 700;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: inset -0.11px -3px 0 0 rgba(0, 0, 0, 0.4);
+            transition: all 150ms;
+            background-color: #c9c6c9;
+            border: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            // position: absolute;
+            // right: 50px;
+            // bottom: 0;
+            span {
+                text-align: center;
+            }
+        }
 </style>

@@ -24,8 +24,6 @@ export default {
         PaulowniaDetail: "Paulownia wood has a straight texture, the material is light and soft, and has a strong grain pattern. Paulownia wood is wear resistant, corrosion resistant and does not conduct electricity.The wood grain texture is bright, prominent and beautiful with stained colours.",
         PVCName: "PVC shutters",
         PVCDetail: "PVC is extruded using a Foamwood material, and has been developed to make shutters suitable for wet areas such as bathrooms and above kitchen sinks. Our Fauxwood is a solid product and uses the same painted finishes as our Basswood Range. Aluminium reinforcement is used in the stiles to reduce weight and increase the strength of the shutters. Fauxwood shutters are termite and fire resistant. Whilst Fauxwood shutters are suitable for wet areas, they are not recommended for outdoor use"
-    }
-
-
+    },
     
 }

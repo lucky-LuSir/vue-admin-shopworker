@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <el-carousel indicator-position="outside">
-                    <el-carousel-item v-for="(item, index) in imgArr0" :key="index">
+                    <el-carousel-item v-for="(item, index) in detailImg1" :key="index">
                         <a :href="item.linkHref">
                             <img :src="item.imgSrc" alt>
                         </a>
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <el-carousel indicator-position="outside">
-                    <el-carousel-item v-for="(item, index) in imgArr0" :key="index">
+                    <el-carousel-item v-for="(item, index) in detailImg2" :key="index">
                         <a :href="item.linkHref">
                             <img :src="item.imgSrc" alt>
                         </a>
@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <el-carousel indicator-position="outside">
-                    <el-carousel-item v-for="(item, index) in imgArr0" :key="index">
+                    <el-carousel-item v-for="(item, index) in detailImg3" :key="index">
                         <a :href="item.linkHref">
                             <img :src="item.imgSrc" alt>
                         </a>

@@ -19,8 +19,7 @@
                 <div class="order-create-main">
                     <h3>恭喜! <br>订单提交成功，请尽快付款！</h3>
                     <p>
-                        <span>订单号：{{orderId}}</span>
-                        <!-- <span>应付金额：{{orderTotal|currency('￥')}}</span> -->
+                        <span>订单号：{{order_number}}</span>
                     </p>
                     <div class="order-create-btn-wrap">
                         <div class="btn-l-wrap">
@@ -40,27 +39,40 @@
         data() {
             return {
                 orderId: '',
-                orderTotal: 0
+                orderTotal: 0,
+                order_number: '',
             }
         },
         components: {},
-        mounted() {
-            var orderId = this.$route.query.orderId;
-            console.log("orderId:" + orderId);
-            if (!orderId) {
-                return;
+        async mounted() {
+            let _mainObj = window.sessionStorage.getItem("_mainObj");
+            _mainObj = JSON.parse(_mainObj);
+            let user_id = _mainObj.user_id;
+            let obj = {
+                user_id: user_id,
+                "address_id": 1,
+                "goods_id": 1
             }
-            axios.get("/users/orderDetail", {
-                params: {
-                    orderId: orderId
-                }
-            }).then((response) => {
-                let res = response.data;
-                if (res.status == '0') {
-                    this.orderId = orderId;
-                    this.orderTotal = res.result.orderTotal;
-                }
-            });
+            const res = await this.$ajax.post(`/orders/`, obj);
+            // console.log(res)
+            let data = res.data;
+            this.order_number = data.order_number;
+            // var orderId = this.$route.query.orderId;
+            // console.log("orderId:" + orderId);
+            // if (!orderId) {
+            //     return;
+            // }
+            // axios.get("/users/orderDetail", {
+            //     params: {
+            //         orderId: orderId
+            //     }
+            // }).then((response) => {
+            //     let res = response.data;
+            //     if (res.status == '0') {
+            //         this.orderId = orderId;
+            //         this.orderTotal = res.result.orderTotal;
+            //     }
+            // });
         }
     }
 </script>

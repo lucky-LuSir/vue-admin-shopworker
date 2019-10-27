@@ -26,7 +26,7 @@
         </div>
         <div class="two cm-Layout clearfix">
             <div class="carousel__slide slick-slide slick-active" style="width: 203px;">
-                <div class="promo-style" @click="toCart(1)">
+                <div class="promo-style" @click="toDetail(1, 'Basswood shutters')">
                     <div class="style-image">
                         <a href="javascript:;" alt>
                             <img style="height: 200px;" src="../img/BASS_DSC_0311.jpg" alt>
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="carousel__slide slick-slide slick-active" style="width: 203px;">
-                <div class="promo-style" @click="toCart(2)">
+                <div class="promo-style" @click="toDetail(2, 'Paulownia shutters')">
                     <div class="style-image">
                         <a href="javascript:;" alt>
                             <img style="height: 200px;" src="../img/PAU_DSC_0208.jpg" alt>
@@ -65,7 +65,7 @@
                 </div>
             </div>
             <div class="carousel__slide slick-slide slick-active" style="width: 203px;">
-                <div class="promo-style" @click="toCart(3)">
+                <div class="promo-style" @click="toDetail(3, 'PVC shutters')">
                     <div class="style-image">
                         <a href="javascript:;" alt>
                             <img style="height: 200px;" src="../img/PVC_DSC_0113.jpg" alt>
@@ -101,19 +101,27 @@
 export default {
     data () {
         return {
-            // imgArr0: [{
-            //     imgSrc: require("../img/DSC_0316.jpg"),
-            //     linkHref: "javascript:;"
-            // },
-            // {
-            //     imgSrc: require("../img/DSC_0161.jpg"),
-            //     linkHref: "javascript:;"
-            // },
-            // {
-            //     imgSrc: require("../img/DSC_0159.jpg"),
-            //     linkHref: "javascript:;"
-            // }
-            // ],
+            imgArr0: [{
+                imgSrc: require("../img/slide_001.jpg"),
+                linkHref: "javascript:;"
+            },
+            {
+                imgSrc: require("../img/slide_002.jpg"),
+                linkHref: "javascript:;"
+            },
+            {
+                imgSrc: require("../img/slide_003.jpg"),
+                linkHref: "javascript:;"
+            },
+            {
+                imgSrc: require("../img/slide_004.jpg"),
+                linkHref: "javascript:;"
+            },
+            {
+                imgSrc: require("../img/slide_005.jpg"),
+                linkHref: "javascript:;"
+            }
+            ],
             imgArr3: [{
                 imgSrc: require("../img/slide_001.jpg"),
                 linkHref: "javascript:;"
@@ -167,7 +175,6 @@ export default {
             console.log(res)
         },
         async aaa () {
-            //   console.log(111121);
             var obj = {
                 password: "ewrw1325135",
                 password2: "ewrw1325135",
@@ -182,9 +189,10 @@ export default {
             const res = await this.$ajax.post(`/users/`, obj);
             console.log(res);
         },
-        toCart (type) {
+        toDetail (type, material) {
             var type = type;
             window.sessionStorage.setItem("type", type);
+            window.sessionStorage.setItem("material", material)
             this.$router.push("/detail");
         }
     }
