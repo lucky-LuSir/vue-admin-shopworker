@@ -54,16 +54,10 @@
                     <el-collapse v-model="activeNames" @change="handleChange" accordion>
                         <el-collapse-item title="First-step" name="1">
                             <el-form-item label="length" prop="length">
-                                <el-select v-model="form.length" placeholder="please select the length" size="mini">
-                                    <el-option v-for="item in lengthList" :key="item.value" :label="item.label" :value="item.value">
-                                    </el-option>
-                                </el-select>
+                                <el-input v-model="form.length" placeholder="please select the length"></el-input>
                             </el-form-item>
                             <el-form-item label="width" prop="width">
-                                <el-select v-model="form.width" placeholder="please select the width">
-                                    <el-option v-for="item in widthList" :key="item.value" :label="item.label" :value="item.value">
-                                    </el-option>
-                                </el-select>
+                                <el-input v-model="form.width" placeholder="please select the width"></el-input>
                             </el-form-item>
                             <el-form-item label="windos_sash_type" prop="windos_sash_type">
                                 <el-select v-model="form.windos_sash_type" placeholder="please select the windos_sash_type">
@@ -342,42 +336,28 @@
                     }],
 
                 },
-                lengthList: [{
-                        label: '50',
-                        value: '50',
-                    },
-                    {
-                        label: '60',
-                        value: '60',
-                    },
-                ],
-                widthList: [{
-                        label: '50',
-                        value: '50',
-                    },
-                    {
-                        label: '60',
-                        value: '60',
-                    }
-                ],
                 windos_sash_typeList: [
                     {
-                        label: '窗扇类型1',
-                        value: '窗扇类型1',
+                        label: 'FULL HEIGHT',
+                        value: 'FULL HEIGHT',
                     },
                     {
-                        label: '窗扇类型2',
-                        value: '窗扇类型2',
+                        label: 'TIER ON TIER',
+                        value: 'TIER ON TIER',
+                    },
+                    {
+                        label: 'SHAPED SHUTTER',
+                        value: 'SHAPED SHUTTER',
                     }
                 ],
                 installation_locationList: [
                     {
-                        label: '安装位置1',
-                        value: '安装位置1',
+                        label: '内置',
+                        value: '内置',
                     },
                     {
-                        label: '安装位置2',
-                        value: '安装位置2',
+                        label: '外置',
+                        value: '外置',
                     },
                 ],
                 size_typeList: [
@@ -702,11 +682,15 @@
 
         .el-form-item {
             margin-left: 10px;
-            // margin-right: 40px;
             margin-right: 20px;
         }
-
+        /deep/ .el-form-item__error {
+            left: 40px;
+        }
         .el-select {
+            width: 230px;
+        }
+        .el-input {
             width: 230px;
         }
 

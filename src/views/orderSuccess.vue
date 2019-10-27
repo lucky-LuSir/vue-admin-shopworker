@@ -26,7 +26,7 @@
                             <router-link class="btn btn--m btn-oo" to="/cart">购物车列表</router-link>
                         </div>
                         <div class="btn-r-wrap">
-                            <router-link class="btn btn--m btn-oo" to="/">商品列表</router-link>
+                            <div style="cursor: pointer;" class="btn btn--m btn-oo" @click="toFukuan()">付款</div>
                         </div>
                     </div>
                 </div>
@@ -41,6 +41,7 @@
                 orderId: '',
                 orderTotal: 0,
                 order_number: '',
+                order_id: '',
             }
         },
         components: {},
@@ -57,6 +58,7 @@
             // console.log(res)
             let data = res.data;
             this.order_number = data.order_number;
+            this.order_id = data.order_id;
             // var orderId = this.$route.query.orderId;
             // console.log("orderId:" + orderId);
             // if (!orderId) {
@@ -73,12 +75,23 @@
             //         this.orderTotal = res.result.orderTotal;
             //     }
             // });
+        },
+        methods: {
+            async toFukuan() {
+                console.log(1)
+                var order_id = this.order_id;
+                const res = await this.$ajax.get(`orders/${3}/payment/`);
+                console.log(res)
+                let ali_url = res.data.ali_url;
+                location.href = ali_url;
+            }
         }
     }
 </script>
 
 <style lang="less" scoped>
     .h2_success {
+        
         padding: 40px 0 20px 0;
         font-size: 22px;
         text-transform: uppercase;

@@ -19,14 +19,15 @@
                             </h2>
                         </div>
                         <ul class="consignee-list clearfix">
-                            <li v-for="(item, index) in addressList" :key="index" class="addList-item" selected="selected">
-                                <div class="addLabel">
-                                    <span>{{item.title}}</span><b></b>
+                            <li v-for="(item, index) in addressList" :key="index" class="addList-item defaultFirst" selected="selected">
+                                <div @click="defaultAddr(index)" class="addLabel">
+                                    <span>{{item.title}}</span>
+                                    <b></b>
                                 </div>
                                 <div class="addr-detail">
                                     <span class="addr-name">{{item.receiver}}</span>
                                     <span class="addr-info">{{item.province}} {{item.city}} {{item.district}} {{item.place}}</span>
-                                    <span class="addr-tel">{{item.mobile}}</span>
+                                    <span class="addr-tel">{{item.mobile | companyFilter}}</span>
                                 </div>
                                 <div class="op-btns" consigneeid="959992403" isoldaddress="false">
                                     <a href="#none" class="ftx-05 setdefault-consignee">设为默认地址</a> <a href="#none" class="ftx-05 edit-consignee">编辑</a>
@@ -59,7 +60,6 @@
                     </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="createAdd('ruleForm')">立即创建</el-button>
-                        <el-button @click="resetForm('ruleForm')">重置</el-button>
                     </el-form-item>
                 </el-form>
             </el-dialog>
@@ -68,6 +68,13 @@
 </template>
 
 <script>
+    import Vue from "vue";
+
+    // 过滤时间
+    Vue.filter("companyFilter", function(value) {
+        var newvalue = value.replace(value.slice(3, 7), "****");
+        return newvalue;
+    });
     export default {
         data() {
             return {
@@ -107,11 +114,15 @@
                     city: '',
                     receiver: '',
                     mobile: '',
-                }
+                },
+                defaultIndex: 0,
             }
         },
         mounted() {
+            
             this.init();
+            
+
         },
         computed: {
             addressListFilter() {
@@ -120,6 +131,14 @@
         },
         components: {},
         methods: {
+            defaultAddr(index) {
+                var list = document.querySelectorAll(".addList-item");
+                for (var i = 0; i < list.length; i++) {
+                    list[i].classList.remove("defaultIndex");
+                    list[i].classList.remove("defaultFirst");
+                }
+                list[index].classList.add("defaultIndex");
+            },
             toOrders() {
                 // let 
                 // // this.$router.push(
@@ -139,6 +158,8 @@
                 data = JSON.parse(data);
                 // console.log(data)
                 this.addressList = data;
+
+
                 // this.selectedAddrId = this.addressList[0].addressId;
             },
             createAddDialog() {
@@ -147,20 +168,20 @@
             async createAdd() {
                 let user_id = JSON.parse(window.sessionStorage.getItem("_mainObj")).user_id;
                 console.log(user_id)
-                // let obj = {
-                //     "user_id": 2,
-                //     "city": "上海市",
-                //     "district": "浦东区",
-                //     "email": "1@qq.com",
-                //     "mobile": "13388888888",
-                //     "place": "龙华中路111号",
-                //     "province": "上海",
-                //     "receiver": "lusir",
-                //     "tel": "021-00000000",
-                //     "title": "上海接收处"
-                // }
-                // const res = await this.$ajax.post(``, obj);
-                // console.log(res)
+                let obj = {
+                    "user_id": 2,
+                    "city": "上海市",
+                    "district": "浦东区",
+                    "email": "1@qq.com",
+                    "mobile": "13388888888",
+                    "place": "龙华中路111号",
+                    "province": "上海",
+                    "receiver": "lusir",
+                    "tel": "021-00000000",
+                    "title": "上海接收处"
+                }
+                const res = await this.$ajax.post(`/address/`, obj);
+                console.log(res)
                 // {
                 //     "user_id": "2",
                 //     "title": "男",
@@ -247,25 +268,17 @@
             float: left;
             width: 99.8%;
         }
-
+        .addList-item:hover {
+            background-color: #fff3f3;
+        }
         span {
             font-size: 13px;
         }
-
-        .addLabel {
-            border: 2px solid #e4393c;
-            padding: 4px 10px;
-            float: left;
-            list-style: none;
-            position: relative;
-            height: 18px;
-            line-height: 18px;
-            width: 120px;
-            text-align: center;
-            cursor: pointer;
-            background-color: #fff;
-            box-sizing: content-box;
-
+        .addList-item.defaultFirst:nth-child(1) {
+            .addLabel {
+                border: 2px solid #e4393c;
+                padding: 4px 10px;
+            }
             b {
                 display: block;
                 position: absolute;
@@ -276,6 +289,45 @@
                 overflow: hidden;
                 background: url(//misc.360buyimg.com/user/purchase/2.0.0/css/i/selected-icon.png) no-repeat;
             }
+        }
+        .defaultIndex {
+            
+            .addLabel {
+                border: 2px solid #e4393c;
+                padding: 4px 10px;
+            }
+            b {
+                display: block;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                width: 12px;
+                height: 12px;
+                overflow: hidden;
+                background: url(//misc.360buyimg.com/user/purchase/2.0.0/css/i/selected-icon.png) no-repeat;
+            }
+        }
+            
+        .addLabel:hover {
+            border: 2px solid #e4393c;
+            padding: 4px 10px;
+        }
+        .addLabel {
+            
+            float: left;
+            list-style: none;
+            position: relative;
+            height: 18px;
+            line-height: 18px;
+            width: 120px;
+            text-align: center;
+            cursor: pointer;
+            background-color: #fff;
+            box-sizing: content-box;
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+
+            
         }
 
         .addr-detail {
@@ -289,8 +341,8 @@
             }
         }
 
-        .op-btns {
-            visibility: hidden;
+        .addList-item:hover .op-btns {
+            visibility: visible;
             float: right;
             text-align: right;
             height: 30px;
@@ -299,6 +351,11 @@
             a {
                 margin-right: 10px;
             }
+        }
+        .op-btns {
+            visibility: hidden;
+            color: #005ea7;
+            font-size: 12px;
         }
 
     }
