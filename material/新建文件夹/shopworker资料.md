@@ -151,6 +151,95 @@ sku_id
 
 
 
+```
+{
+	"title": "aa1a",
+	"reveiver": "sss1",
+	"province": "1111",
+	"city": "sss1",
+	"district": "sdss1",
+	"place": "fff1",
+	"mobile": 13487023121,
+	"user_id": "2",
+	"tel": "111",
+	"email": "1@qq.com"
+}
+
+
+
+
+```
+
+
+
+```
+ {      "material":
+        "454"
+    ,
+    "windos_sash_type": 
+        "45"
+    ,
+    "installation_location": 
+        "454"
+    ,
+    "size_type": 
+        "555"
+    ,
+    "length": 
+        "524"
+    ,
+    "width": 
+       "202"
+    ,
+    "midplane_postion": 
+        "20"
+    ,
+    "ploduct_color": 
+        "ty"
+    ,
+    "frame_type": 
+        "tyt"
+    ,
+    "frame_number":
+        "tyy"
+    ,
+    "opening_method": 
+        "22"
+    ,
+    "tcolumn_type": 
+        "222"
+    ,
+    "column_type": 
+        "22"
+    ,
+    "balde_type": 
+        "22"
+    ,
+    "poll_rod_type": 
+        "22"
+    ,
+    "ploo_rod_dis": 
+        "11"
+    ,
+    "hardware_colour": 
+        "11"
+    ,
+    "blade_state": 
+        "11"
+    ,
+    "lower_palte_state": 
+        "tt",
+  "hardware_type":"eeee",
+    "hardware_colour ":"eee",
+    "blade_state ":"rrrr",
+    "lower_palte_state ":"rrrr",
+    "number":"11",
+  "user_id":"2"
+ }
+```
+
+
+
 
 
 

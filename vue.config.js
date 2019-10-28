@@ -12,10 +12,10 @@ const isProduction = process.env.NODE_ENV === "production";
 // var login = require("./data/login.json");
 // var register = require("./data/register.json");
 // var editPassword = require("./data/editPassword.json");
-var cartList = require("./data/cartList.json");
-var cartDel = require("./data/cartDel.json");
-var cartEdit = require("./data/cartEdit.json");
-var addressList = require("./data/addressList.json");
+// var cartList = require("./data/cartList.json");
+// var cartDel = require("./data/cartDel.json");
+// var cartEdit = require("./data/cartEdit.json");
+// var addressList = require("./data/addressList.json");
 
 const cdn = {
     // 生产环境
@@ -48,31 +48,31 @@ module.exports = {
     //         }
     //     }
     // },
-    devServer: {
-        before(app) { // localhost:8080/api/login
-            // app.post("/api/login", (req, res) => {
-            //     res.json(login)
-            // })
-            // app.post("/api/register", (req, res) => {
-            //     res.json(register)
-            // })
-            // app.post("/api/editPassword", (req, res) => {
-            //     res.json(editPassword)
-            // })
-            app.get("/cartList/", (req, res) => {
-                res.json(cartList)
-            })
-            app.delete("/cartDel/", (req, res) => {
-                res.json(cartDel)
-            })
-            app.put("/cartEdit/", (req, res) => {
-                res.json(cartEdit)
-            })
-            app.get("/addressList/", (req, res) => {
-                res.json(addressList)
-            })
-        }
-    },
+    // devServer: {
+    //     before(app) { // localhost:8080/api/login
+    //         // app.post("/api/login", (req, res) => {
+    //         //     res.json(login)
+    //         // })
+    //         // app.post("/api/register", (req, res) => {
+    //         //     res.json(register)
+    //         // })
+    //         // app.post("/api/editPassword", (req, res) => {
+    //         //     res.json(editPassword)
+    //         // })
+    //         app.get("/cartList/", (req, res) => {
+    //             res.json(cartList)
+    //         })
+    //         app.delete("/cartDel/", (req, res) => {
+    //             res.json(cartDel)
+    //         })
+    //         app.put("/cartEdit/", (req, res) => {
+    //             res.json(cartEdit)
+    //         })
+    //         app.get("/addressList/", (req, res) => {
+    //             res.json(addressList)
+    //         })
+    //     }
+    // },
     configureWebpack: config => {
         if (isProduction) {
             config.externals = {
