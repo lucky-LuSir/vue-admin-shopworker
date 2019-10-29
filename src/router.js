@@ -17,6 +17,7 @@ import success from '@/components/success'
 import error from '@/components/error'
 import user from '@/components/user'
 Vue.use(Router)
+console.log(process.env.BASE_URL);
 
 export default new Router({
     mode: 'history',

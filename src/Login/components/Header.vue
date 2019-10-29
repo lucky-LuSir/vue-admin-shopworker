@@ -141,13 +141,15 @@
                 }
             };
             return {
-                langs: [{
-                        key: 'zh-CN',
-                        value: '中文'
-                    },
+                langs: [
+                    
                     {
                         key: 'en-US',
                         value: 'EngLish'
+                    },
+                    {
+                        key: 'zh-CN',
+                        value: '中文'
                     },
                 ],
                 isLogin: false,

@@ -14,6 +14,9 @@ import cnLocale from './zh-CN'
 
 // 使用vue-i18n库
 Vue.use(VueI18n)
+console.log(getStorage('lang'));
+console.log(getBrowserLang());
+
 
 // 获取当前语言（初始化时localStorage里没有存语言，默认为浏览器当前的语言）
 const lang = getStorage('lang') || getBrowserLang()
