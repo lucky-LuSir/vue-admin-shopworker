@@ -30,13 +30,13 @@
                                         <a class="two" @click="editPassword()" href="javascript:;">{{ $t('login.forget') }}</a>
                                     </div>
                                 </el-form-item>
-                                <el-form-item class="item-login">
+                                <!-- <el-form-item class="item-login">
                                     <a style="margin-top: 5px;" href="#">
                                         <i class="iconfont el-icon-diy-weixin"></i>
                                     </a>
                                     <a href="#">谷歌登录</a>
                                     <a href="#">facebook登录</a>
-                                </el-form-item>
+                                </el-form-item> -->
                             </div>
                         </div>
                     </div>

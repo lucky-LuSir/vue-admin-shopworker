@@ -147,7 +147,8 @@
                 // //         query: {orderObj: }
                 // //     }
                 // // )
-                this.$router.push('/orderSuccess');
+                // this.$router.push('/orderSuccess');
+                this.$router.push('/orderConfirm');
             },
             async init() {
                 let _mainObj = window.sessionStorage.getItem("_mainObj");

@@ -78,10 +78,12 @@
                                 </el-select>
                             </el-form-item>
                             <el-form-item label="midplane_postion" prop="midplane_postion">
-                                <el-select v-model="form.midplane_postion" placeholder="please select the midplane_postion">
+                                <!-- <el-select v-model="form.midplane_postion" placeholder="please select the midplane_postion">
                                     <el-option v-for="item in midplane_postionList" :key="item.value" :label="item.label" :value="item.value">
                                     </el-option>
-                                </el-select>
+                                </el-select> -->
+                                <el-input v-model="form.midplane_postion" placeholder="please select the midplane_postion"></el-input>
+
                             </el-form-item>
                         </el-collapse-item>
                         <el-collapse-item title="Two-step" name="2">
@@ -352,162 +354,311 @@
                 ],
                 installation_locationList: [
                     {
-                        label: '内置',
-                        value: '内置',
+                        label: 'Built-in',
+                        value: 'Built-in',
                     },
                     {
-                        label: '外置',
-                        value: '外置',
+                        label: 'External location',
+                        value: 'External location',
                     },
                 ],
                 size_typeList: [
                     {
-                        label: '尺寸类型1',
-                        value: '尺寸类型1',
+                        label: 'Hole size',
+                        value: 'Hole size',
                     },
                     {
-                        label: '尺寸类型2',
-                        value: '尺寸类型2',
+                        label: 'Size after deduction',
+                        value: 'Size after deduction',
                     },
                 ],
-                midplane_postionList: [
-                    {
-                        label: '中板位置1',
-                        value: '中板位置1',
-                    },
-                    {
-                        label: '中板位置2',
-                        value: '中板位置2',
-                    },
-                ],
+                // midplane_postionList: [
+                //     {
+                //         label: '中板位置1',
+                //         value: '中板位置1',
+                //     },
+                //     {
+                //         label: '中板位置2',
+                //         value: '中板位置2',
+                //     },
+                // ],
                 ploduct_colorList: [
                     {
-                        label: '产品颜色1',
-                        value: '产品颜色1',
+                        label: 'JM01 PURE WHITE',
+                        value: 'JM01 PURE WHITE',
                     },
                     {
-                        label: '产品颜色2',
-                        value: '产品颜色2',
+                        label: 'JM02 LOVE NOTE',
+                        value: 'JM02 LOVE NOTE',
+                    },
+                    {
+                        label: 'JM03 SUPER WHITE',
+                        value: 'JM03 SUPER WHITE',
+                    },
+                    {
+                        label: 'JM04 CHINA WHITE',
+                        value: 'JM04 CHINA WHITE',
+                    },
+                    {
+                        label: 'JM05 ANTIQUE WHITE',
+                        value: 'JM05 ANTIQUE WHITE',
+                    },
+                    {
+                        label: 'JM06 GOLDEN OAK',
+                        value: 'JM06 GOLDEN OAK',
+                    },
+                    {
+                        label: 'JM07 NATURAL',
+                        value: 'JM07 NATURAL',
+                    },
+                    {
+                        label: 'JM08 CORDOVAN',
+                        value: 'JM08 CORDOVAN',
+                    },
+                    {
+                        label: 'JM09 WALNUT',
+                        value: 'JM09 WALNUT',
+                    },
+                    {
+                        label: 'JM10 BALCK',
+                        value: 'JM10 BALCK',
+                    },
+                    {
+                        label: 'CUSTOM',
+                        value: 'CUSTOM',
                     },
                 ],
                 frame_typeList: [
                     {
-                        label: '框条类型1',
-                        value: '框条类型1',
+                        label: 'BL01',
+                        value: 'BL01',
                     },
                     {
-                        label: '框条类型2',
-                        value: '框条类型2',
+                        label: 'FL01',
+                        value: 'FL01',
+                    },
+                    {
+                        label: 'BCL01',
+                        value: 'BCL01',
+                    },
+                    {
+                        label: 'H-BCL01',
+                        value: 'H-BCL01',
+                    },
+                    {
+                        label: 'STAND Z',
+                        value: 'STAND Z',
+                    },
+                    {
+                        label: 'LARGE Z',
+                        value: 'LARGE Z',
+                    },
+                    {
+                        label: 'CROWN Z',
+                        value: 'CROWN Z',
+                    },
+                    {
+                        label: 'U CHANNEL',
+                        value: 'U CHANNEL',
+                    },
+                    {
+                        label: 'HANG STRIP',
+                        value: 'HANG STRIP',
                     },
                 ],
                 frame_numberList: [
                     {
-                        label: '框条边数1',
-                        value: '框条边数1',
+                        label: 'LRTB',
+                        value: 'LRTB',
                     },
                     {
-                        label: '框条边数2',
-                        value: '框条边数2',
+                        label: 'LRT',
+                        value: 'LRT',
                     },
+                    {
+                        label: 'LRB',
+                        value: 'LRB',
+                    },
+                    {
+                        label: 'TB',
+                        value: 'TB',
+                    },
+                    
                 ],
                 opening_methodList: [
                     {
-                        label: '开启方式1',
-                        value: '开启方式1',
+                        label: 'L',
+                        value: 'L',
                     },
                     {
-                        label: '开启方式2',
-                        value: '开启方式2',
+                        label: 'R',
+                        value: 'R',
+                    },
+                     {
+                        label: 'LR',
+                        value: 'LR',
+                    },
+                     {
+                        label: 'LRTLR',
+                        value: 'LRTLR',
+                    },
+                    {
+                        label: 'LRTLRTLR',
+                        value: 'LRTLRTLR',
                     },
                 ],
                 tcolumn_typeList: [
                     {
-                        label: 'T柱类型1',
-                        value: 'T柱类型1',
+                        label: 'BEAD T POST',
+                        value: 'BEAD T POST',
                     },
                     {
-                        label: 'T柱类型2',
-                        value: 'T柱类型2',
+                        label: 'FLAT T POST',
+                        value: 'FLAT T POST',
                     },
                 ],
                 column_typeList: [
                     {
-                        label: '立柱型号1',
-                        value: '立柱型号1',
+                        label: 'SQUARE STILE',
+                        value: 'SQUARE STILE',
                     },
                     {
-                        label: '立柱型号2',
-                        value: '立柱型号2',
+                        label: 'RABATE STILE',
+                        value: 'RABATE STILE',
+                    },
+                    {
+                        label: 'D-STILE',
+                        value: 'D-STILE',
+                    },
+                    {
+                        label: 'FLAT SQUARE STILE',
+                        value: 'FLAT SQUARE STILE',
+                    },
+                    {
+                        label: 'FLAT RABATE STILE',
+                        value: 'FLAT RABATE STILE',
+                    },
+                    {
+                        label: 'FLAT D-STILE',
+                        value: 'FLAT D-STILE',
+                    },
+                    {
+                        label: 'CENTRAL STILE',
+                        value: 'CENTRAL STILE',
+                    },
+                    {
+                        label: 'FLATE CENTRAL STILE',
+                        value: 'FLATE CENTRAL STILE',
+                    },
+                    {
+                        label: 'HIDDEN STILE',
+                        value: 'HIDDEN STILE',
                     },
                 ],
                 balde_typeList: [
                     {
-                        label: '叶片型号1',
-                        value: '叶片型号1',
+                        label: '2.5',
+                        value: '2.5',
                     },
                     {
-                        label: '叶片型号2',
-                        value: '叶片型号2',
+                        label: '3.5',
+                        value: '3.5',
+                    },
+                    {
+                        label: '4.5',
+                        value: '4.5',
                     },
                 ],
                 poll_rod_typeList: [
                     {
-                        label: '拉杆类型1',
-                        value: '拉杆类型1',
+                        label: 'ClearView',
+                        value: 'ClearView',
                     },
                     {
-                        label: '拉杆类型2',
-                        value: '拉杆类型2',
+                        label: 'Centre',
+                        value: 'Centre',
+                    },
+                    {
+                        label: 'Off-set',
+                        value: 'Off-set',
+                    },
+                    {
+                        label: 'Concealed',
+                        value: 'Concealed',
                     },
                 ],
                 ploo_rod_disList: [
                     {
-                        label: '拉杆断开1',
-                        value: '拉杆断开1',
+                        label: 'Center off',
+                        value: 'Center off',
                     },
                     {
-                        label: '拉杆断开2',
-                        value: '拉杆断开2',
+                        label: 'Keep on opening',
+                        value: 'Keep on opening',
                     },
                 ],
                 hardware_typeList: [
                     {
-                        label: '五金类型1',
-                        value: '五金类型1',
+                        label: 'Butterfly hinge',
+                        value: 'Butterfly hinge',
                     },
                     {
-                        label: '五金类型2',
-                        value: '五金类型2',
+                        label: 'Eccentric hinge',
+                        value: 'Eccentric hinge',
+                    },
+                    {
+                        label: 'L hinge',
+                        value: 'L hinge',
                     },
                 ],
                 hardware_colourList: [
                     {
-                        label: '五金颜色1',
-                        value: '五金颜色1',
+                        label: 'Pure white',
+                        value: 'Pure white',
                     },
                     {
-                        label: '五金颜色2',
-                        value: '五金颜色2',
+                        label: 'Snow white',
+                        value: 'Snow white',
+                    },
+                    {
+                        label: 'Swan',
+                        value: 'Swan',
+                    },
+                    {
+                        label: 'Bronze',
+                        value: 'Bronze',
+                    },
+                    {
+                        label: 'Stainless steel',
+                        value: 'Stainless steel',
+                    },
+                    {
+                        label: 'Brass',
+                        value: 'Brass',
                     },
                 ],
                 blade_stateList: [
                     {
-                        label: '叶片状态1',
-                        value: '叶片状态1',
+                        label: 'Blade closed push pull',
+                        value: 'Blade closed push pull',
                     },
                     {
-                        label: '叶片状态2',
-                        value: '叶片状态2',
+                        label: 'Blade opening push-pull',
+                        value: 'Blade opening push-pull',
                     },
                 ],
                 lower_palte_stateList: [
                     {
-                        label: '下板状态1',
-                        value: '下板状态1',
+                        label: 'Lower board',
+                        value: 'Lower board',
                     },
                     {
-                        label: '下板状态2',
-                        value: '下板状态2',
+                        label: 'No bottom board',
+                        value: 'No bottom board',
+                    },
+                    {
+                        label: 'Location film',
+                        value: 'Location film',
                     },
                 ],
             }
