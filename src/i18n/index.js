@@ -19,7 +19,8 @@ console.log(getBrowserLang());
 
 
 // 获取当前语言（初始化时localStorage里没有存语言，默认为浏览器当前的语言）
-const lang = getStorage('lang') || getBrowserLang()
+// const lang = getStorage('lang') || getBrowserLang()
+const lang = "en-US"
 
 // 组合element ui 和 项目自身的文案文件
 const messages = {

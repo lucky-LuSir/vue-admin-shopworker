@@ -22,6 +22,8 @@ export const removeStorage = function (key) {
 export const getBrowserLang = function () {
     let browserLang = navigator.language ? navigator.language : navigator.browserLanguage;
     let defaultBrowserLang = '';
+    console.log(browserLang.toLowerCase());
+    
     if (browserLang.toLowerCase() === 'cn' || browserLang.toLowerCase() === 'zh' || browserLang.toLowerCase() === 'zh-cn') {
         defaultBrowserLang = 'en-US'
     } else {
